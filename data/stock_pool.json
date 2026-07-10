@@ -1,82 +1,50 @@
 {
-  "report_date": "2026-07-08",
+  "report_date": "2026-07-10",
   "report_type": "weekly",
   "version": "1.0.0",
   "industries": [
-    {
-      "industry_name": "C39计算机、通信和其他电子设备制造业",
-      "industry_display": "C39计算机、通信和其他电子设备制造业(证监会行业分类)",
-      "momentum_score": 57.2,
-      "fundamental_score": 30.0,
-      "capital_flow_score": 0,
-      "policy_catalyst_score": 9.0,
-      "policy_catalyst_notes": "AI算力需求爆发+国产替代加速+大基金三期+华为韬定律V2+长鑫IPO，半导体板块上半年涨103%",
-      "composite_score": 100.0,
-      "rank": 1,
-      "qual_review": {
-        "removed": ["600360华微电子(刚摘帽+现金流恶化95%+造假嫌疑)", "600460士兰微(大摩看空目标20元+负债率65%+净利率2%)"],
-        "kept": ["600060海信视像(零质押+机构一致买入+PE12倍合理)"],
-        "note": "行业政策催化极强，但原选3只中有2只财务质量差，仅保留海信视像"
-      },
-      "stocks": [
-        {
-          "code": "600060",
-          "name": "海信视像",
-          "composite_score": 50.0,
-          "value_score": 15.0,
-          "growth_score": 5.0,
-          "technical_score": 30.0,
-          "qual_risk": "低",
-          "qual_notes": "大股东零质押，2026无减持，Q1营收137亿(+2.6%)，机构一致买入评级，目标价29-31元。风险：面板价格波动",
-          "metrics": {
-            "pe_dynamic": null,
-            "pb": null,
-            "roe": null,
-            "price_latest": 27.33,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": null,
-            "price_change_20d_pct": 5.8,
-            "price_change_60d_pct": 20.6
-          },
-          "rank": 1
-        }
-      ]
-    },
     {
       "industry_name": "C30非金属矿物制品业",
       "industry_display": "C30非金属矿物制品业(证监会行业分类)",
       "momentum_score": 60.0,
       "fundamental_score": 20.5,
       "capital_flow_score": 0,
-      "policy_catalyst_score": 6.0,
-      "policy_catalyst_notes": "六部门建材稳增长方案+超硬材料补短板+功能性金刚石中试平台+绿色建材3000亿目标",
-      "composite_score": 95.6,
-      "rank": 2,
+      "policy_catalyst_score": 6,
+      "policy_catalyst_notes": "六部门《建材行业稳增长工作方案（2025-2026年）》+绿色建材3000亿目标+先进无机非金属材料（超硬材料/先进陶瓷）获超长期国债和产业基金支持+严禁新增水泥玻璃产能利好存量龙头。但建材整体需求偏弱，政策催化偏中长期",
+      "composite_score": 100.0,
+      "rank": 1,
       "qual_review": {
-        "removed": ["600172黄河旋风(三年亏损27亿+股权冻结+概念炒作，极危)"],
-        "kept": ["600366宁波韵升(Q1净利+213%)", "603725天安新材(控股股东承诺不减持)"],
-        "note": "黄河旋风为九只中风险最高个股，必须剔除"
+        "removed": [
+          "600172 黄河旋风 (三年亏损27亿+负债率92.78%+Q1继续亏损9652万+未弥补亏损达股本1/3+60日涨124%概念炒作)",
+          "000672 上峰材料 (Q1营收-24%利润-60%+PE35x处于99%分位+控股股东一致行动人6-9月减持1950万股占总股本2.02%)",
+          "600176 中国巨石 (二股东振石集团质押51.54%超警戒线+应收激增66%至31亿+短期借款36亿>货币资金29亿+44亿资本开支加重杠杆)"
+        ],
+        "kept": [
+          "600366 宁波韵升 (Q1净利+213%扣非+703%+新能源+AI双驱动+毛利率翻倍至22%)",
+          "603725 天安新材 (控股股东承诺2027年5月前不减持+定增解禁已平稳度过)"
+        ],
+        "note": "原5只中3只存在严重财务/治理问题必须剔除。黄河旋风濒临ST边缘，中国巨石质押超红线，上峰材料主业恶化+高位减持。仅保留2只"
       },
       "stocks": [
         {
           "code": "600366",
           "name": "宁波韵升",
           "composite_score": 50.0,
-          "financial_health": 5.0,
-          "valuation_score": 10.0,
-          "momentum_score": 25.0,
-          "institutional_score": 10.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
           "qual_risk": "中",
-          "qual_notes": "Q1净利+213%营收+33.5%，基本面显著改善。关注：货币/流动负债仅35.65%，应收账款17.54亿",
+          "qual_notes": "Q1净利+213%扣非+703%，新能源车钕铁硼配套69万套，消费电子+49%受益AI需求。毛利率从12%翻倍至22%。风险：财务费用+656%（短期借款增加），存货+19%，货币资金-34%。整体基本面强劲，成长确定性强",
           "metrics": {
             "pe_dynamic": null,
             "pb": null,
             "roe": null,
-            "price_latest": 15.6,
+            "price_latest": 15.22,
             "market_cap_billion": null,
             "revenue_growth_yoy": null,
-            "price_change_20d_pct": 14.7,
-            "price_change_60d_pct": 25.7
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 17.9,
+            "price_change_60d_pct": 21.6
           },
           "rank": 1
         },
@@ -84,21 +52,21 @@
           "code": "603725",
           "name": "天安新材",
           "composite_score": 50.0,
-          "financial_health": 5.0,
-          "valuation_score": 10.0,
-          "momentum_score": 25.0,
-          "institutional_score": 10.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
           "qual_risk": "中",
-          "qual_notes": "6/22定增解禁1820万股(5.97%)已过，控股股东承诺2027年5月前不减持。关注：子公司账户冻结、恒大坏账",
+          "qual_notes": "控股股东吴启超承诺2026.5.29起12个月内不减持，6月22日定增解禁1820万股(5.97%)已平稳度过。董事沈耀亮一致行动人小额减持（占总股本0.22%）影响有限。需持续关注：子公司账户冻结、恒大坏账遗留问题",
           "metrics": {
             "pe_dynamic": null,
             "pb": null,
             "roe": null,
-            "price_latest": 13.52,
+            "price_latest": 13.42,
             "market_cap_billion": null,
             "revenue_growth_yoy": null,
-            "price_change_20d_pct": 18.2,
-            "price_change_60d_pct": 51.2
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 20.8,
+            "price_change_60d_pct": 52.5
           },
           "rank": 2
         }
@@ -110,59 +78,157 @@
       "momentum_score": 60.0,
       "fundamental_score": 18.7,
       "capital_flow_score": 0,
-      "policy_catalyst_score": 8.0,
-      "policy_catalyst_notes": "新版《矿产资源条例》实施+稀土/钨/锑列入战略矿产目录+供给约束强化+小金属价值重估。风险：G7矿产宣言中长期压制",
-      "composite_score": 94.4,
-      "rank": 3,
+      "policy_catalyst_score": 8,
+      "policy_catalyst_notes": "《矿产资源法实施条例》2026.6.15正式施行+36种战略矿产国家统管（稀土/钨/锑/镓/锗等）+开采指标上收自然资源部+供给刚性锁定。小金属从周期品升级为战略刚需资产，板块单周涨12%。稀土镝铽涨超200%，中船特气涨660%",
+      "composite_score": 98.7,
+      "rank": 2,
       "qual_review": {
-        "removed": ["600206有研新材(PE197倍+月涨140%+概念炒作被公司否认)"],
-        "kept": ["605208永茂泰", "688231隆达股份"],
-        "note": "有研新材为典型题材炒作+估值泡沫，公司自述无磷化铟产品"
+        "removed": [
+          "600206 有研新材 (PE165倍+60日涨163%+公司多次澄清无磷化铟产品+量化资金频繁做T+一个月三登龙虎榜，典型概念炒作)",
+          "605208 永茂泰 (控股股东质押2个月0→41.15%+员工持股平台6-8月减持900万股占总股本2.73%+一致行动人合计持股46%高度集中)",
+          "600961 株冶集团 (套保Q1亏3.54亿+财务总监/董秘年报敏感期闪辞+母公司未分配利润-28.64亿+连续多年不分红+盈利依赖产品涨价)"
+        ],
+        "kept": [
+          "688231 隆达股份 (Q1营收+65%净利+67%高温合金放量，但经营现金流-1.03亿应收+63%需关注)",
+          "600497 驰宏锌锗 (质押仅0.39%+负债率27.9%+Q1净利+34%+央企背景+锗产量全国第一)"
+        ],
+        "note": "原5只中3只剔除。有研新材为典型题材炒作已公司自行澄清，永茂泰质押激增+减持并行信号恶劣，株冶集团套保巨亏+高管闪辞存在治理隐患"
       },
       "stocks": [
-        {
-          "code": "605208",
-          "name": "永茂泰",
-          "composite_score": 50.0,
-          "financial_health": 5.0,
-          "valuation_score": 10.0,
-          "momentum_score": 25.0,
-          "institutional_score": 10.0,
-          "qual_risk": "中高",
-          "qual_notes": "控股股东质押率两月内0→41.15%，用途模糊。一致行动人持股46.05%高度集中。暂无减持",
-          "metrics": {
-            "pe_dynamic": null,
-            "pb": null,
-            "roe": null,
-            "price_latest": 17.69,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": null,
-            "price_change_20d_pct": 16.7,
-            "price_change_60d_pct": 30.6
-          },
-          "rank": 1
-        },
         {
           "code": "688231",
           "name": "隆达股份",
           "composite_score": 48.0,
-          "financial_health": 5.0,
-          "valuation_score": 10.0,
-          "momentum_score": 25.0,
-          "institutional_score": 8.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 28.0,
           "qual_risk": "中高",
-          "qual_notes": "Q1营收+64.75%高温合金放量，但经营现金流-1.03亿与利润背离，PE131倍透支估值，股东减持+62起诉讼",
+          "qual_notes": "Q1营收+64.75%净利+66.7%超预期，高温合金（航空发动机/燃气轮机）核心赛道放量，毛利率提升至19%。风险：经营现金流-1.03亿与利润背离，应收账款+63%至10.32亿，PE约131倍估值透支，历史有62起诉讼+股东减持记录。成长确定但需关注现金流改善进度",
           "metrics": {
             "pe_dynamic": null,
             "pb": null,
             "roe": null,
-            "price_latest": 38.09,
+            "price_latest": 37.8,
             "market_cap_billion": null,
             "revenue_growth_yoy": null,
-            "price_change_20d_pct": 24.4,
-            "price_change_60d_pct": 51.0
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 23.8,
+            "price_change_60d_pct": 47.9
+          },
+          "rank": 1
+        },
+        {
+          "code": "600497",
+          "name": "驰宏锌锗",
+          "composite_score": 45.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.0,
+          "qual_risk": "低",
+          "qual_notes": "央企中国铜业控股(38.57%)，质押仅0.39%大股东无质押。Q1营收+23.66%净利+33.88%，负债率仅27.9%，经营现金流8.81亿。锗产量全国第一受益战略矿产重估。2025年分红率74.54%。风险：应收+104%需关注回款，管理/财务费用双升",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 9.79,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 16.0,
+            "price_change_60d_pct": 18.2
           },
           "rank": 2
+        }
+      ]
+    },
+    {
+      "industry_name": "J67资本市场服务",
+      "industry_display": "J67资本市场服务(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 15.6,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 7,
+      "policy_catalyst_notes": "再融资新规（储架发行+小额快速扩容）+陆家嘴论坛科创板改革+长线资金入市+券商H1业绩暴增（国泰海通+164%）。板块PB1.33x处于近十年31%分位，业绩高增+估值低位双重利好。风险：储架发行可能带来供给压力",
+      "composite_score": 96.5,
+      "rank": 3,
+      "qual_review": {
+        "removed": [
+          "600909 华安证券 (Q1营收-21.6%利润-17.4%业绩变脸+60日涨77%基本面无法支撑+二股东安徽出版集团7-10月减持5000万股高位套现+PE25x远超行业均值)",
+          "601066 中信建投 (与中信证券同质化，头部券商保留更优质的中信证券和国泰海通即可)"
+        ],
+        "kept": [
+          "600030 中信证券 (券商龙头+投行实力最强+再融资新规最大受益者)",
+          "600999 招商证券 (稳健头部券商+估值合理)",
+          "601211 国泰海通 (H1利润+164-171%业绩弹性最大+合并后协同效应)"
+        ],
+        "note": "券商板块整体受益于政策+业绩双驱动，但需精选。华安证券业绩变脸+大股东减持必须剔除，中信建投与中信证券同质化保留更优者"
+      },
+      "stocks": [
+        {
+          "code": "600030",
+          "name": "中信证券",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "qual_risk": "低",
+          "qual_notes": "券商绝对龙头，投行业务实力最强，再融资新规最大受益者。产业资源突出，机构一致看好。风险：板块同质化，超额收益取决于投行项目落地节奏",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 28.68,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 12.4,
+            "price_change_60d_pct": 11.7
+          },
+          "rank": 1
+        },
+        {
+          "code": "600999",
+          "name": "招商证券",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "qual_risk": "低",
+          "qual_notes": "稳健头部券商，综合实力居前，再融资新规+资本市场改革受益。近期无重大风险信号",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 21.75,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 26.2,
+            "price_change_60d_pct": 37.5
+          },
+          "rank": 2
+        },
+        {
+          "code": "601211",
+          "name": "国泰海通",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "qual_risk": "低",
+          "qual_notes": "H1归母净利润突破200亿同比+164-171%业绩弹性最大。国泰君安与海通证券合并后协同效应释放。头部券商中业绩增速最高，估值仍处低位。风险：合并后深层遗留风险需持续关注",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 18.87,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 11.7,
+            "price_change_60d_pct": 12.1
+          },
+          "rank": 3
         }
       ]
     },
@@ -175,7 +241,7 @@
       "policy_catalyst_score": 0,
       "composite_score": 0,
       "rank": 4,
-      "note": "用户手动指定的跟踪标的，非模型筛选",
+      "note": "用户手动指定的跟踪标的，非模型筛选。基于个人研究判断纳入",
       "stocks": [
         {
           "code": "603986",
@@ -185,7 +251,7 @@
           "growth_score": 0,
           "technical_score": 0,
           "qual_risk": "高",
-          "qual_notes": "存储龙头，PE 156倍，长鑫科技IPO催化。52周区间113-847。7/9盘中640.02 +6.1%，成交额A股第一",
+          "qual_notes": "存储龙头，PE 156倍，长鑫科技IPO催化。52周区间113-847，波动极大。7/9盘中640.02 +6.1%，成交额A股第一。高风险高弹性标的，需严格止损",
           "metrics": {
             "pe_dynamic": 156.2,
             "price_latest": 640.02,
@@ -202,7 +268,7 @@
           "growth_score": 0,
           "technical_score": 0,
           "qual_risk": "中",
-          "qual_notes": "游戏龙头，H1净利20-22亿(+157-183%)，PE 12倍。7/7业绩涨停后回调，7/9盘中27.74 -0.93%，MA20支撑有效",
+          "qual_notes": "游戏龙头，H1净利20-22亿(+157-183%)，PE 12倍估值合理。7/7业绩涨停后回调，MA20支撑有效。风险：游戏行业监管政策变化",
           "metrics": {
             "pe_dynamic": 12.2,
             "price_latest": 27.74,
@@ -219,7 +285,7 @@
           "growth_score": 0,
           "technical_score": 0,
           "qual_risk": "高",
-          "qual_notes": "光模块龙头，PE 197倍，年内涨218%。MACD死叉修复中，7/9盘中228.86 +5.56%，主力净流入6.35亿",
+          "qual_notes": "光模块龙头，PE 197倍，年内涨218%。MACD死叉修复中，7/9盘中228.86 +5.56%，主力净流入6.35亿。AI算力核心受益标的但估值极度透支",
           "metrics": {
             "pe_dynamic": 197.3,
             "price_latest": 228.86,
@@ -233,15 +299,19 @@
   ],
   "summary": {
     "total_industries_selected": 4,
-    "total_stocks_recommended": 8,
-    "total_stocks_removed_after_review": 4,
+    "total_stocks_recommended": 10,
+    "total_stocks_before_review": 15,
+    "total_stocks_removed_after_review": 7,
     "removed_stocks": [
-      "600172 黄河旋风 (三年亏损27亿+股权冻结+概念炒作)",
-      "600360 华微电子 (刚摘帽+现金流恶化95%+造假嫌疑)",
-      "600206 有研新材 (PE197倍+月涨140%+概念被公司否认)",
-      "600460 士兰微 (大摩看空目标20元+负债率65%+净利率2%)"
+      "600172 黄河旋风 (三年亏损27亿+负债率92.78%+Q1继续亏损9652万+未弥补亏损达股本1/3)",
+      "000672 上峰材料 (Q1营收-24%利润-60%+PE35x历史高位+一致行动人6-9月减持2.02%)",
+      "600176 中国巨石 (二股东振石集团质押51.54%超警戒+应收激增66%+短借36亿>现金29亿)",
+      "600206 有研新材 (PE165倍+60日涨163%+公司澄清无磷化铟+量化资金炒作+月内三登龙虎榜)",
+      "605208 永茂泰 (控股股东质押2个月0→41.15%+员工持股平台6-8月减持900万股)",
+      "600961 株冶集团 (套保Q1亏3.54亿+财务总监/董秘年报敏感期闪辞+母公司未分配利润-28.64亿)",
+      "600909 华安证券 (Q1营收-21.6%利润-17.4%业绩变脸+二股东7-10月减持5000万股高位套现)"
     ],
     "methodology_version": "1.0.0",
-    "review_note": "经定性审查，9只中4只因严重财务/治理风险被剔除，保留5只。股票池从9只精简为5只，整体质量显著提升"
+    "review_note": "经五维风险排查（质押/减持/财务暴雷/概念炒作/其他红旗），15只候选股中7只因严重财务/治理/炒作风险被剔除。保留8只高质量标的+3只用户手动指定，共计10只。淘汰率47%，股票池质量显著提升。C30建材保留2只（剔除3只），C32有色保留2只（剔除3只），J67券商保留3只（剔除2只）"
   }
 }

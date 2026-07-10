@@ -1,0 +1,93 @@
+{
+  "start_date": "2026-07-10",
+  "account_capital": 100000,
+  "positions": {
+    "002558": {
+      "name": "巨人网络",
+      "entry_price": 26.54,
+      "entry_date": "2026-07-10",
+      "stop_loss": 25.29,
+      "take_profit": 29.96,
+      "position_pct": 10,
+      "shares": 300,
+      "cost": 7962.0,
+      "risk_amount": 375.0,
+      "industry": "USER_SELECTED"
+    },
+    "603725": {
+      "name": "天安新材",
+      "entry_price": 13.42,
+      "entry_date": "2026-07-10",
+      "stop_loss": 11.52,
+      "take_profit": 14.52,
+      "position_pct": 10,
+      "shares": 700,
+      "cost": 9394.0,
+      "risk_amount": 1330.0,
+      "industry": "C30非金属矿物制品业",
+      "note": "模型建议12.21挂单，但当前价13.42高于MA20，改用现价入场"
+    },
+    "601211": {
+      "name": "国泰海通",
+      "entry_price": 18.25,
+      "entry_date": "2026-07-10",
+      "stop_loss": 17.55,
+      "take_profit": 19.86,
+      "position_pct": 10,
+      "shares": 500,
+      "cost": 9125.0,
+      "risk_amount": 350.0,
+      "industry": "J67资本市场服务"
+    },
+    "688231": {
+      "name": "隆达股份",
+      "entry_price": 36.38,
+      "entry_date": "2026-07-10",
+      "stop_loss": 35.15,
+      "take_profit": 42.35,
+      "position_pct": 10,
+      "shares": 200,
+      "cost": 7276.0,
+      "risk_amount": 246.0,
+      "industry": "C32有色金属冶炼和压延加工业"
+    },
+    "600030": {
+      "name": "中信证券",
+      "entry_price": 28.28,
+      "entry_date": "2026-07-10",
+      "stop_loss": 27.16,
+      "take_profit": 30.12,
+      "position_pct": 10,
+      "shares": 300,
+      "cost": 8484.0,
+      "risk_amount": 336.0,
+      "industry": "J67资本市场服务"
+    },
+    "600366": {
+      "name": "宁波韵升",
+      "entry_price": 15.22,
+      "entry_date": "2026-07-10",
+      "stop_loss": 14.49,
+      "take_profit": 17.28,
+      "position_pct": 7,
+      "shares": 400,
+      "cost": 6088.0,
+      "risk_amount": 292.0,
+      "industry": "C30非金属矿物制品业"
+    }
+  },
+  "watchlist": [
+    {"code": "002281", "name": "光迅科技", "reason": "HOLD 57分，MACD死叉修复中，等金叉确认"},
+    {"code": "603986", "name": "兆易创新", "reason": "HOLD 51分，MACD绿柱放大，等企稳"},
+    {"code": "600999", "name": "招商证券", "reason": "HOLD 51分，MACD死叉中，等信号翻转"},
+    {"code": "600497", "name": "驰宏锌锗", "reason": "REDUCE 32分，RSI6=27.9超卖区但不建议抄底"}
+  ],
+  "summary": {
+    "total_cost": 40329.0,
+    "capital_used_pct": 40.3,
+    "total_risk": 2729.0,
+    "risk_pct": 2.7,
+    "positions_count": 6,
+    "watchlist_count": 4
+  }
+}
