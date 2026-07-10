@@ -11,7 +11,7 @@ from pathlib import Path
 import pandas as pd
 pd.DataFrame.append = lambda self, other, ignore_index=False, **kwargs: pd.concat([self, other], ignore_index=ignore_index)
 
-from src.data.fetcher import fetch_stock_kline, close
+from src.data.fetcher import fetch_realtime_price, close
 
 BASE_DIR = Path(__file__).parent.parent
 BASELINE_FILE = BASE_DIR / "data" / "baseline.json"
@@ -52,9 +52,9 @@ def track():
         name = info["name"]
         base_price = info["price"]
 
-        df = fetch_stock_kline(code, days=5)
-        if df is not None and not df.empty:
-            today_price = float(df["close"].iloc[-1])
+        rt = fetch_realtime_price(code)
+        if rt:
+            today_price = rt["current"]
             pct = round((today_price - base_price) / base_price * 100, 2)
         else:
             today_price = base_price

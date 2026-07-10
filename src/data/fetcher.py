@@ -433,3 +433,49 @@ def close():
         except Exception:
             pass
         _bs_logged_in = False
+
+
+# ===================================================================
+# 实时价格（新浪行情 API）
+# ===================================================================
+
+def fetch_realtime_price(code: str) -> dict | None:
+    """
+    获取个股实时行情（新浪 API）。
+    返回: {name, open, prev_close, current, high, low, volume, amount, pct_change}
+    """
+    prefix = "sh" if code.startswith("6") else "sz"
+    url = f"http://hq.sinajs.cn/list={prefix}{code}"
+    try:
+        import requests
+        r = requests.get(url, headers={"Referer": "https://finance.sina.com.cn"}, timeout=10)
+        if r.status_code != 200 or not r.text.strip():
+            return None
+        parts = r.text.split(",")
+        if len(parts) < 9:
+            return None
+        name = parts[0].split('"')[1] if '"' in parts[0] else ""
+        return {
+            "name": name,
+            "open": float(parts[1]) if parts[1] else 0,
+            "prev_close": float(parts[2]) if parts[2] else 0,
+            "current": float(parts[3]) if parts[3] else 0,
+            "high": float(parts[4]) if parts[4] else 0,
+            "low": float(parts[5]) if parts[5] else 0,
+            "volume": float(parts[8]) if len(parts) > 8 and parts[8] else 0,
+            "amount": float(parts[9]) if len(parts) > 9 and parts[9] else 0,
+            "pct_change": round((float(parts[3]) - float(parts[2])) / float(parts[2]) * 100, 2) if parts[2] and parts[3] else 0,
+        }
+    except Exception:
+        return None
+
+
+def fetch_realtime_prices(codes: list[str]) -> dict[str, dict]:
+    """批量获取实时行情，返回 {code: {...}}"""
+    result = {}
+    for code in codes:
+        data = fetch_realtime_price(code)
+        if data:
+            result[code] = data
+        time.sleep(0.1)  # 避免请求过快
+    return result

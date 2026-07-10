@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 pd.DataFrame.append = lambda self, other, ignore_index=False, **kwargs: pd.concat([self, other], ignore_index=ignore_index)
 
-from src.data.fetcher import fetch_stock_kline, close
+from src.data.fetcher import fetch_realtime_price, close
 
 BASE_DIR = Path(__file__).parent.parent
 POSITION_FILE = BASE_DIR / "data" / "positions.json"
@@ -42,7 +42,7 @@ def track_positions():
         return
 
     print(f"=== {today} 持仓盈亏复盘 ===")
-    print(f"账户资金: ¥{data['account_capital']:,}  |  建仓日期: {data['start_date']}")
+    print(f"账户资金: RMB{data['account_capital']:,}  |  建仓日期: {data['start_date']}")
     print()
 
     total_pnl = 0
@@ -58,9 +58,9 @@ def track_positions():
         tp = pos["take_profit"]
         total_cost += cost
 
-        df = fetch_stock_kline(code, days=5)
-        if df is not None and not df.empty:
-            current = float(df["close"].iloc[-1])
+        rt = fetch_realtime_price(code)
+        if rt:
+            current = rt["current"]
         else:
             current = entry
 
@@ -77,8 +77,8 @@ def track_positions():
 
         sign = "+" if pnl >= 0 else ""
         bar = _bar(pnl_pct, 20)
-        print(f"  {name:{' '}{6}}({code})  ¥{entry:.2f} → ¥{current:.2f}  "
-              f"{sign}{pnl_pct:.1f}%  ¥{sign}{pnl:.0f}  {bar}{alert}")
+        print(f"  {name:<6}({code})  RMB{entry:.2f} -> RMB{current:.2f}  "
+              f"{sign}{pnl_pct:.1f}%  RMB{sign}{pnl:.0f}  {bar}{alert}")
 
         day_results.append({
             "code": code, "name": name,
@@ -92,7 +92,7 @@ def track_positions():
 
     total_pnl_pct = round(total_pnl / total_cost * 100, 2) if total_cost else 0
     sign = "+" if total_pnl >= 0 else ""
-    print(f"\n  总成本: ¥{total_cost:,}  |  浮动盈亏: {sign}¥{total_pnl:,.0f}  ({sign}{total_pnl_pct}%)")
+    print(f"\n  总成本: RMB{total_cost:,}  |  浮动盈亏: {sign}RMB{total_pnl:,.0f}  ({sign}{total_pnl_pct}%)")
 
     # 与等权持有 benchmark 对比
     if pnl_history:
@@ -120,9 +120,9 @@ def _bar(pct: float, width: int = 20) -> str:
     filled = int(abs(pct) / 5 * width)
     filled = min(filled, width)
     if pct >= 0:
-        return "█" * filled + "░" * (width - filled)
+        return "#" * filled + "-" * (width - filled)
     else:
-        return "░" * (width - filled) + "█" * filled
+        return "-" * (width - filled) + "#" * filled
 
 
 if __name__ == "__main__":
