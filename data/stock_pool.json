@@ -1,0 +1,247 @@
+{
+  "report_date": "2026-07-08",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C39计算机、通信和其他电子设备制造业",
+      "industry_display": "C39计算机、通信和其他电子设备制造业(证监会行业分类)",
+      "momentum_score": 57.2,
+      "fundamental_score": 30.0,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 9.0,
+      "policy_catalyst_notes": "AI算力需求爆发+国产替代加速+大基金三期+华为韬定律V2+长鑫IPO，半导体板块上半年涨103%",
+      "composite_score": 100.0,
+      "rank": 1,
+      "qual_review": {
+        "removed": ["600360华微电子(刚摘帽+现金流恶化95%+造假嫌疑)", "600460士兰微(大摩看空目标20元+负债率65%+净利率2%)"],
+        "kept": ["600060海信视像(零质押+机构一致买入+PE12倍合理)"],
+        "note": "行业政策催化极强，但原选3只中有2只财务质量差，仅保留海信视像"
+      },
+      "stocks": [
+        {
+          "code": "600060",
+          "name": "海信视像",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "qual_risk": "低",
+          "qual_notes": "大股东零质押，2026无减持，Q1营收137亿(+2.6%)，机构一致买入评级，目标价29-31元。风险：面板价格波动",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 27.33,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 5.8,
+            "price_change_60d_pct": 20.6
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "industry_name": "C30非金属矿物制品业",
+      "industry_display": "C30非金属矿物制品业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 20.5,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 6.0,
+      "policy_catalyst_notes": "六部门建材稳增长方案+超硬材料补短板+功能性金刚石中试平台+绿色建材3000亿目标",
+      "composite_score": 95.6,
+      "rank": 2,
+      "qual_review": {
+        "removed": ["600172黄河旋风(三年亏损27亿+股权冻结+概念炒作，极危)"],
+        "kept": ["600366宁波韵升(Q1净利+213%)", "603725天安新材(控股股东承诺不减持)"],
+        "note": "黄河旋风为九只中风险最高个股，必须剔除"
+      },
+      "stocks": [
+        {
+          "code": "600366",
+          "name": "宁波韵升",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "qual_risk": "中",
+          "qual_notes": "Q1净利+213%营收+33.5%，基本面显著改善。关注：货币/流动负债仅35.65%，应收账款17.54亿",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 15.6,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 14.7,
+            "price_change_60d_pct": 25.7
+          },
+          "rank": 1
+        },
+        {
+          "code": "603725",
+          "name": "天安新材",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "qual_risk": "中",
+          "qual_notes": "6/22定增解禁1820万股(5.97%)已过，控股股东承诺2027年5月前不减持。关注：子公司账户冻结、恒大坏账",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 13.52,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 18.2,
+            "price_change_60d_pct": 51.2
+          },
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "industry_name": "C32有色金属冶炼和压延加工业",
+      "industry_display": "C32有色金属冶炼和压延加工业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 18.7,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 8.0,
+      "policy_catalyst_notes": "新版《矿产资源条例》实施+稀土/钨/锑列入战略矿产目录+供给约束强化+小金属价值重估。风险：G7矿产宣言中长期压制",
+      "composite_score": 94.4,
+      "rank": 3,
+      "qual_review": {
+        "removed": ["600206有研新材(PE197倍+月涨140%+概念炒作被公司否认)"],
+        "kept": ["605208永茂泰", "688231隆达股份"],
+        "note": "有研新材为典型题材炒作+估值泡沫，公司自述无磷化铟产品"
+      },
+      "stocks": [
+        {
+          "code": "605208",
+          "name": "永茂泰",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "qual_risk": "中高",
+          "qual_notes": "控股股东质押率两月内0→41.15%，用途模糊。一致行动人持股46.05%高度集中。暂无减持",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 17.69,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 16.7,
+            "price_change_60d_pct": 30.6
+          },
+          "rank": 1
+        },
+        {
+          "code": "688231",
+          "name": "隆达股份",
+          "composite_score": 48.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 8.0,
+          "qual_risk": "中高",
+          "qual_notes": "Q1营收+64.75%高温合金放量，但经营现金流-1.03亿与利润背离，PE131倍透支估值，股东减持+62起诉讼",
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 38.09,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 24.4,
+            "price_change_60d_pct": 51.0
+          },
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "industry_name": "USER_SELECTED",
+      "industry_display": "手动精选",
+      "momentum_score": 0,
+      "fundamental_score": 0,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 0,
+      "rank": 4,
+      "note": "用户手动指定的跟踪标的，非模型筛选",
+      "stocks": [
+        {
+          "code": "603986",
+          "name": "兆易创新",
+          "composite_score": 0,
+          "value_score": 0,
+          "growth_score": 0,
+          "technical_score": 0,
+          "qual_risk": "高",
+          "qual_notes": "存储龙头，PE 156倍，长鑫科技IPO催化。52周区间113-847。7/9盘中640.02 +6.1%，成交额A股第一",
+          "metrics": {
+            "pe_dynamic": 156.2,
+            "price_latest": 640.02,
+            "price_change_20d_pct": null,
+            "price_change_60d_pct": null
+          },
+          "rank": 1
+        },
+        {
+          "code": "002558",
+          "name": "巨人网络",
+          "composite_score": 0,
+          "value_score": 0,
+          "growth_score": 0,
+          "technical_score": 0,
+          "qual_risk": "中",
+          "qual_notes": "游戏龙头，H1净利20-22亿(+157-183%)，PE 12倍。7/7业绩涨停后回调，7/9盘中27.74 -0.93%，MA20支撑有效",
+          "metrics": {
+            "pe_dynamic": 12.2,
+            "price_latest": 27.74,
+            "price_change_20d_pct": null,
+            "price_change_60d_pct": null
+          },
+          "rank": 2
+        },
+        {
+          "code": "002281",
+          "name": "光迅科技",
+          "composite_score": 0,
+          "value_score": 0,
+          "growth_score": 0,
+          "technical_score": 0,
+          "qual_risk": "高",
+          "qual_notes": "光模块龙头，PE 197倍，年内涨218%。MACD死叉修复中，7/9盘中228.86 +5.56%，主力净流入6.35亿",
+          "metrics": {
+            "pe_dynamic": 197.3,
+            "price_latest": 228.86,
+            "price_change_20d_pct": null,
+            "price_change_60d_pct": null
+          },
+          "rank": 3
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 4,
+    "total_stocks_recommended": 8,
+    "total_stocks_removed_after_review": 4,
+    "removed_stocks": [
+      "600172 黄河旋风 (三年亏损27亿+股权冻结+概念炒作)",
+      "600360 华微电子 (刚摘帽+现金流恶化95%+造假嫌疑)",
+      "600206 有研新材 (PE197倍+月涨140%+概念被公司否认)",
+      "600460 士兰微 (大摩看空目标20元+负债率65%+净利率2%)"
+    ],
+    "methodology_version": "1.0.0",
+    "review_note": "经定性审查，9只中4只因严重财务/治理风险被剔除，保留5只。股票池从9只精简为5只，整体质量显著提升"
+  }
+}

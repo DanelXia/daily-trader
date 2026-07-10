@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-07-09T13:22:27",
+  "market_snapshot": {
+    "sh_index": 3970.8797,
+    "sh_change_pct": -0.485074,
+    "sz_index": 14939.7268,
+    "sz_change_pct": -1.874448
+  },
+  "suggestions": [
+    {
+      "code": "603259",
+      "name": "603259",
+      "trading_score": 69.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 112.83,
+        "type": "limit",
+        "suggestion": "建议挂单 112.83 附近买入"
+      },
+      "stop_loss": 108.36,
+      "take_profit": {
+        "tp1": 129.15,
+        "tp1_pct": 11.9,
+        "tp1_action": "减仓1/3",
+        "tp2": 133.7,
+        "tp2_pct": 15.9,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 120.42,
+        "ma10": 121.34,
+        "ma20": 111.71,
+        "ma60": 105.19,
+        "macd": 5.356,
+        "signal": 5.079,
+        "histogram": 0.277,
+        "rsi6": 41.4,
+        "rsi14": 55.3,
+        "bb_upper": 133.7,
+        "bb_middle": 111.71,
+        "bb_lower": 89.72,
+        "atr14": 5.36,
+        "volume_ratio": 0.77
+      },
+      "support_levels": [
+        111.71,
+        105.19,
+        89.72
+      ],
+      "resistance_levels": [
+        129.15,
+        133.7
+      ],
+      "key_notes": [
+        "中期趋势向好，短周期待确认",
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-06-18T00:00:00.000000000), BullishEngulfing(2026-06-24T00:00:00.000000000), BullishEngulfing(2026-06-29T00:00:00.000000000), BullishEngulfing(2026-07-01T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-02T00:00:00.000000000)"
+      ]
+    }
+  ]
+}

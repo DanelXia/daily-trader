@@ -1,0 +1,193 @@
+{
+  "2026-07-08": {
+    "avg_return": 0.0,
+    "stocks": [
+      {
+        "code": "600060",
+        "name": "海信视像",
+        "base_price": 27.33,
+        "today_price": 27.33,
+        "pct_change": 0.0,
+        "industry": "C39计算机、通信和其他电子设备制造业"
+      },
+      {
+        "code": "600360",
+        "name": "华微电子",
+        "base_price": 14.97,
+        "today_price": 14.97,
+        "pct_change": 0.0,
+        "industry": "C39计算机、通信和其他电子设备制造业"
+      },
+      {
+        "code": "600460",
+        "name": "士兰微",
+        "base_price": 46.21,
+        "today_price": 46.21,
+        "pct_change": 0.0,
+        "industry": "C39计算机、通信和其他电子设备制造业"
+      },
+      {
+        "code": "600172",
+        "name": "黄河旋风",
+        "base_price": 17.59,
+        "today_price": 17.59,
+        "pct_change": 0.0,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "600366",
+        "name": "宁波韵升",
+        "base_price": 15.6,
+        "today_price": 15.6,
+        "pct_change": 0.0,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "603725",
+        "name": "天安新材",
+        "base_price": 13.52,
+        "today_price": 13.52,
+        "pct_change": 0.0,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "600206",
+        "name": "有研新材",
+        "base_price": 53.98,
+        "today_price": 53.98,
+        "pct_change": 0.0,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "605208",
+        "name": "永茂泰",
+        "base_price": 17.69,
+        "today_price": 17.69,
+        "pct_change": 0.0,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "688231",
+        "name": "隆达股份",
+        "base_price": 38.09,
+        "today_price": 38.09,
+        "pct_change": 0.0,
+        "industry": "C32有色金属冶炼和压延加工业"
+      }
+    ]
+  },
+  "2026-07-09": {
+    "avg_return": 0.0,
+    "stocks": [
+      {
+        "code": "600060",
+        "name": "海信视像",
+        "base_price": 27.33,
+        "today_price": 27.33,
+        "pct_change": 0.0,
+        "industry": "C39计算机、通信和其他电子设备制造业"
+      },
+      {
+        "code": "600366",
+        "name": "宁波韵升",
+        "base_price": 15.6,
+        "today_price": 15.6,
+        "pct_change": 0.0,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "603725",
+        "name": "天安新材",
+        "base_price": 13.52,
+        "today_price": 13.52,
+        "pct_change": 0.0,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "605208",
+        "name": "永茂泰",
+        "base_price": 17.69,
+        "today_price": 17.69,
+        "pct_change": 0.0,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "688231",
+        "name": "隆达股份",
+        "base_price": 38.09,
+        "today_price": 38.09,
+        "pct_change": 0.0,
+        "industry": "C32有色金属冶炼和压延加工业"
+      }
+    ]
+  },
+  "2026-07-10": {
+    "avg_return": 1.17,
+    "stocks": [
+      {
+        "code": "600060",
+        "name": "海信视像",
+        "base_price": 27.33,
+        "today_price": 27.29,
+        "pct_change": -0.15,
+        "industry": "C39计算机、通信和其他电子设备制造业"
+      },
+      {
+        "code": "600366",
+        "name": "宁波韵升",
+        "base_price": 15.6,
+        "today_price": 15.22,
+        "pct_change": -2.44,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "603725",
+        "name": "天安新材",
+        "base_price": 13.52,
+        "today_price": 13.42,
+        "pct_change": -0.74,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "605208",
+        "name": "永茂泰",
+        "base_price": 17.69,
+        "today_price": 18.3,
+        "pct_change": 3.45,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "688231",
+        "name": "隆达股份",
+        "base_price": 38.09,
+        "today_price": 37.8,
+        "pct_change": -0.76,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "603986",
+        "name": "兆易创新",
+        "base_price": 640.02,
+        "today_price": 663.49,
+        "pct_change": 3.67,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002558",
+        "name": "巨人网络",
+        "base_price": 27.74,
+        "today_price": 28.32,
+        "pct_change": 2.09,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002281",
+        "name": "光迅科技",
+        "base_price": 228.86,
+        "today_price": 238.49,
+        "pct_change": 4.21,
+        "industry": "USER_SELECTED"
+      }
+    ]
+  }
+}

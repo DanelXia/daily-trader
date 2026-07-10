@@ -1,0 +1,228 @@
+{
+  "report_date": "2026-07-08",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C39计算机、通信和其他电子设备制造业",
+      "industry_display": "C39计算机、通信和其他电子设备制造业(证监会行业分类)",
+      "momentum_score": 57.2,
+      "fundamental_score": 30.0,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 1,
+      "stocks": [
+        {
+          "code": "600060",
+          "name": "海信视像",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 27.33,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 5.8,
+            "price_change_60d_pct": 20.6
+          },
+          "rank": 1
+        },
+        {
+          "code": "600360",
+          "name": "华微电子",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 14.97,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 27.4,
+            "price_change_60d_pct": 64.9
+          },
+          "rank": 2
+        },
+        {
+          "code": "600460",
+          "name": "士兰微",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 46.21,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 37.8,
+            "price_change_60d_pct": 73.9
+          },
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "industry_name": "C30非金属矿物制品业",
+      "industry_display": "C30非金属矿物制品业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 20.5,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 95.6,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "600172",
+          "name": "黄河旋风",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 17.59,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 45.1,
+            "price_change_60d_pct": 108.4
+          },
+          "rank": 1
+        },
+        {
+          "code": "600366",
+          "name": "宁波韵升",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 15.6,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 14.7,
+            "price_change_60d_pct": 25.7
+          },
+          "rank": 2
+        },
+        {
+          "code": "603725",
+          "name": "天安新材",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 13.52,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 18.2,
+            "price_change_60d_pct": 51.2
+          },
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "industry_name": "C32有色金属冶炼和压延加工业",
+      "industry_display": "C32有色金属冶炼和压延加工业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 18.7,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 94.4,
+      "rank": 3,
+      "stocks": [
+        {
+          "code": "600206",
+          "name": "有研新材",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 53.98,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 67.4,
+            "price_change_60d_pct": 149.1
+          },
+          "rank": 1
+        },
+        {
+          "code": "605208",
+          "name": "永茂泰",
+          "composite_score": 50.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 10.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 17.69,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 16.7,
+            "price_change_60d_pct": 30.6
+          },
+          "rank": 2
+        },
+        {
+          "code": "688231",
+          "name": "隆达股份",
+          "composite_score": 48.0,
+          "financial_health": 5.0,
+          "valuation_score": 10.0,
+          "momentum_score": 25.0,
+          "institutional_score": 8.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 38.09,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "price_change_20d_pct": 24.4,
+            "price_change_60d_pct": 51.0
+          },
+          "rank": 3
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 3,
+    "total_stocks_recommended": 9,
+    "methodology_version": "1.0.0"
+  }
+}
