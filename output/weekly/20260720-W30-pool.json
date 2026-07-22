@@ -1,0 +1,348 @@
+{
+  "report_date": "2026-07-20",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C27医药制造业",
+      "industry_display": "C27医药制造业(证监会行业分类)",
+      "momentum_score": 54.4,
+      "fundamental_score": 30.0,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 1,
+      "stocks": [
+        {
+          "code": "600285",
+          "name": "羚锐制药",
+          "composite_score": 49.8,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 29.8,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 22.4,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 12.4,
+            "price_change_60d_pct": 9.5
+          },
+          "rank": 1
+        },
+        {
+          "code": "600267",
+          "name": "海正药业",
+          "composite_score": 47.8,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.8,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 11.32,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 16.8,
+            "price_change_60d_pct": 4.4
+          },
+          "rank": 2
+        },
+        {
+          "code": "600664",
+          "name": "哈药股份",
+          "composite_score": 47.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 5.33,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 73.1,
+            "price_change_60d_pct": 30.0
+          },
+          "rank": 3
+        },
+        {
+          "code": "600671",
+          "name": "天目药业",
+          "composite_score": 47.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 20.77,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 13.2,
+            "price_change_60d_pct": 7.4
+          },
+          "rank": 4
+        },
+        {
+          "code": "600535",
+          "name": "天士力",
+          "composite_score": 46.9,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 26.9,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 15.38,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 12.3,
+            "price_change_60d_pct": 9.8
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "F52零售业",
+      "industry_display": "F52零售业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 19.2,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 96.4,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "603233",
+          "name": "大参林",
+          "composite_score": 47.1,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.1,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 18.57,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 20.7,
+            "price_change_60d_pct": 7.8
+          },
+          "rank": 1
+        },
+        {
+          "code": "600857",
+          "name": "宁波中百",
+          "composite_score": 45.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 19.11,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 24.7,
+            "price_change_60d_pct": 57.7
+          },
+          "rank": 2
+        },
+        {
+          "code": "600539",
+          "name": "狮头股份",
+          "composite_score": 44.7,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 24.7,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 16.88,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 13.6,
+            "price_change_60d_pct": 4.3
+          },
+          "rank": 3
+        },
+        {
+          "code": "601607",
+          "name": "上海医药",
+          "composite_score": 42.9,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 22.9,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 16.61,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 6.3,
+            "price_change_60d_pct": -0.3
+          },
+          "rank": 4
+        },
+        {
+          "code": "603883",
+          "name": "老百姓",
+          "composite_score": 39.8,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 19.8,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 12.27,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 7.0,
+            "price_change_60d_pct": -8.0
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "G54道路运输业",
+      "industry_display": "G54道路运输业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 13.2,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 92.3,
+      "rank": 3,
+      "stocks": [
+        {
+          "code": "600350",
+          "name": "山东高速",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 11.83,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 17.5,
+            "price_change_60d_pct": 16.7
+          },
+          "rank": 1
+        },
+        {
+          "code": "000429",
+          "name": "粤高速A",
+          "composite_score": 47.6,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.6,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 14.33,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 4.7,
+            "price_change_60d_pct": 13.0
+          },
+          "rank": 2
+        },
+        {
+          "code": "600012",
+          "name": "皖通高速",
+          "composite_score": 45.7,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.7,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 17.25,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 11.7,
+            "price_change_60d_pct": 9.2
+          },
+          "rank": 3
+        },
+        {
+          "code": "600368",
+          "name": "五洲交通",
+          "composite_score": 44.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 24.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 3.82,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 13.4,
+            "price_change_60d_pct": 2.6
+          },
+          "rank": 4
+        },
+        {
+          "code": "600020",
+          "name": "中原高速",
+          "composite_score": 43.9,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 23.9,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 3.86,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 4.4,
+            "price_change_60d_pct": 4.1
+          },
+          "rank": 5
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 3,
+    "total_stocks_recommended": 15,
+    "methodology_version": "1.0.0"
+  }
+}

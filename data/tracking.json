@@ -122,70 +122,426 @@
     ]
   },
   "2026-07-10": {
-    "avg_return": 1.17,
+    "avg_return": -0.88,
     "stocks": [
-      {
-        "code": "600060",
-        "name": "海信视像",
-        "base_price": 27.33,
-        "today_price": 27.29,
-        "pct_change": -0.15,
-        "industry": "C39计算机、通信和其他电子设备制造业"
-      },
       {
         "code": "600366",
         "name": "宁波韵升",
-        "base_price": 15.6,
-        "today_price": 15.22,
-        "pct_change": -2.44,
+        "base_price": 15.22,
+        "today_price": 15.25,
+        "pct_change": 0.2,
         "industry": "C30非金属矿物制品业"
       },
       {
         "code": "603725",
         "name": "天安新材",
-        "base_price": 13.52,
-        "today_price": 13.42,
-        "pct_change": -0.74,
+        "base_price": 13.42,
+        "today_price": 13.64,
+        "pct_change": 1.64,
         "industry": "C30非金属矿物制品业"
-      },
-      {
-        "code": "605208",
-        "name": "永茂泰",
-        "base_price": 17.69,
-        "today_price": 18.3,
-        "pct_change": 3.45,
-        "industry": "C32有色金属冶炼和压延加工业"
       },
       {
         "code": "688231",
         "name": "隆达股份",
-        "base_price": 38.09,
-        "today_price": 37.8,
-        "pct_change": -0.76,
+        "base_price": 37.8,
+        "today_price": 36.87,
+        "pct_change": -2.46,
         "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600497",
+        "name": "驰宏锌锗",
+        "base_price": 9.79,
+        "today_price": 9.51,
+        "pct_change": -2.86,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600030",
+        "name": "中信证券",
+        "base_price": 28.68,
+        "today_price": 28.4,
+        "pct_change": -0.98,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "600999",
+        "name": "招商证券",
+        "base_price": 21.75,
+        "today_price": 20.56,
+        "pct_change": -5.47,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "601211",
+        "name": "国泰海通",
+        "base_price": 18.87,
+        "today_price": 18.3,
+        "pct_change": -3.02,
+        "industry": "J67资本市场服务"
       },
       {
         "code": "603986",
         "name": "兆易创新",
         "base_price": 640.02,
-        "today_price": 663.49,
-        "pct_change": 3.67,
+        "today_price": 612.0,
+        "pct_change": -4.38,
         "industry": "USER_SELECTED"
       },
       {
         "code": "002558",
         "name": "巨人网络",
         "base_price": 27.74,
-        "today_price": 28.32,
-        "pct_change": 2.09,
+        "today_price": 29.56,
+        "pct_change": 6.56,
         "industry": "USER_SELECTED"
       },
       {
         "code": "002281",
         "name": "光迅科技",
         "base_price": 228.86,
-        "today_price": 238.49,
-        "pct_change": 4.21,
+        "today_price": 233.45,
+        "pct_change": 2.01,
+        "industry": "USER_SELECTED"
+      }
+    ]
+  },
+  "2026-07-13": {
+    "avg_return": -6.93,
+    "stocks": [
+      {
+        "code": "600366",
+        "name": "宁波韵升",
+        "base_price": 15.22,
+        "today_price": 13.73,
+        "pct_change": -9.79,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "603725",
+        "name": "天安新材",
+        "base_price": 13.42,
+        "today_price": 12.28,
+        "pct_change": -8.49,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "688231",
+        "name": "隆达股份",
+        "base_price": 37.8,
+        "today_price": 32.37,
+        "pct_change": -14.37,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600497",
+        "name": "驰宏锌锗",
+        "base_price": 9.79,
+        "today_price": 8.9,
+        "pct_change": -9.09,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600030",
+        "name": "中信证券",
+        "base_price": 28.68,
+        "today_price": 28.12,
+        "pct_change": -1.95,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "600999",
+        "name": "招商证券",
+        "base_price": 21.75,
+        "today_price": 20.46,
+        "pct_change": -5.93,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "601211",
+        "name": "国泰海通",
+        "base_price": 18.87,
+        "today_price": 18.34,
+        "pct_change": -2.81,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "603986",
+        "name": "兆易创新",
+        "base_price": 640.02,
+        "today_price": 550.8,
+        "pct_change": -13.94,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002558",
+        "name": "巨人网络",
+        "base_price": 27.74,
+        "today_price": 28.48,
+        "pct_change": 2.67,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002281",
+        "name": "光迅科技",
+        "base_price": 228.86,
+        "today_price": 216.0,
+        "pct_change": -5.62,
+        "industry": "USER_SELECTED"
+      }
+    ]
+  },
+  "2026-07-14": {
+    "avg_return": -6.93,
+    "stocks": [
+      {
+        "code": "600366",
+        "name": "宁波韵升",
+        "base_price": 15.22,
+        "today_price": 13.73,
+        "pct_change": -9.79,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "603725",
+        "name": "天安新材",
+        "base_price": 13.42,
+        "today_price": 12.28,
+        "pct_change": -8.49,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "688231",
+        "name": "隆达股份",
+        "base_price": 37.8,
+        "today_price": 32.37,
+        "pct_change": -14.37,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600497",
+        "name": "驰宏锌锗",
+        "base_price": 9.79,
+        "today_price": 8.9,
+        "pct_change": -9.09,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600030",
+        "name": "中信证券",
+        "base_price": 28.68,
+        "today_price": 28.12,
+        "pct_change": -1.95,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "600999",
+        "name": "招商证券",
+        "base_price": 21.75,
+        "today_price": 20.46,
+        "pct_change": -5.93,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "601211",
+        "name": "国泰海通",
+        "base_price": 18.87,
+        "today_price": 18.34,
+        "pct_change": -2.81,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "603986",
+        "name": "兆易创新",
+        "base_price": 640.02,
+        "today_price": 550.8,
+        "pct_change": -13.94,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002558",
+        "name": "巨人网络",
+        "base_price": 27.74,
+        "today_price": 28.48,
+        "pct_change": 2.67,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002281",
+        "name": "光迅科技",
+        "base_price": 228.86,
+        "today_price": 216.0,
+        "pct_change": -5.62,
+        "industry": "USER_SELECTED"
+      }
+    ]
+  },
+  "2026-07-15": {
+    "avg_return": -3.97,
+    "stocks": [
+      {
+        "code": "600366",
+        "name": "宁波韵升",
+        "base_price": 15.22,
+        "today_price": 13.8,
+        "pct_change": -9.33,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "603725",
+        "name": "天安新材",
+        "base_price": 13.42,
+        "today_price": 13.11,
+        "pct_change": -2.31,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "688231",
+        "name": "隆达股份",
+        "base_price": 37.8,
+        "today_price": 34.56,
+        "pct_change": -8.57,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600497",
+        "name": "驰宏锌锗",
+        "base_price": 9.79,
+        "today_price": 9.44,
+        "pct_change": -3.58,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600030",
+        "name": "中信证券",
+        "base_price": 28.68,
+        "today_price": 28.6,
+        "pct_change": -0.28,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "600999",
+        "name": "招商证券",
+        "base_price": 21.75,
+        "today_price": 20.9,
+        "pct_change": -3.91,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "601211",
+        "name": "国泰海通",
+        "base_price": 18.87,
+        "today_price": 18.58,
+        "pct_change": -1.54,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "603986",
+        "name": "兆易创新",
+        "base_price": 640.02,
+        "today_price": 571.79,
+        "pct_change": -10.66,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002558",
+        "name": "巨人网络",
+        "base_price": 27.74,
+        "today_price": 29.56,
+        "pct_change": 6.56,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002281",
+        "name": "光迅科技",
+        "base_price": 228.86,
+        "today_price": 214.97,
+        "pct_change": -6.07,
+        "industry": "USER_SELECTED"
+      }
+    ]
+  },
+  "2026-07-20": {
+    "avg_return": -12.46,
+    "stocks": [
+      {
+        "code": "600366",
+        "name": "宁波韵升",
+        "base_price": 15.22,
+        "today_price": 11.14,
+        "pct_change": -26.81,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "603725",
+        "name": "天安新材",
+        "base_price": 13.42,
+        "today_price": 13.41,
+        "pct_change": -0.07,
+        "industry": "C30非金属矿物制品业"
+      },
+      {
+        "code": "688231",
+        "name": "隆达股份",
+        "base_price": 37.8,
+        "today_price": 26.58,
+        "pct_change": -29.68,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600497",
+        "name": "驰宏锌锗",
+        "base_price": 9.79,
+        "today_price": 8.78,
+        "pct_change": -10.32,
+        "industry": "C32有色金属冶炼和压延加工业"
+      },
+      {
+        "code": "600030",
+        "name": "中信证券",
+        "base_price": 28.68,
+        "today_price": 28.19,
+        "pct_change": -1.71,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "600999",
+        "name": "招商证券",
+        "base_price": 21.75,
+        "today_price": 19.04,
+        "pct_change": -12.46,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "601211",
+        "name": "国泰海通",
+        "base_price": 18.87,
+        "today_price": 18.98,
+        "pct_change": 0.58,
+        "industry": "J67资本市场服务"
+      },
+      {
+        "code": "603986",
+        "name": "兆易创新",
+        "base_price": 640.02,
+        "today_price": 460.67,
+        "pct_change": -28.02,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002558",
+        "name": "巨人网络",
+        "base_price": 27.74,
+        "today_price": 30.08,
+        "pct_change": 8.44,
+        "industry": "USER_SELECTED"
+      },
+      {
+        "code": "002281",
+        "name": "光迅科技",
+        "base_price": 228.86,
+        "today_price": 172.72,
+        "pct_change": -24.53,
         "industry": "USER_SELECTED"
       }
     ]

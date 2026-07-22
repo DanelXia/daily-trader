@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-07-21T10:25:58",
+  "market_snapshot": {
+    "sh_index": 3796.2814,
+    "sh_change_pct": 0.85349,
+    "sz_index": 13610.2315,
+    "sz_change_pct": -0.705139
+  },
+  "suggestions": [
+    {
+      "code": "600487",
+      "name": "600487",
+      "trading_score": 39.0,
+      "action": "reduce",
+      "action_cn": "减仓",
+      "entry": {
+        "price": 56.56,
+        "type": "market",
+        "suggestion": "建议减仓，逢高卖出"
+      },
+      "stop_loss": 52.6,
+      "take_profit": {
+        "tp1": 65.04,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 73.53,
+        "tp2_pct": 30.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 65.05,
+        "ma10": 71.09,
+        "ma20": 88.36,
+        "ma60": 84.27,
+        "macd": -9.01,
+        "signal": -4.719,
+        "histogram": -4.291,
+        "rsi6": 14.6,
+        "rsi14": 27.2,
+        "bb_upper": 129.73,
+        "bb_middle": 88.36,
+        "bb_lower": 46.98,
+        "atr14": 7.45,
+        "volume_ratio": 1.24
+      },
+      "support_levels": [
+        46.98
+      ],
+      "resistance_levels": [
+        124.85,
+        129.73
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "RSI=27.2，超卖区域，可能存在反弹机会",
+        "出现看涨形态: Hammer(2026-07-09T00:00:00.000000000), BullishEngulfing(2026-06-24T00:00:00.000000000), BullishEngulfing(2026-07-14T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-06-26T00:00:00.000000000), BearishEngulfing(2026-07-10T00:00:00.000000000)"
+      ]
+    }
+  ]
+}

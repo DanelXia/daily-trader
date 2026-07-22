@@ -1,0 +1,348 @@
+{
+  "report_date": "2026-07-13",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C30非金属矿物制品业",
+      "industry_display": "C30非金属矿物制品业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 20.5,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 1,
+      "stocks": [
+        {
+          "code": "600172",
+          "name": "黄河旋风",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 17.0,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 43.7,
+            "price_change_60d_pct": 93.6
+          },
+          "rank": 1
+        },
+        {
+          "code": "600366",
+          "name": "宁波韵升",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 15.25,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 15.6,
+            "price_change_60d_pct": 22.5
+          },
+          "rank": 2
+        },
+        {
+          "code": "603725",
+          "name": "天安新材",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 13.64,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 26.5,
+            "price_change_60d_pct": 47.8
+          },
+          "rank": 3
+        },
+        {
+          "code": "600176",
+          "name": "中国巨石",
+          "composite_score": 45.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 55.7,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 33.9,
+            "price_change_60d_pct": 72.3
+          },
+          "rank": 4
+        },
+        {
+          "code": "601636",
+          "name": "旗滨集团",
+          "composite_score": 45.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 7.08,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 8.8,
+            "price_change_60d_pct": 22.3
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "C32有色金属冶炼和压延加工业",
+      "industry_display": "C32有色金属冶炼和压延加工业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 18.7,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 98.7,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "600206",
+          "name": "有研新材",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 60.0,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 81.9,
+            "price_change_60d_pct": 164.3
+          },
+          "rank": 1
+        },
+        {
+          "code": "605208",
+          "name": "永茂泰",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 18.86,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 20.3,
+            "price_change_60d_pct": 34.3
+          },
+          "rank": 2
+        },
+        {
+          "code": "688102",
+          "name": "斯瑞新材",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 46.09,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 10.8,
+            "price_change_60d_pct": 26.8
+          },
+          "rank": 3
+        },
+        {
+          "code": "688231",
+          "name": "隆达股份",
+          "composite_score": 48.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 28.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 36.87,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 12.8,
+            "price_change_60d_pct": 45.6
+          },
+          "rank": 4
+        },
+        {
+          "code": "000962",
+          "name": "东方钽业",
+          "composite_score": 45.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 65.02,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 13.7,
+            "price_change_60d_pct": 45.2
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "J67资本市场服务",
+      "industry_display": "J67资本市场服务(证监会行业分类)",
+      "momentum_score": 58.9,
+      "fundamental_score": 15.6,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 95.7,
+      "rank": 3,
+      "stocks": [
+        {
+          "code": "600030",
+          "name": "中信证券",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 28.4,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 8.0,
+            "price_change_60d_pct": 10.2
+          },
+          "rank": 1
+        },
+        {
+          "code": "600999",
+          "name": "招商证券",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 20.56,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 16.2,
+            "price_change_60d_pct": 29.1
+          },
+          "rank": 2
+        },
+        {
+          "code": "601211",
+          "name": "国泰海通",
+          "composite_score": 49.5,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 29.5,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 18.3,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 5.5,
+            "price_change_60d_pct": 8.9
+          },
+          "rank": 3
+        },
+        {
+          "code": "601995",
+          "name": "中金公司",
+          "composite_score": 49.1,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 29.1,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 36.17,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 10.2,
+            "price_change_60d_pct": 7.7
+          },
+          "rank": 4
+        },
+        {
+          "code": "601198",
+          "name": "东兴证券",
+          "composite_score": 48.1,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 28.1,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 13.78,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 9.4,
+            "price_change_60d_pct": 5.4
+          },
+          "rank": 5
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 3,
+    "total_stocks_recommended": 15,
+    "methodology_version": "1.0.0"
+  }
+}

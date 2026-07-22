@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-07-20T14:14:47",
+  "market_snapshot": {
+    "sh_index": 3764.1547,
+    "sh_change_pct": -3.04599,
+    "sz_index": 13706.8841,
+    "sz_change_pct": -5.395739
+  },
+  "suggestions": [
+    {
+      "code": "603259",
+      "name": "603259",
+      "trading_score": 59.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 117.89,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 109.64,
+      "take_profit": {
+        "tp1": 133.33,
+        "tp1_pct": 13.1,
+        "tp1_action": "减仓1/3",
+        "tp2": 133.33,
+        "tp2_pct": 13.1,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 124.83,
+        "ma10": 122.52,
+        "ma20": 120.52,
+        "ma60": 107.68,
+        "macd": 4.942,
+        "signal": 5.291,
+        "histogram": -0.35,
+        "rsi6": 40.7,
+        "rsi14": 51.1,
+        "bb_upper": 133.33,
+        "bb_middle": 120.52,
+        "bb_lower": 107.72,
+        "atr14": 6.3,
+        "volume_ratio": 1.1
+      },
+      "support_levels": [
+        107.72,
+        107.68
+      ],
+      "resistance_levels": [
+        133.33,
+        135.17
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-06-29T00:00:00.000000000), BullishEngulfing(2026-07-01T00:00:00.000000000), BullishEngulfing(2026-07-09T00:00:00.000000000), BullishEngulfing(2026-07-14T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-02T00:00:00.000000000)"
+      ]
+    }
+  ]
+}

@@ -4,15 +4,16 @@
   "positions": {
     "002558": {
       "name": "巨人网络",
-      "entry_price": 26.54,
+      "entry_price": 28.247,
       "entry_date": "2026-07-10",
-      "stop_loss": 25.29,
+      "stop_loss": 27.50,
       "take_profit": 29.96,
       "position_pct": 10,
       "shares": 300,
-      "cost": 7962.0,
-      "risk_amount": 375.0,
-      "industry": "USER_SELECTED"
+      "cost": 8474.1,
+      "risk_amount": 224.0,
+      "industry": "USER_SELECTED",
+      "note": "7/15涨停29.56，止损上移至27.50保本线，止盈29.96。分批止盈策略：30出1/3，32出1/3，剩余移动止损"
     },
     "603725": {
       "name": "天安新材",
@@ -25,7 +26,7 @@
       "cost": 9394.0,
       "risk_amount": 1330.0,
       "industry": "C30非金属矿物制品业",
-      "note": "模型建议12.21挂单，但当前价13.42高于MA20，改用现价入场"
+      "note": "7/15收盘13.11，距止损12.2%，MACD濒临死叉。继续持有观察"
     },
     "601211": {
       "name": "国泰海通",
@@ -37,19 +38,8 @@
       "shares": 500,
       "cost": 9125.0,
       "risk_amount": 350.0,
-      "industry": "J67资本市场服务"
-    },
-    "688231": {
-      "name": "隆达股份",
-      "entry_price": 36.38,
-      "entry_date": "2026-07-10",
-      "stop_loss": 35.15,
-      "take_profit": 42.35,
-      "position_pct": 10,
-      "shares": 200,
-      "cost": 7276.0,
-      "risk_amount": 246.0,
-      "industry": "C32有色金属冶炼和压延加工业"
+      "industry": "J67资本市场服务",
+      "note": "7/15评分33 REDUCE，收盘18.58弱反弹。反弹到19以上可减仓"
     },
     "600030": {
       "name": "中信证券",
@@ -61,33 +51,70 @@
       "shares": 300,
       "cost": 8484.0,
       "risk_amount": 336.0,
-      "industry": "J67资本市场服务"
+      "industry": "J67资本市场服务",
+      "note": "7/15评分51 HOLD，收盘28.60横盘。持有不动"
+    }
+  },
+  "closed_trades": [
+    {
+      "code": "688231",
+      "name": "隆达股份",
+      "entry_price": 36.38,
+      "entry_date": "2026-07-10",
+      "exit_price": 33.29,
+      "exit_date": "2026-07-13",
+      "exit_reason": "止损触发",
+      "shares": 200,
+      "cost": 7276.0,
+      "pnl": -618.0,
+      "pnl_pct": -8.49
     },
-    "600366": {
+    {
+      "code": "600366",
       "name": "宁波韵升",
       "entry_price": 15.22,
       "entry_date": "2026-07-10",
-      "stop_loss": 14.49,
-      "take_profit": 17.28,
-      "position_pct": 7,
+      "exit_price": 13.96,
+      "exit_date": "2026-07-13",
+      "exit_reason": "止损触发",
       "shares": 400,
       "cost": 6088.0,
-      "risk_amount": 292.0,
-      "industry": "C30非金属矿物制品业"
+      "pnl": -504.0,
+      "pnl_pct": -8.28
+    },
+    {
+      "code": "300821",
+      "name": "东岳硅材",
+      "entry_price": 23.51,
+      "entry_date": "2026-07-13",
+      "exit_price": 19.51,
+      "exit_date": "2026-07-15",
+      "exit_reason": "止损触发",
+      "shares": 500,
+      "cost": 11755.0,
+      "pnl": -2000.0,
+      "pnl_pct": -17.02
     }
-  },
+  ],
   "watchlist": [
+    {"code": "603259", "name": "药明康德", "reason": "MACD金叉+放量突破前高129，回踩128-130可建仓"},
+    {"code": "002714", "name": "牧原股份", "reason": "猪周期标的，待技术分析后制定策略"},
+    {"code": "159516", "name": "半导体设备ETF", "reason": "国泰半导体设备ETF，规模512亿流动性最好"},
     {"code": "002281", "name": "光迅科技", "reason": "HOLD 57分，MACD死叉修复中，等金叉确认"},
-    {"code": "603986", "name": "兆易创新", "reason": "HOLD 51分，MACD绿柱放大，等企稳"},
-    {"code": "600999", "name": "招商证券", "reason": "HOLD 51分，MACD死叉中，等信号翻转"},
-    {"code": "600497", "name": "驰宏锌锗", "reason": "REDUCE 32分，RSI6=27.9超卖区但不建议抄底"}
+    {"code": "603986", "name": "兆易创新", "reason": "REDUCE 36分，MACD绿柱放大，等企稳"},
+    {"code": "600999", "name": "招商证券", "reason": "REDUCE 36分，连续跌破MA5/MA10"},
+    {"code": "600497", "name": "驰宏锌锗", "reason": "REDUCE 32分，弱势继续"},
+    {"code": "688231", "name": "隆达股份", "reason": "7/13止损退出，-8.5%，等企稳再观察"},
+    {"code": "600366", "name": "宁波韵升", "reason": "7/13止损退出，-8.3%，等企稳再观察"}
   ],
   "summary": {
-    "total_cost": 40329.0,
-    "capital_used_pct": 40.3,
-    "total_risk": 2729.0,
-    "risk_pct": 2.7,
-    "positions_count": 6,
-    "watchlist_count": 4
+    "total_cost": 35477.1,
+    "capital_used_pct": 35.5,
+    "total_risk": 2240.0,
+    "risk_pct": 2.2,
+    "positions_count": 4,
+    "watchlist_count": 9,
+    "closed_pnl": -3122.0,
+    "closed_count": 3
   }
 }
