@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T11:06:56",
+  "generated_at": "2026-07-27T11:16:50",
   "market_snapshot": {
     "sh_index": 3814.1978,
     "sh_change_pct": -1.614217,
@@ -10,7 +10,7 @@
     {
       "code": "600285",
       "name": "羚锐制药",
-      "trading_score": 48.0,
+      "trading_score": 47.0,
       "action": "hold",
       "action_cn": "观望",
       "entry": {
@@ -55,7 +55,7 @@
         23.92
       ],
       "key_notes": [
-        "中期趋势向好，短周期待确认",
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
         "MACD死叉，短期偏空",
         "出现看涨形态: BullishEngulfing(2026-07-01T00:00:00.000000000), BullishEngulfing(2026-07-13T00:00:00.000000000)",
         "出现看跌形态: BearishEngulfing(2026-07-10T00:00:00.000000000), BearishEngulfing(2026-07-17T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
@@ -65,7 +65,7 @@
     {
       "code": "600535",
       "name": "天士力",
-      "trading_score": 52.0,
+      "trading_score": 55.0,
       "action": "hold",
       "action_cn": "观望",
       "entry": {
@@ -120,7 +120,7 @@
     {
       "code": "000429",
       "name": "粤高速A",
-      "trading_score": 74.0,
+      "trading_score": 71.0,
       "action": "buy",
       "action_cn": "买入",
       "entry": {
@@ -175,9 +175,9 @@
     {
       "code": "600012",
       "name": "皖通高速",
-      "trading_score": 79.0,
-      "action": "strong_buy",
-      "action_cn": "强烈买入",
+      "trading_score": 72.0,
+      "action": "buy",
+      "action_cn": "买入",
       "entry": {
         "price": 17.18,
         "type": "limit",
@@ -230,13 +230,13 @@
     {
       "code": "600020",
       "name": "中原高速",
-      "trading_score": 61.0,
-      "action": "buy",
-      "action_cn": "买入",
+      "trading_score": 52.0,
+      "action": "hold",
+      "action_cn": "观望",
       "entry": {
         "price": 3.73,
-        "type": "limit",
-        "suggestion": "可现价 3.73 买入"
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
       },
       "stop_loss": 3.6,
       "take_profit": {
@@ -248,7 +248,7 @@
         "tp2_action": "剩余全部平仓"
       },
       "position_pct": 10.0,
-      "risk_assessment": "低",
+      "risk_assessment": "中等",
       "indicators": {
         "ma5": 3.77,
         "ma10": 3.78,
@@ -283,13 +283,13 @@
     {
       "code": "002558",
       "name": "巨人网络",
-      "trading_score": 30.0,
-      "action": "reduce",
-      "action_cn": "减仓",
+      "trading_score": 27.0,
+      "action": "strong_sell",
+      "action_cn": "强烈卖出",
       "entry": {
         "price": 24.18,
         "type": "market",
-        "suggestion": "建议减仓，逢高卖出"
+        "suggestion": "建议清仓离场"
       },
       "stop_loss": 22.49,
       "take_profit": {
@@ -335,13 +335,13 @@
     {
       "code": "603725",
       "name": "天安新材",
-      "trading_score": 46.0,
-      "action": "hold",
-      "action_cn": "观望",
+      "trading_score": 43.0,
+      "action": "reduce",
+      "action_cn": "减仓",
       "entry": {
         "price": 11.99,
         "type": "market",
-        "suggestion": "暂时观望，等待明确信号"
+        "suggestion": "建议减仓，逢高卖出"
       },
       "stop_loss": 11.34,
       "take_profit": {
@@ -379,7 +379,7 @@
         14.81
       ],
       "key_notes": [
-        "中期趋势向好，短周期待确认",
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
         "MACD死叉，短期偏空",
         "出现看涨形态: BullishEngulfing(2026-07-10T00:00:00.000000000)",
         "出现看跌形态: BearishEngulfing(2026-07-13T00:00:00.000000000)"
@@ -389,7 +389,7 @@
     {
       "code": "601211",
       "name": "国泰海通",
-      "trading_score": 51.0,
+      "trading_score": 56.0,
       "action": "hold",
       "action_cn": "观望",
       "entry": {
@@ -434,7 +434,7 @@
         20.5
       ],
       "key_notes": [
-        "中期趋势向好，短周期待确认",
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
         "MACD死叉，短期偏空",
         "出现看涨形态: BullishEngulfing(2026-07-15T00:00:00.000000000), BullishEngulfing(2026-07-20T00:00:00.000000000)",
         "出现看跌形态: BearishEngulfing(2026-07-10T00:00:00.000000000), BearishEngulfing(2026-07-14T00:00:00.000000000), BearishEngulfing(2026-07-17T00:00:00.000000000)"
@@ -444,7 +444,7 @@
     {
       "code": "600030",
       "name": "中信证券",
-      "trading_score": 58.0,
+      "trading_score": 55.0,
       "action": "hold",
       "action_cn": "观望",
       "entry": {
@@ -488,7 +488,7 @@
         29.88
       ],
       "key_notes": [
-        "中期趋势向好，短周期待确认",
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
         "MACD死叉，短期偏空",
         "出现看涨形态: Hammer(2026-07-21T00:00:00.000000000), BullishEngulfing(2026-07-09T00:00:00.000000000), BullishEngulfing(2026-07-20T00:00:00.000000000)",
         "出现看跌形态: BearishEngulfing(2026-07-06T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
@@ -498,13 +498,13 @@
     {
       "code": "603259",
       "name": "药明康德",
-      "trading_score": 65.0,
-      "action": "buy",
-      "action_cn": "买入",
+      "trading_score": 54.0,
+      "action": "hold",
+      "action_cn": "观望",
       "entry": {
         "price": 125.0,
-        "type": "limit",
-        "suggestion": "可现价 125.0 买入"
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
       },
       "stop_loss": 120.06,
       "take_profit": {
@@ -553,9 +553,9 @@
     {
       "code": "002714",
       "name": "牧原股份",
-      "trading_score": 79.0,
-      "action": "strong_buy",
-      "action_cn": "强烈买入",
+      "trading_score": 71.8,
+      "action": "buy",
+      "action_cn": "买入",
       "entry": {
         "price": 38.68,
         "type": "limit",
@@ -609,7 +609,7 @@
     {
       "code": "159516",
       "name": "半导体设备ETF",
-      "trading_score": 56.0,
+      "trading_score": 48.0,
       "action": "hold",
       "action_cn": "观望",
       "entry": {
@@ -653,7 +653,7 @@
         1.05
       ],
       "key_notes": [
-        "中期趋势向好，短周期待确认",
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
         "MACD死叉，短期偏空",
         "出现看涨形态: BullishEngulfing(2026-07-07T00:00:00.000000000), BullishEngulfing(2026-07-14T00:00:00.000000000), BullishEngulfing(2026-07-24T00:00:00.000000000)",
         "出现看跌形态: BearishEngulfing(2026-07-15T00:00:00.000000000), BearishEngulfing(2026-07-23T00:00:00.000000000)"
@@ -663,7 +663,7 @@
     {
       "code": "002281",
       "name": "光迅科技",
-      "trading_score": 44.0,
+      "trading_score": 33.0,
       "action": "reduce",
       "action_cn": "减仓",
       "entry": {
@@ -715,7 +715,7 @@
     {
       "code": "603986",
       "name": "兆易创新",
-      "trading_score": 21.0,
+      "trading_score": 28.0,
       "action": "strong_sell",
       "action_cn": "强烈卖出",
       "entry": {
@@ -767,7 +767,7 @@
     {
       "code": "300738",
       "name": "奥飞数据",
-      "trading_score": 66.0,
+      "trading_score": 60.0,
       "action": "buy",
       "action_cn": "买入",
       "entry": {

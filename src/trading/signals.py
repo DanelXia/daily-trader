@@ -3,6 +3,7 @@
 """
 
 import numpy as np
+import pandas as pd
 
 from config import DEFAULT_ACCOUNT_CAPITAL, MAX_POSITION_PCT, RISK_PER_TRADE_PCT
 
@@ -26,6 +27,11 @@ class TradingSignalEngine:
 
         total = trend_score + momentum_score + volume_score + sr_score + pattern_score
 
+        # 量能惩罚：量比 < 0.6 时信号可信度打折
+        vol_ratio = indicators["volume"].get("ratio", 1.0)
+        if vol_ratio < 0.6:
+            total *= 0.7 + 0.5 * vol_ratio  # 量比0.5→系数0.95, 量比0.3→系数0.85
+
         # 判定操作
         action, action_cn = self._determine_action(total)
 
@@ -34,8 +40,14 @@ class TradingSignalEngine:
         stop_loss = self._calc_stop_loss(indicators, price)
         take_profit = self._calc_take_profit(indicators, price)
 
-        # 仓位建议
+        # 低波动低收益股票封顶
+        tp1_pct = take_profit.get("tp1_pct", 0)
         atr = indicators.get("atr14", price * 0.03)
+        if tp1_pct < 5 and atr / price < 0.03 and total > 60:
+            total = 60  # 公路/公用事业类封顶 BUY，不触发 STRONG_BUY
+            action, action_cn = self._determine_action(total)
+
+        # 仓位建议
         position_pct = min(
             MAX_POSITION_PCT * 100,
             RISK_PER_TRADE_PCT * DEFAULT_ACCOUNT_CAPITAL / max(2 * atr * 100, 1) * 100
@@ -119,11 +131,13 @@ class TradingSignalEngine:
         elif macd_val > sig_val and macd_val <= 0:
             score += 3
 
-        # 柱状图方向
+        # 柱状图方向（新旧交叉加权）
+        # 金叉且柱状图扩大→强；死叉但柱状图收窄→弱化空头
         if hist > 0:
             score += 5
         elif hist < -0.5:
-            score -= 5
+            # 柱状图收窄中 → 空头衰竭，减少扣分
+            score -= 2 if hist > -1.0 else 5
 
         # RSI 位置
         rsi14 = ind["rsi"].get("rsi14") or 50
@@ -210,9 +224,19 @@ class TradingSignalEngine:
     def _score_patterns(self, ind: dict) -> float:
         score = 0.0
         patterns = ind.get("patterns", [])
+        cutoff_date = pd.Timestamp.now() - pd.Timedelta(days=15)
 
         for p in patterns:
             name = p.split("(")[0] if "(" in p else p
+            # 解析日期并过滤过期形态
+            try:
+                date_str = p.split("(")[1].rstrip(")")
+                p_date = pd.Timestamp(date_str)
+                if p_date < cutoff_date:
+                    continue  # 超过15天的形态不参与评分
+            except (IndexError, ValueError):
+                pass  # 无法解析日期则保留
+
             if "BullishEngulfing" in name:
                 score += 8
             elif "Hammer" in name:
@@ -325,11 +349,16 @@ class TradingSignalEngine:
         rsi = ind["rsi"]
         vol = ind["volume"]
 
-        # 多头排列
+        # 多头排列 vs 中期向好
         if ma.get("ma5", 0) > ma.get("ma10", 0) > ma.get("ma20", 0) > ma.get("ma60", 0):
             notes.append("均线多头排列，趋势向好")
         elif price > ma.get("ma60", 0) and ma.get("ma20", 0) > ma.get("ma60", 0):
-            notes.append("中期趋势向好，短周期待确认")
+            # 长周期偏多但短周期不确定，结合MACD给出具体描述
+            macd_is_golden = (macd.get("macd") or 0) > (macd.get("signal") or 0)
+            if macd_is_golden:
+                notes.append("中期趋势向好，短周期待确认")
+            else:
+                notes.append("长周期均线偏多，但MACD短期走弱，等待金叉确认")
 
         # MACD
         if (macd.get("macd") or 0) > (macd.get("signal") or 0):
