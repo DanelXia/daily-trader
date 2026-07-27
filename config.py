@@ -50,3 +50,6 @@ KLINE_LOOKBACK = 120              # K线回看天数
 REQUEST_DELAY_MIN = 2.0          # 最小请求间隔（秒）
 REQUEST_DELAY_MAX = 5.0          # 最大请求间隔（秒）
 MAX_RETRIES = 3                  # 最大重试次数
+
+# --- 拆股/份额拆分检测 ---
+SPLIT_DETECTION_THRESHOLD = 0.20  # 偏差阈值 20%，超过此值判定为拆分

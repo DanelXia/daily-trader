@@ -1,0 +1,821 @@
+{
+  "generated_at": "2026-07-27T11:06:56",
+  "market_snapshot": {
+    "sh_index": 3814.1978,
+    "sh_change_pct": -1.614217,
+    "sz_index": 13774.6755,
+    "sz_change_pct": -2.468483
+  },
+  "suggestions": [
+    {
+      "code": "600285",
+      "name": "羚锐制药",
+      "trading_score": 48.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 21.91,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 21.08,
+      "take_profit": {
+        "tp1": 23.34,
+        "tp1_pct": 6.5,
+        "tp1_action": "减仓1/3",
+        "tp2": 23.92,
+        "tp2_pct": 9.2,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 22.43,
+        "ma10": 22.59,
+        "ma20": 21.73,
+        "ma60": 20.97,
+        "macd": 0.515,
+        "signal": 0.524,
+        "histogram": -0.009,
+        "rsi6": 40.5,
+        "rsi14": 52.9,
+        "bb_upper": 23.92,
+        "bb_middle": 21.73,
+        "bb_lower": 19.54,
+        "atr14": 0.67,
+        "volume_ratio": 0.62
+      },
+      "support_levels": [
+        21.73,
+        20.97,
+        19.54
+      ],
+      "resistance_levels": [
+        23.34,
+        23.92
+      ],
+      "key_notes": [
+        "中期趋势向好，短周期待确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-01T00:00:00.000000000), BullishEngulfing(2026-07-13T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-10T00:00:00.000000000), BearishEngulfing(2026-07-17T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
+      ],
+      "industry": "C27医药制造业"
+    },
+    {
+      "code": "600535",
+      "name": "天士力",
+      "trading_score": 52.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 15.76,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 14.82,
+      "take_profit": {
+        "tp1": 16.24,
+        "tp1_pct": 3.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 16.65,
+        "tp2_pct": 5.6,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中等",
+      "indicators": {
+        "ma5": 15.95,
+        "ma10": 15.53,
+        "ma20": 14.71,
+        "ma60": 14.43,
+        "macd": 0.517,
+        "signal": 0.362,
+        "histogram": 0.155,
+        "rsi6": 62.2,
+        "rsi14": 63.3,
+        "bb_upper": 16.65,
+        "bb_middle": 14.71,
+        "bb_lower": 12.78,
+        "atr14": 0.47,
+        "volume_ratio": 0.95
+      },
+      "support_levels": [
+        14.71,
+        14.43,
+        12.78
+      ],
+      "resistance_levels": [
+        16.24,
+        16.65
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-07-20T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-07T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
+      ],
+      "industry": "C27医药制造业"
+    },
+    {
+      "code": "000429",
+      "name": "粤高速A",
+      "trading_score": 74.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 14.2,
+        "type": "limit",
+        "suggestion": "建议挂单 14.2 附近买入"
+      },
+      "stop_loss": 13.64,
+      "take_profit": {
+        "tp1": 14.83,
+        "tp1_pct": 3.1,
+        "tp1_action": "减仓1/3",
+        "tp2": 14.83,
+        "tp2_pct": 3.1,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 14.42,
+        "ma10": 14.17,
+        "ma20": 14.06,
+        "ma60": 13.61,
+        "macd": 0.201,
+        "signal": 0.168,
+        "histogram": 0.033,
+        "rsi6": 56.4,
+        "rsi14": 56.5,
+        "bb_upper": 14.83,
+        "bb_middle": 14.06,
+        "bb_lower": 13.28,
+        "atr14": 0.44,
+        "volume_ratio": 0.83
+      },
+      "support_levels": [
+        14.06,
+        13.61,
+        13.28
+      ],
+      "resistance_levels": [
+        14.83,
+        14.98
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-07-02T00:00:00.000000000), BullishEngulfing(2026-07-14T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-09T00:00:00.000000000)"
+      ],
+      "industry": "G54道路运输业"
+    },
+    {
+      "code": "600012",
+      "name": "皖通高速",
+      "trading_score": 79.0,
+      "action": "strong_buy",
+      "action_cn": "强烈买入",
+      "entry": {
+        "price": 17.18,
+        "type": "limit",
+        "suggestion": "建议挂单 17.18 附近买入"
+      },
+      "stop_loss": 16.62,
+      "take_profit": {
+        "tp1": 18.67,
+        "tp1_pct": 4.5,
+        "tp1_action": "减仓1/3",
+        "tp2": 18.67,
+        "tp2_pct": 4.5,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 18.17,
+        "ma10": 17.55,
+        "ma20": 17.01,
+        "ma60": 16.43,
+        "macd": 0.483,
+        "signal": 0.367,
+        "histogram": 0.116,
+        "rsi6": 58.6,
+        "rsi14": 60.0,
+        "bb_upper": 18.67,
+        "bb_middle": 17.01,
+        "bb_lower": 15.35,
+        "atr14": 0.79,
+        "volume_ratio": 1.15
+      },
+      "support_levels": [
+        17.01,
+        16.43,
+        15.35
+      ],
+      "resistance_levels": [
+        18.67,
+        19.57
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-07-01T00:00:00.000000000), BullishEngulfing(2026-07-08T00:00:00.000000000), BullishEngulfing(2026-07-15T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-06-30T00:00:00.000000000)"
+      ],
+      "industry": "G54道路运输业"
+    },
+    {
+      "code": "600020",
+      "name": "中原高速",
+      "trading_score": 61.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 3.73,
+        "type": "limit",
+        "suggestion": "可现价 3.73 买入"
+      },
+      "stop_loss": 3.6,
+      "take_profit": {
+        "tp1": 3.88,
+        "tp1_pct": 4.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 3.88,
+        "tp2_pct": 4.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "低",
+      "indicators": {
+        "ma5": 3.77,
+        "ma10": 3.78,
+        "ma20": 3.71,
+        "ma60": 3.77,
+        "macd": 0.012,
+        "signal": 0.003,
+        "histogram": 0.009,
+        "rsi6": 44.9,
+        "rsi14": 49.0,
+        "bb_upper": 3.88,
+        "bb_middle": 3.71,
+        "bb_lower": 3.54,
+        "atr14": 0.1,
+        "volume_ratio": 0.91
+      },
+      "support_levels": [
+        3.71,
+        3.54
+      ],
+      "resistance_levels": [
+        3.88,
+        4.0
+      ],
+      "key_notes": [
+        "MACD金叉，动能增强",
+        "出现看涨形态: Hammer(2026-06-29T00:00:00.000000000), BullishEngulfing(2026-07-03T00:00:00.000000000), BullishEngulfing(2026-07-23T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-07T00:00:00.000000000), BearishEngulfing(2026-07-16T00:00:00.000000000)"
+      ],
+      "industry": "G54道路运输业"
+    },
+    {
+      "code": "002558",
+      "name": "巨人网络",
+      "trading_score": 30.0,
+      "action": "reduce",
+      "action_cn": "减仓",
+      "entry": {
+        "price": 24.18,
+        "type": "market",
+        "suggestion": "建议减仓，逢高卖出"
+      },
+      "stop_loss": 22.49,
+      "take_profit": {
+        "tp1": 27.81,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 31.18,
+        "tp2_pct": 28.9,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 27.46,
+        "ma10": 28.16,
+        "ma20": 28.09,
+        "ma60": 27.68,
+        "macd": -0.004,
+        "signal": 0.433,
+        "histogram": -0.437,
+        "rsi6": 24.5,
+        "rsi14": 37.6,
+        "bb_upper": 31.18,
+        "bb_middle": 28.09,
+        "bb_lower": 25.0,
+        "atr14": 2.0,
+        "volume_ratio": 0.85
+      },
+      "support_levels": [
+        22.97
+      ],
+      "resistance_levels": [
+        31.18,
+        31.31
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-06T00:00:00.000000000), BullishEngulfing(2026-07-15T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-02T00:00:00.000000000), BearishEngulfing(2026-07-22T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "603725",
+      "name": "天安新材",
+      "trading_score": 46.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 11.99,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 11.34,
+      "take_profit": {
+        "tp1": 13.79,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 14.74,
+        "tp2_pct": 22.9,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 12.57,
+        "ma10": 12.79,
+        "ma20": 12.88,
+        "ma60": 11.69,
+        "macd": 0.234,
+        "signal": 0.383,
+        "histogram": -0.149,
+        "rsi6": 39.5,
+        "rsi14": 46.8,
+        "bb_upper": 14.74,
+        "bb_middle": 12.88,
+        "bb_lower": 11.01,
+        "atr14": 1.11,
+        "volume_ratio": 0.74
+      },
+      "support_levels": [
+        11.69,
+        11.01
+      ],
+      "resistance_levels": [
+        14.74,
+        14.81
+      ],
+      "key_notes": [
+        "中期趋势向好，短周期待确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-10T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-13T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "601211",
+      "name": "国泰海通",
+      "trading_score": 51.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 19.22,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 18.22,
+      "take_profit": {
+        "tp1": 19.7,
+        "tp1_pct": 2.5,
+        "tp1_action": "减仓1/3",
+        "tp2": 19.7,
+        "tp2_pct": 2.5,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 19.01,
+        "ma10": 18.7,
+        "ma20": 18.78,
+        "ma60": 16.96,
+        "macd": 0.435,
+        "signal": 0.473,
+        "histogram": -0.038,
+        "rsi6": 66.6,
+        "rsi14": 62.1,
+        "bb_upper": 19.7,
+        "bb_middle": 18.78,
+        "bb_lower": 17.87,
+        "atr14": 0.58,
+        "volume_ratio": 0.76
+      },
+      "support_levels": [
+        18.78,
+        17.87,
+        16.96
+      ],
+      "resistance_levels": [
+        19.7,
+        20.5
+      ],
+      "key_notes": [
+        "中期趋势向好，短周期待确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-15T00:00:00.000000000), BullishEngulfing(2026-07-20T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-10T00:00:00.000000000), BearishEngulfing(2026-07-14T00:00:00.000000000), BearishEngulfing(2026-07-17T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "600030",
+      "name": "中信证券",
+      "trading_score": 58.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 27.95,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 26.72,
+      "take_profit": {
+        "tp1": 29.34,
+        "tp1_pct": 5.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 29.34,
+        "tp2_pct": 5.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中等",
+      "indicators": {
+        "ma5": 28.3,
+        "ma10": 28.19,
+        "ma20": 28.45,
+        "ma60": 27.03,
+        "macd": 0.247,
+        "signal": 0.361,
+        "histogram": -0.114,
+        "rsi6": 42.8,
+        "rsi14": 49.8,
+        "bb_upper": 29.34,
+        "bb_middle": 28.45,
+        "bb_lower": 27.55,
+        "atr14": 0.76,
+        "volume_ratio": 0.67
+      },
+      "support_levels": [
+        27.55,
+        27.03
+      ],
+      "resistance_levels": [
+        29.34,
+        29.88
+      ],
+      "key_notes": [
+        "中期趋势向好，短周期待确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: Hammer(2026-07-21T00:00:00.000000000), BullishEngulfing(2026-07-09T00:00:00.000000000), BullishEngulfing(2026-07-20T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-06T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "603259",
+      "name": "药明康德",
+      "trading_score": 65.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 125.0,
+        "type": "limit",
+        "suggestion": "可现价 125.0 买入"
+      },
+      "stop_loss": 120.06,
+      "take_profit": {
+        "tp1": 131.46,
+        "tp1_pct": 5.2,
+        "tp1_action": "减仓1/3",
+        "tp2": 131.46,
+        "tp2_pct": 5.2,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 125.8,
+        "ma10": 125.32,
+        "ma20": 123.77,
+        "ma60": 109.99,
+        "macd": 4.31,
+        "signal": 4.788,
+        "histogram": -0.478,
+        "rsi6": 51.6,
+        "rsi14": 56.3,
+        "bb_upper": 131.46,
+        "bb_middle": 123.77,
+        "bb_lower": 116.09,
+        "atr14": 6.18,
+        "volume_ratio": 0.6
+      },
+      "support_levels": [
+        123.77,
+        116.09,
+        109.99
+      ],
+      "resistance_levels": [
+        131.46,
+        135.17
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-01T00:00:00.000000000), BullishEngulfing(2026-07-09T00:00:00.000000000), BullishEngulfing(2026-07-14T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-02T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "002714",
+      "name": "牧原股份",
+      "trading_score": 79.0,
+      "action": "strong_buy",
+      "action_cn": "强烈买入",
+      "entry": {
+        "price": 38.68,
+        "type": "limit",
+        "suggestion": "可现价 38.68 买入"
+      },
+      "stop_loss": 37.16,
+      "take_profit": {
+        "tp1": 41.42,
+        "tp1_pct": 7.1,
+        "tp1_action": "减仓1/3",
+        "tp2": 41.42,
+        "tp2_pct": 7.1,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 39.57,
+        "ma10": 39.49,
+        "ma20": 38.31,
+        "ma60": 38.05,
+        "macd": 0.849,
+        "signal": 0.737,
+        "histogram": 0.112,
+        "rsi6": 45.2,
+        "rsi14": 52.7,
+        "bb_upper": 41.42,
+        "bb_middle": 38.31,
+        "bb_lower": 35.21,
+        "atr14": 1.69,
+        "volume_ratio": 0.49
+      },
+      "support_levels": [
+        38.31,
+        38.05,
+        35.21
+      ],
+      "resistance_levels": [
+        41.42,
+        41.55
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "量比=0.49，缩量",
+        "出现看涨形态: Hammer(2026-07-14T00:00:00.000000000), BullishEngulfing(2026-07-06T00:00:00.000000000), BullishEngulfing(2026-07-15T00:00:00.000000000), BullishEngulfing(2026-07-20T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-17T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "159516",
+      "name": "半导体设备ETF",
+      "trading_score": 56.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 0.74,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 0.69,
+      "take_profit": {
+        "tp1": 0.85,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 0.96,
+        "tp2_pct": 30.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 0.72,
+        "ma10": 0.76,
+        "ma20": 0.84,
+        "ma60": 0.7,
+        "macd": -0.011,
+        "signal": 0.013,
+        "histogram": -0.024,
+        "rsi6": 43.9,
+        "rsi14": 46.1,
+        "bb_upper": 1.04,
+        "bb_middle": 0.84,
+        "bb_lower": 0.63,
+        "atr14": 0.06,
+        "volume_ratio": 1.0
+      },
+      "support_levels": [
+        0.7,
+        0.63
+      ],
+      "resistance_levels": [
+        1.04,
+        1.05
+      ],
+      "key_notes": [
+        "中期趋势向好，短周期待确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-07T00:00:00.000000000), BullishEngulfing(2026-07-14T00:00:00.000000000), BullishEngulfing(2026-07-24T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-15T00:00:00.000000000), BearishEngulfing(2026-07-23T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "002281",
+      "name": "光迅科技",
+      "trading_score": 44.0,
+      "action": "reduce",
+      "action_cn": "减仓",
+      "entry": {
+        "price": 186.8,
+        "type": "market",
+        "suggestion": "建议减仓，逢高卖出"
+      },
+      "stop_loss": 173.72,
+      "take_profit": {
+        "tp1": 214.82,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 242.84,
+        "tp2_pct": 30.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 185.34,
+        "ma10": 199.06,
+        "ma20": 214.04,
+        "ma60": 212.48,
+        "macd": -10.066,
+        "signal": -5.333,
+        "histogram": -4.734,
+        "rsi6": 37.5,
+        "rsi14": 41.6,
+        "bb_upper": 259.03,
+        "bb_middle": 214.04,
+        "bb_lower": 169.06,
+        "atr14": 19.62,
+        "volume_ratio": 0.62
+      },
+      "support_levels": [
+        169.06
+      ],
+      "resistance_levels": [
+        259.03,
+        264.88
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-07T00:00:00.000000000), BullishEngulfing(2026-07-09T00:00:00.000000000), BullishEngulfing(2026-07-21T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-10T00:00:00.000000000), BearishEngulfing(2026-07-23T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "603986",
+      "name": "兆易创新",
+      "trading_score": 21.0,
+      "action": "strong_sell",
+      "action_cn": "强烈卖出",
+      "entry": {
+        "price": 457.0,
+        "type": "market",
+        "suggestion": "建议清仓离场"
+      },
+      "stop_loss": 425.01,
+      "take_profit": {
+        "tp1": 525.55,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 594.1,
+        "tp2_pct": 30.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 457.36,
+        "ma10": 497.11,
+        "ma20": 596.18,
+        "ma60": 517.67,
+        "macd": -37.399,
+        "signal": -13.51,
+        "histogram": -23.889,
+        "rsi6": 31.9,
+        "rsi14": 38.9,
+        "bb_upper": 842.45,
+        "bb_middle": 596.18,
+        "bb_lower": 349.92,
+        "atr14": 53.91,
+        "volume_ratio": 0.84
+      },
+      "support_levels": [
+        349.92
+      ],
+      "resistance_levels": [
+        842.45,
+        846.66
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-09T00:00:00.000000000), BullishEngulfing(2026-07-14T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-01T00:00:00.000000000), BearishEngulfing(2026-07-06T00:00:00.000000000), BearishEngulfing(2026-07-10T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    },
+    {
+      "code": "300738",
+      "name": "奥飞数据",
+      "trading_score": 66.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 20.8,
+        "type": "limit",
+        "suggestion": "可现价 20.8 买入"
+      },
+      "stop_loss": 20.0,
+      "take_profit": {
+        "tp1": 22.68,
+        "tp1_pct": 9.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 22.68,
+        "tp2_pct": 9.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 21.81,
+        "ma10": 21.0,
+        "ma20": 20.62,
+        "ma60": 22.34,
+        "macd": 0.126,
+        "signal": -0.139,
+        "histogram": 0.265,
+        "rsi6": 45.4,
+        "rsi14": 48.8,
+        "bb_upper": 22.68,
+        "bb_middle": 20.62,
+        "bb_lower": 18.56,
+        "atr14": 1.47,
+        "volume_ratio": 1.11
+      },
+      "support_levels": [
+        20.62,
+        18.56
+      ],
+      "resistance_levels": [
+        22.68,
+        23.55
+      ],
+      "key_notes": [
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-06-30T00:00:00.000000000), BullishEngulfing(2026-07-08T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-14T00:00:00.000000000), BearishEngulfing(2026-07-24T00:00:00.000000000)"
+      ],
+      "industry": "USER_SELECTED"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-07-24T14:32:53",
+  "market_snapshot": {
+    "sh_index": 3876.7774,
+    "sh_change_pct": 0.251971,
+    "sz_index": 14123.307,
+    "sz_change_pct": 0.44001
+  },
+  "suggestions": [
+    {
+      "code": "002600",
+      "name": "002600",
+      "trading_score": 36.0,
+      "action": "reduce",
+      "action_cn": "减仓",
+      "entry": {
+        "price": 12.2,
+        "type": "market",
+        "suggestion": "建议减仓，逢高卖出"
+      },
+      "stop_loss": 11.35,
+      "take_profit": {
+        "tp1": 14.03,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 15.86,
+        "tp2_pct": 30.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 11.93,
+        "ma10": 12.67,
+        "ma20": 14.6,
+        "ma60": 15.13,
+        "macd": -1.058,
+        "signal": -0.72,
+        "histogram": -0.338,
+        "rsi6": 34.4,
+        "rsi14": 37.3,
+        "bb_upper": 19.06,
+        "bb_middle": 14.6,
+        "bb_lower": 10.15,
+        "atr14": 1.05,
+        "volume_ratio": 0.3
+      },
+      "support_levels": [
+        10.15
+      ],
+      "resistance_levels": [
+        18.54,
+        19.06
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "量比=0.3，缩量",
+        "出现看涨形态: BullishEngulfing(2026-06-30T00:00:00.000000000), BullishEngulfing(2026-07-03T00:00:00.000000000), BullishEngulfing(2026-07-21T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-06T00:00:00.000000000), BearishEngulfing(2026-07-17T00:00:00.000000000)"
+      ]
+    }
+  ]
+}

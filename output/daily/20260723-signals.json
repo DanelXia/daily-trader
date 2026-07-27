@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-07-23T15:09:45",
+  "market_snapshot": {
+    "sh_index": 3867.0336,
+    "sh_change_pct": 0.069002,
+    "sz_index": 14061.4353,
+    "sz_change_pct": -1.422126
+  },
+  "suggestions": [
+    {
+      "code": "002466",
+      "name": "002466",
+      "trading_score": 21.0,
+      "action": "strong_sell",
+      "action_cn": "强烈卖出",
+      "entry": {
+        "price": 43.92,
+        "type": "market",
+        "suggestion": "建议清仓离场"
+      },
+      "stop_loss": 40.85,
+      "take_profit": {
+        "tp1": 50.51,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 57.1,
+        "tp2_pct": 30.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 45.25,
+        "ma10": 46.42,
+        "ma20": 53.06,
+        "ma60": 62.49,
+        "macd": -4.888,
+        "signal": -4.072,
+        "histogram": -0.816,
+        "rsi6": 29.8,
+        "rsi14": 31.4,
+        "bb_upper": 67.69,
+        "bb_middle": 53.06,
+        "bb_lower": 38.44,
+        "atr14": 3.54,
+        "volume_ratio": 0.97
+      },
+      "support_levels": [
+        38.44
+      ],
+      "resistance_levels": [
+        67.44,
+        67.69
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-16T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-07-02T00:00:00.000000000)"
+      ]
+    }
+  ]
+}

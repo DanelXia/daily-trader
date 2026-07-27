@@ -17,6 +17,7 @@ import baostock as bs
 from config import (
     CACHE_DIR, CACHE_TTL_SNAPSHOT, CACHE_TTL_FINANCIAL,
     CACHE_TTL_KLINE, CACHE_TTL_FUND_FLOW,
+    SPLIT_DETECTION_THRESHOLD,
 )
 
 # ---------------------------------------------------------------------------
@@ -185,10 +186,66 @@ def fetch_industry_list() -> pd.DataFrame:
 # K线数据
 # ===================================================================
 
+def _detect_and_adjust_splits(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    检测并修正 baostock 无法自动处理的 ETF/股票拆分。
+
+    baostock 的 adjustflag 对 ETF 份额拆分无效，导致拆分前后价格出现
+    断崖式跳变。本函数通过 pct_change（不受拆分影响）与实际收盘价
+    对比来自动检测拆分，并向后修正历史 OHLC 数据以保持价格连续性。
+
+    算法：
+      expected_close = prev_close * (1 + pct_change[i] / 100)
+      若 |close[i] - expected_close| / expected_close > 阈值 → 拆分
+      拆分因子 = close[i] / expected_close
+      将所有拆分日前的 OHLC 乘以该因子
+    """
+    if df is None or df.empty or len(df) < 2:
+        return df
+
+    df = df.copy()
+    df = df.sort_values("date").reset_index(drop=True)
+
+    closes = df["close"].values
+    pct_changes = df["pct_change"].values
+    n = len(df)
+    splits_found = 0
+
+    for i in range(1, n):
+        if pd.isna(pct_changes[i]) or pd.isna(closes[i]) or pd.isna(closes[i - 1]):
+            continue
+
+        expected = closes[i - 1] * (1.0 + pct_changes[i] / 100.0)
+        if expected <= 0:
+            continue
+
+        deviation = abs(closes[i] - expected) / expected
+
+        if deviation > SPLIT_DETECTION_THRESHOLD:
+            factor = float(closes[i]) / float(expected)
+            splits_found += 1
+
+            for col in ["open", "high", "low", "close"]:
+                df.loc[: i - 1, col] = (
+                    df.loc[: i - 1, col].astype(float) * factor
+                )
+
+            date_str = str(df.loc[i, "date"])[:10]
+            print(
+                f"  [SplitDetected] {date_str}  "
+                f"deviation={deviation:.1%}  factor={factor:.4f}"
+            )
+
+    if splits_found > 0:
+        print(f"  [SplitAdjust] {splits_found} split(s) corrected")
+
+    return df
+
+
 @cached(ttl=CACHE_TTL_KLINE)
 def fetch_stock_kline(code: str, days: int = 120, adjust: str = "2") -> Optional[pd.DataFrame]:
     """
-    获取个股日K线（后复权）。
+    获取个股日K线（前复权，自动检测并修正 ETF/股票拆分）。
     adjust: "1"=后复权 "2"=前复权 "3"=不复权
     """
     _ensure_login()
@@ -219,6 +276,8 @@ def fetch_stock_kline(code: str, days: int = 120, adjust: str = "2") -> Optional
     df["date"] = pd.to_datetime(df["date"])
     # 过滤掉空数据
     df = df[df["volume"] > 0].copy()
+    # 自动检测并修正 ETF/股票拆分（baostock 的 adjustflag 对 ETF 无效）
+    df = _detect_and_adjust_splits(df)
     return df.tail(days)
 
 
