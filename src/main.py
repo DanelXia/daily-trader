@@ -129,6 +129,25 @@ def trade(stock, pool):
     # 大盘快照
     from src.data.fetcher import fetch_index_snapshot
     market_snapshot = fetch_index_snapshot()
+    market_vol_ratio = market_snapshot.get("market_volume_ratio", 1.0)
+    total_amt = market_snapshot.get("total_amount", 0)
+    if total_amt:
+        vol_label = "放量" if market_vol_ratio > 1.2 else ("缩量" if market_vol_ratio < 0.8 else "正常")
+        print(f"\n大盘成交额: {total_amt:.0f}亿  |  量比: {market_vol_ratio:.2f}  |  {vol_label}\n")
+
+    # 散户情绪分析（提前获取，用于个股逆向加分）
+    sentiment = None
+    sentiment_index = None
+    if datetime.now().hour >= 15:
+        try:
+            from src.research.sentiment import SentimentAnalyzer
+            sa = SentimentAnalyzer()
+            sentiment = sa.analyze()
+            if sentiment:
+                sentiment_index = sentiment["sentiment_index"]
+                print(f"散户情绪: {sentiment['summary_text']}\n")
+        except Exception as e:
+            print(f"[警告] 散户情绪分析失败: {e}")
 
     suggestions = []
     for i, s in enumerate(stocks):
@@ -142,8 +161,8 @@ def trade(stock, pool):
             print(f"  [跳过] 无法获取K线数据")
             continue
 
-        # 生成交易信号
-        signal = engine.analyze(code, name, indicators)
+        # 生成交易信号（传入情绪指数用于逆向加分）
+        signal = engine.analyze(code, name, indicators, market_vol_ratio, sentiment_index)
         if s.get("industry"):
             signal["industry"] = s["industry"]
         suggestions.append(signal)
@@ -161,7 +180,11 @@ def trade(stock, pool):
 
     # 生成报告
     from src.reports.generator import generate_daily_report
-    md_path, json_path = generate_daily_report(suggestions, market_snapshot)
+    from src.data.fetcher import fetch_intraday_analysis
+    intraday = fetch_intraday_analysis()
+    if intraday:
+        print(f"\n大盘分时分析: {intraday.get('summary', '')}")
+    md_path, json_path = generate_daily_report(suggestions, market_snapshot, intraday, sentiment)
 
     print(f"\n{'=' * 60}")
     print(f"  交易分析完成!")

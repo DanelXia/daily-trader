@@ -7,3 +7,4 @@ diskcache>=5.6.0
 click>=8.1.0
 pydantic>=2.0.0
 openpyxl>=3.1.0
+requests>=2.28.0

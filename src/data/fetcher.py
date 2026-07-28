@@ -334,39 +334,176 @@ def fetch_sw_industry_kline(code: str, days: int = 100) -> Optional[pd.DataFrame
 # ===================================================================
 
 def fetch_index_snapshot() -> dict:
-    """获取上证指数和深证成指快照"""
+    """获取上证指数和深证成指快照（含成交额 + 大盘量比）"""
     _ensure_login()
     result = {}
     try:
+        lookback = 25  # 取25天，用于计算20日均量
+        start_date = (datetime.now() - timedelta(days=lookback + 10)).strftime("%Y-%m-%d")
+        end_date = datetime.now().strftime("%Y-%m-%d")
+
         # 上证
         rs = _safe_bs_query(lambda: bs.query_history_k_data_plus(
-            "sh.000001", "date,close,pctChg",
-            start_date=(datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d"),
-            end_date=datetime.now().strftime("%Y-%m-%d"),
+            "sh.000001", "date,close,pctChg,volume,amount",
+            start_date=start_date, end_date=end_date,
             frequency="d", adjustflag="3",
         ))
-        df = rs.get_data() if rs else pd.DataFrame()
-        if not df.empty:
-            result["sh_index"] = float(df["close"].iloc[-1])
-            result["sh_change_pct"] = float(df["pctChg"].iloc[-1])
+        df_sh = rs.get_data() if rs else pd.DataFrame()
+        if not df_sh.empty:
+            df_sh["close"] = pd.to_numeric(df_sh["close"], errors="coerce")
+            df_sh["pctChg"] = pd.to_numeric(df_sh["pctChg"], errors="coerce")
+            df_sh["amount"] = pd.to_numeric(df_sh["amount"], errors="coerce")
+            df_sh = df_sh[df_sh["amount"] > 0].tail(lookback)
+            result["sh_index"] = float(df_sh["close"].iloc[-1])
+            result["sh_change_pct"] = float(df_sh["pctChg"].iloc[-1])
+            result["sh_amount"] = float(df_sh["amount"].iloc[-1]) / 1e8  # 元→亿
+            sh_amounts = df_sh["amount"].values
 
         # 深证
         rs = _safe_bs_query(lambda: bs.query_history_k_data_plus(
-            "sz.399001", "date,close,pctChg",
-            start_date=(datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d"),
-            end_date=datetime.now().strftime("%Y-%m-%d"),
+            "sz.399001", "date,close,pctChg,volume,amount",
+            start_date=start_date, end_date=end_date,
             frequency="d", adjustflag="3",
         ))
-        df = rs.get_data() if rs else pd.DataFrame()
-        if not df.empty:
-            result["sz_index"] = float(df["close"].iloc[-1])
-            result["sz_change_pct"] = float(df["pctChg"].iloc[-1])
+        df_sz = rs.get_data() if rs else pd.DataFrame()
+        if not df_sz.empty:
+            df_sz["close"] = pd.to_numeric(df_sz["close"], errors="coerce")
+            df_sz["pctChg"] = pd.to_numeric(df_sz["pctChg"], errors="coerce")
+            df_sz["amount"] = pd.to_numeric(df_sz["amount"], errors="coerce")
+            df_sz = df_sz[df_sz["amount"] > 0].tail(lookback)
+            result["sz_index"] = float(df_sz["close"].iloc[-1])
+            result["sz_change_pct"] = float(df_sz["pctChg"].iloc[-1])
+            result["sz_amount"] = float(df_sz["amount"].iloc[-1]) / 1e8  # 元→亿
+            sz_amounts = df_sz["amount"].values
+
+        # 两市合计 + 大盘量比 (vs 20日均值)
+        if "sh_amount" in result and "sz_amount" in result:
+            result["total_amount"] = round(result["sh_amount"] + result["sz_amount"], 1)
+            # 对齐两指数数据长度，取交集
+            min_len = min(len(sh_amounts), len(sz_amounts))
+            if min_len > 1:
+                sh_recent = sh_amounts[-min_len:]
+                sz_recent = sz_amounts[-min_len:]
+                total_daily = (sh_recent + sz_recent) / 1e8
+                today_total = total_daily[-1]
+                # 20日均量（不含今天）
+                avg_n = min(20, len(total_daily) - 1)
+                avg_total = total_daily[-1 - avg_n:-1].mean() if avg_n > 0 else today_total
+                result["market_volume_ratio"] = round(today_total / avg_total, 2) if avg_total > 0 else 1.0
+            else:
+                result["market_volume_ratio"] = 1.0
     except Exception:
         pass
     return result
 
 
-# ===================================================================
+def fetch_intraday_analysis() -> dict | None:
+    """获取今日30分钟分时数据，用于大盘日内分析（盘后调用）"""
+    try:
+        import json
+        import urllib.request
+
+        def _fetch(symbol):
+            url = (
+                f"https://quotes.sina.cn/cn/api/jsonp_v2.php/data/"
+                f"CN_MarketDataService.getKLineData"
+                f"?symbol={symbol}&scale=30&ma=no&datalen=16"
+            )
+            req = urllib.request.Request(url, headers={
+                "Referer": "https://finance.sina.com.cn",
+                "User-Agent": "Mozilla/5.0",
+            })
+            resp = urllib.request.urlopen(req, timeout=15)
+            text = resp.read().decode("utf-8")
+            if "(" in text:
+                text = text[text.index("(") + 1:text.rindex(")")]
+            return json.loads(text)
+
+        today_str = datetime.now().strftime("%Y-%m-%d")
+
+        sh_all = _fetch("sh000001")
+        sz_all = _fetch("sz399001")
+        cy_all = _fetch("sz399006")
+
+        def split(rows):
+            today = [d for d in rows if d["day"].startswith(today_str)]
+            yesterday = [d for d in rows if not d["day"].startswith(today_str)]
+            return today, yesterday
+
+        sh_t, sh_y = split(sh_all)
+        sz_t, sz_y = split(sz_all)
+        cy_t, cy_y = split(cy_all)
+
+        if not sh_t:
+            return None
+
+        sh_prev = float(sh_y[-1]["close"]) if sh_y else None
+        sz_prev = float(sz_y[-1]["close"]) if sz_y else None
+        cy_prev = float(cy_y[-1]["close"]) if cy_y else None
+
+        bars = []
+        total_sh_amt = 0
+        for i in range(len(sh_t)):
+            s = sh_t[i]
+            s_c = float(s["close"])
+            s_a = float(s["amount"]) / 1e8
+            total_sh_amt += s_a
+            s_pct = round((s_c - sh_prev) / sh_prev * 100, 2) if sh_prev else 0
+
+            z = sz_t[i] if i < len(sz_t) else None
+            z_c = float(z["close"]) if z else 0
+            z_pct = round((z_c - sz_prev) / sz_prev * 100, 2) if z and sz_prev else 0
+
+            c = cy_t[i] if i < len(cy_t) else None
+            c_c = float(c["close"]) if c else 0
+            c_pct = round((c_c - cy_prev) / cy_prev * 100, 2) if c and cy_prev else 0
+
+            bars.append({
+                "time": s["day"][11:16],
+                "sh": round(s_c, 0),
+                "sh_pct": s_pct,
+                "sz": round(z_c, 0),
+                "sz_pct": z_pct,
+                "cy": round(c_c, 0),
+                "cy_pct": c_pct,
+                "sh_amt": round(s_a, 0),
+            })
+
+        am_amt = sum(b["sh_amt"] for b in bars if b["time"] <= "11:30")
+        am_pct = round(am_amt / total_sh_amt * 100, 1) if total_sh_amt > 0 else 0
+
+        # 生成摘要
+        sh_final = bars[-1]["sh_pct"] if bars else 0
+        cy_final = bars[-1]["cy_pct"] if bars else 0
+        vol_peak = max(b["sh_amt"] for b in bars) if bars else 0
+
+        if sh_final > -0.5 and cy_final > -1:
+            trend = "窄幅震荡"
+        elif sh_final > -1 and cy_final < -3:
+            trend = "权重护盘，小票走弱"
+        elif abs(sh_final - cy_final) < 1.5:
+            trend = "普跌" if sh_final < -1 else "普涨"
+        else:
+            trend = "分化加剧"
+
+        if am_pct > 70 and sh_final < -0.5:
+            summary = f"缩量{trend}，开盘放量后持续走低，资金早盘出逃午后休眠"
+        elif am_pct > 70:
+            summary = f"量能集中于早盘，上午占比{am_pct:.0f}%，午后缩量明显"
+        else:
+            summary = f"{trend}，量能分布较均匀"
+
+        return {
+            "bars": bars,
+            "sh_prev_close": round(sh_prev, 0) if sh_prev else None,
+            "sz_prev_close": round(sz_prev, 0) if sz_prev else None,
+            "cy_prev_close": round(cy_prev, 0) if cy_prev else None,
+            "total_sh_amt": round(total_sh_amt, 0),
+            "am_pct": am_pct,
+            "summary": summary,
+        }
+    except Exception:
+        return None# ===================================================================
 # 交易日历
 # ===================================================================
 

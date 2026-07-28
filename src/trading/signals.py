@@ -11,10 +11,12 @@ from config import DEFAULT_ACCOUNT_CAPITAL, MAX_POSITION_PCT, RISK_PER_TRADE_PCT
 class TradingSignalEngine:
     """交易信号引擎"""
 
-    def analyze(self, code: str, name: str, indicators: dict) -> dict:
+    def analyze(self, code: str, name: str, indicators: dict, market_vol_ratio: float = 1.0, sentiment_index: float | None = None) -> dict:
         """
         综合分析，返回完整交易建议。
         indicators 来自 TechnicalAnalyzer.compute_all()
+        market_vol_ratio 大盘量比（两市合计 vs 20日均值），用于缩量环境下降级买入信号
+        sentiment_index 散户情绪指数(0-100)，用于极端看空时逆向加分
         """
         price = indicators["price"]
 
@@ -47,6 +49,43 @@ class TradingSignalEngine:
             total = 60  # 公路/公用事业类封顶 BUY，不触发 STRONG_BUY
             action, action_cn = self._determine_action(total)
 
+        # 大盘缩量惩罚：大盘量比 < 0.7 时，对买入信号降级
+        if market_vol_ratio < 0.7 and total >= 60:
+            penalty = 1.0 - (0.7 - market_vol_ratio) * 0.5
+            total = round(total * max(0.82, penalty), 1)
+            action, action_cn = self._determine_action(total)
+
+        # 散户情绪逆向调节：恐惧时贪婪，贪婪时恐惧
+        contrarian_adjust = 0
+        if sentiment_index is not None:
+            # 极端看空 → 逆向买入加分
+            if sentiment_index <= 40:
+                if sentiment_index <= 30:
+                    contrarian_adjust = 6
+                elif sentiment_index <= 35:
+                    contrarian_adjust = 4
+                else:
+                    contrarian_adjust = 2
+                if total >= 45:
+                    total += contrarian_adjust
+                    action, action_cn = self._determine_action(total)
+                else:
+                    contrarian_adjust = 0
+
+            # 极端乐观 → 逆向卖出减分
+            elif sentiment_index >= 70:
+                if sentiment_index >= 80:
+                    contrarian_adjust = -6
+                elif sentiment_index >= 75:
+                    contrarian_adjust = -4
+                else:
+                    contrarian_adjust = -2
+                if total < 50:
+                    total += contrarian_adjust  # negative value reduces score
+                    action, action_cn = self._determine_action(total)
+                else:
+                    contrarian_adjust = 0
+
         # 仓位建议
         position_pct = min(
             MAX_POSITION_PCT * 100,
@@ -57,7 +96,7 @@ class TradingSignalEngine:
         risk = self._assess_risk(total, indicators)
 
         # 关键信号摘要
-        key_notes = self._generate_notes(indicators, price, total)
+        key_notes = self._generate_notes(indicators, price, total, contrarian_adjust, sentiment_index)
 
         return {
             "code": code,
@@ -342,7 +381,7 @@ class TradingSignalEngine:
             return "建议减仓，逢高卖出"
         return "建议清仓离场"
 
-    def _generate_notes(self, ind: dict, price: float, total: float) -> list[str]:
+    def _generate_notes(self, ind: dict, price: float, total: float, contrarian_adjust: int = 0, sentiment_index: float | None = None) -> list[str]:
         notes = []
         ma = ind["ma"]
         macd = ind["macd"]
@@ -392,5 +431,19 @@ class TradingSignalEngine:
             notes.append(f"出现看涨形态: {', '.join(bullish)}")
         if bearish:
             notes.append(f"出现看跌形态: {', '.join(bearish)}")
+
+        # 逆向调节说明
+        if contrarian_adjust > 0:
+            mood_label = "极度悲观" if (sentiment_index or 50) <= 30 else "偏空"
+            notes.append(
+                f"散户情绪{mood_label}(指数={sentiment_index})，"
+                f"逆向买入加分+{contrarian_adjust}（别人恐惧时贪婪）"
+            )
+        elif contrarian_adjust < 0:
+            mood_label = "极度乐观" if (sentiment_index or 50) >= 80 else "偏多"
+            notes.append(
+                f"散户情绪{mood_label}(指数={sentiment_index})，"
+                f"逆向卖出减分{contrarian_adjust}（别人贪婪时恐惧）"
+            )
 
         return notes

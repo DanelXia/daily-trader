@@ -110,6 +110,8 @@ def _build_weekly_md(data: dict) -> str:
 def generate_daily_report(
     suggestions: list[dict],
     market_snapshot: dict | None = None,
+    intraday: dict | None = None,
+    sentiment: dict | None = None,
     output_dir: Path | None = None,
 ) -> tuple[Path, Path]:
     """
@@ -127,6 +129,8 @@ def generate_daily_report(
     data = {
         "generated_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
         "market_snapshot": market_snapshot or {},
+        "intraday": intraday,
+        "sentiment": sentiment,
         "suggestions": suggestions,
     }
     json_path = output_dir / f"{base_name}-signals.json"
@@ -156,7 +160,127 @@ def _build_daily_md(data: dict) -> str:
         sz_chg = ms.get("sz_change_pct", 0)
         lines.append(f"- 上证指数: {sh}  ({sh_chg:+.2f}%)" if sh_chg else f"- 上证指数: {sh}")
         lines.append(f"- 深证成指: {sz}  ({sz_chg:+.2f}%)" if sz_chg else f"- 深证成指: {sz}")
+
+        total_amt = ms.get("total_amount")
+        vol_ratio = ms.get("market_volume_ratio")
+        if total_amt and vol_ratio:
+            if vol_ratio > 1.2:
+                vol_level = "放量"
+            elif vol_ratio < 0.8:
+                vol_level = "缩量"
+            else:
+                vol_level = "正常"
+            lines.append(f"- 两市成交额: {total_amt:.0f}亿  |  大盘量比: {vol_ratio:.2f}  |  量能: {vol_level}")
         lines.append("")
+
+    # 大盘日内分时分析
+    intraday = data.get("intraday")
+    if intraday and intraday.get("bars"):
+        lines.append("## 大盘日内分析")
+        bars = intraday["bars"]
+        sh_prev = intraday.get("sh_prev_close", "-")
+        sz_prev = intraday.get("sz_prev_close", "-")
+        cy_prev = intraday.get("cy_prev_close", "-")
+        lines.append(f"昨日收盘: 上证 {sh_prev}  |  深证 {sz_prev}  |  创业板 {cy_prev}")
+        lines.append("")
+
+        # 分时走势表
+        lines.append("### 30分钟分时走势")
+        lines.append("")
+        lines.append("| 时间 | 上证 | 日涨跌 | 深证 | 日涨跌 | 创业板 | 日涨跌 | 上证量(亿) |")
+        lines.append("|------|------|--------|------|--------|--------|--------|------------|")
+        for b in bars:
+            sh = b["sh"]
+            sh_p = b["sh_pct"]
+            sz = b["sz"]
+            sz_p = b["sz_pct"]
+            cy = b["cy"]
+            cy_p = b["cy_pct"]
+            amt = b["sh_amt"]
+            # highlight worst values
+            cy_mark = f"**{cy}**" if b == bars[-1] and cy_p < -3 else str(cy)
+            sh_mark = f"**{sh}**" if b == bars[-1] else str(sh)
+            lines.append(
+                f"| {b['time']} | {sh_mark} | {sh_p:+.2f}% | {sz} | {sz_p:+.2f}% | "
+                f"{cy_mark} | {cy_p:+.2f}% | {amt:.0f} |"
+            )
+        lines.append("")
+
+        # 成交量分布
+        total_sh = intraday.get("total_sh_amt", 1)
+        lines.append("### 上证 成交量分布")
+        lines.append("")
+        lines.append("| 时段 | 成交额(亿) | 占比 | 特征 |")
+        lines.append("|------|-----------|------|------|")
+        for b in bars:
+            a = b["sh_amt"]
+            pct = a / total_sh * 100 if total_sh > 0 else 0
+            if pct > 30:
+                label = "开盘巨量"
+            elif pct > 12:
+                label = "上午活跃"
+            elif pct > 8:
+                label = "午盘衰减"
+            else:
+                label = "午后枯竭"
+            lines.append(f"| {b['time']} | {a:.0f} | {pct:.1f}% | {label} |")
+        lines.append("")
+
+        am_pct = intraday.get("am_pct", 0)
+        lines.append(f"- 上午占比: {am_pct:.1f}%  |  下午占比: {100-am_pct:.1f}%")
+        lines.append("")
+
+        summary = intraday.get("summary", "")
+        if summary:
+            lines.append(f"> {summary}")
+            lines.append("")
+
+    # 散户情绪分析
+    sentiment = data.get("sentiment")
+    if sentiment and sentiment.get("total_posts_analyzed", 0) > 0:
+        lines.append("## 散户情绪分析")
+        lines.append("")
+        idx = sentiment["sentiment_index"]
+        ratio = sentiment["bullish_ratio"]
+        total = sentiment["total_posts_analyzed"]
+
+        if idx >= 70:
+            mood = "极度乐观"
+        elif idx >= 60:
+            mood = "偏多"
+        elif idx >= 45:
+            mood = "中性观望"
+        elif idx >= 35:
+            mood = "偏空"
+        else:
+            mood = "极度悲观"
+
+        lines.append(f"| 指标 | 数值 |")
+        lines.append(f"|------|------|")
+        lines.append(f"| 情绪指数 | {idx:.1f} / 100 ({mood}) |")
+        lines.append(f"| 看多比例 | {ratio:.1%} |")
+        lines.append(f"| 样本量 | {total} 帖 |")
+        lines.append(f"| 看多帖 | {sentiment.get('bullish_count', 0)} |")
+        lines.append(f"| 看空帖 | {sentiment.get('bearish_count', 0)} |")
+        lines.append(f"| 中性帖 | {sentiment.get('neutral_count', 0)} |")
+        lines.append("")
+
+        pb = sentiment.get("platform_breakdown", {})
+        if pb:
+            parts = ", ".join(f"{k}: {v}帖" for k, v in pb.items())
+            lines.append(f"**来源分布**: {parts}")
+            lines.append("")
+
+        top_kw = sentiment.get("top_keywords", [])
+        if top_kw:
+            kw_parts = ", ".join(f"{item['keyword']}({item['count']})" for item in top_kw)
+            lines.append(f"**热门关键词**: {kw_parts}")
+            lines.append("")
+
+        summary_text = sentiment.get("summary_text", "")
+        if summary_text:
+            lines.append(f"> {summary_text}")
+            lines.append("")
 
     lines.append("---")
     lines.append("")
