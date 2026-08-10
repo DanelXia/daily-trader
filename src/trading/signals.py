@@ -6,17 +6,22 @@ import numpy as np
 import pandas as pd
 
 from config import DEFAULT_ACCOUNT_CAPITAL, MAX_POSITION_PCT, RISK_PER_TRADE_PCT
+from config import (
+    CONCENTRATION_WEIGHT, CONCENTRATION_HOLDER_LOW, CONCENTRATION_HOLDER_MED,
+    CONCENTRATION_HOLDER_HIGH, CONCENTRATION_TREND_IMPROVE, CONCENTRATION_TREND_WORSEN,
+)
 
 
 class TradingSignalEngine:
     """交易信号引擎"""
 
-    def analyze(self, code: str, name: str, indicators: dict, market_vol_ratio: float = 1.0, sentiment_index: float | None = None) -> dict:
+    def analyze(self, code: str, name: str, indicators: dict, market_vol_ratio: float = 1.0, sentiment_index: float | None = None, concentration: dict | None = None) -> dict:
         """
         综合分析，返回完整交易建议。
         indicators 来自 TechnicalAnalyzer.compute_all()
         market_vol_ratio 大盘量比（两市合计 vs 20日均值），用于缩量环境下降级买入信号
         sentiment_index 散户情绪指数(0-100)，用于极端看空时逆向加分
+        concentration 筹码集中度数据 {holder_count, holder_change_pct, trend}，用于加减分
         """
         price = indicators["price"]
 
@@ -86,6 +91,12 @@ class TradingSignalEngine:
                 else:
                     contrarian_adjust = 0
 
+        # 筹码集中度加减分
+        concentration_adjust = 0
+        if concentration is not None:
+            concentration_adjust = self._score_concentration(concentration)
+            total += concentration_adjust
+
         # 仓位建议
         position_pct = min(
             MAX_POSITION_PCT * 100,
@@ -96,7 +107,7 @@ class TradingSignalEngine:
         risk = self._assess_risk(total, indicators)
 
         # 关键信号摘要
-        key_notes = self._generate_notes(indicators, price, total, contrarian_adjust, sentiment_index)
+        key_notes = self._generate_notes(indicators, price, total, contrarian_adjust, sentiment_index, concentration, concentration_adjust)
 
         return {
             "code": code,
@@ -132,6 +143,7 @@ class TradingSignalEngine:
             "support_levels": indicators.get("support_levels", []),
             "resistance_levels": indicators.get("resistance_levels", []),
             "key_notes": key_notes,
+            "concentration": concentration,
         }
 
     # ==================================================================
@@ -288,6 +300,41 @@ class TradingSignalEngine:
         return max(0, min(15, score))
 
     # ==================================================================
+    # 筹码集中度评分 (范围: -8 ~ +8)
+    # ==================================================================
+    def _score_concentration(self, conc: dict) -> float:
+        """根据股东户数绝对值和变化趋势打分。集中度高 + 趋势向好 → 加分"""
+        score = 0.0
+        holder_count = conc.get("holder_count", 0)
+        change_pct = conc.get("holder_change_pct", 0)
+        trend = conc.get("trend", "stable")
+
+        # 绝对值：户数越少越集中
+        if holder_count <= CONCENTRATION_HOLDER_LOW:
+            score += 4
+        elif holder_count <= CONCENTRATION_HOLDER_MED:
+            score += 2
+        elif holder_count <= CONCENTRATION_HOLDER_HIGH:
+            score += 0
+        else:
+            score -= 2  # >15万户 → 分散
+
+        # 趋势：环比变化
+        if trend == "concentrating":
+            if change_pct <= -0.15:
+                score += 4  # 快速集中
+            else:
+                score += 2  # 缓慢集中
+        elif trend == "dispersing":
+            if change_pct >= 0.30:
+                score -= 4  # 快速分散
+            else:
+                score -= 2  # 缓慢分散
+        # stable: 不加不减
+
+        return max(-CONCENTRATION_WEIGHT, min(CONCENTRATION_WEIGHT, score))
+
+    # ==================================================================
     # 操作判定
     # ==================================================================
     def _determine_action(self, total: float) -> tuple[str, str]:
@@ -381,7 +428,7 @@ class TradingSignalEngine:
             return "建议减仓，逢高卖出"
         return "建议清仓离场"
 
-    def _generate_notes(self, ind: dict, price: float, total: float, contrarian_adjust: int = 0, sentiment_index: float | None = None) -> list[str]:
+    def _generate_notes(self, ind: dict, price: float, total: float, contrarian_adjust: int = 0, sentiment_index: float | None = None, concentration: dict | None = None, concentration_adjust: float = 0) -> list[str]:
         notes = []
         ma = ind["ma"]
         macd = ind["macd"]
@@ -444,6 +491,20 @@ class TradingSignalEngine:
             notes.append(
                 f"散户情绪{mood_label}(指数={sentiment_index})，"
                 f"逆向卖出减分{contrarian_adjust}（别人贪婪时恐惧）"
+            )
+
+        # 筹码集中度备注
+        if concentration_adjust > 0:
+            trend_label = "快速集中" if concentration.get("trend") == "concentrating" and concentration.get("holder_change_pct", 0) <= -0.15 else "集中中"
+            notes.append(
+                f"筹码{trend_label}({concentration['holder_count']/10000:.1f}万户, "
+                f"环比{concentration['holder_change_pct']:+.1%})，加分+{concentration_adjust}"
+            )
+        elif concentration_adjust < 0:
+            trend_label = "快速分散" if concentration.get("trend") == "dispersing" and concentration.get("holder_change_pct", 0) >= 0.30 else "分散中"
+            notes.append(
+                f"筹码{trend_label}({concentration['holder_count']/10000:.1f}万户, "
+                f"环比{concentration['holder_change_pct']:+.1%})，减分{concentration_adjust}"
             )
 
         return notes

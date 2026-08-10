@@ -315,6 +315,20 @@ def _build_daily_md(data: dict) -> str:
         if risk:
             lines.append(f"- **风险评估**: {risk}")
 
+        # 筹码集中度
+        conc = s.get("concentration")
+        if conc:
+            hc = conc["holder_count"]
+            chg = conc["holder_change_pct"]
+            trend = conc["trend"]
+            if trend == "concentrating":
+                trend_label = "集中中 ✓"
+            elif trend == "dispersing":
+                trend_label = "分散中 ✗"
+            else:
+                trend_label = "稳定 →"
+            lines.append(f"- **筹码集中度**: {hc/10000:.1f}万户 (环比{chg:+.1%}, {trend_label})")
+
         lines.append("")
         notes = s.get("key_notes", [])
         if notes:

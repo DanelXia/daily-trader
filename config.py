@@ -18,6 +18,7 @@ CACHE_TTL_SNAPSHOT = 300       # 实时快照 5 分钟
 CACHE_TTL_FINANCIAL = 86400    # 财务数据 24 小时
 CACHE_TTL_KLINE = 1800         # K 线 30 分钟
 CACHE_TTL_FUND_FLOW = 1800     # 资金流向 30 分钟
+CACHE_TTL_SHAREHOLDER = 86400  # 股东户数 24 小时
 
 # --- 个股筛选阈值 ---
 STOCK_SCREENING = {
@@ -54,8 +55,16 @@ MAX_RETRIES = 3                  # 最大重试次数
 # --- 拆股/份额拆分检测 ---
 SPLIT_DETECTION_THRESHOLD = 0.20  # 偏差阈值 20%，超过此值判定为拆分
 
+# --- 筹码集中度评分 ---
+CONCENTRATION_WEIGHT = 8               # 筹码集中度最大加减分
+CONCENTRATION_HOLDER_LOW = 30_000      # 股东户数 < 3万 → 非常集中
+CONCENTRATION_HOLDER_MED = 80_000      # 股东户数 < 8万 → 集中
+CONCENTRATION_HOLDER_HIGH = 150_000    # 股东户数 > 15万 → 分散
+CONCENTRATION_TREND_IMPROVE = -0.05   # 户数环比下降 >5% → 集中中
+CONCENTRATION_TREND_WORSEN = 0.10     # 户数环比上升 >10% → 分散中
+
 # --- 散户情绪分析 ---
-SENTIMENT_MARKET_CLOSE_HOUR = 15     # 只收集收盘后（15:00）的帖子
+SENTIMENT_MARKET_CLOSE_HOUR = 15     # 全天收集（原为收盘后过滤，实际股吧活跃在交易时段）
 
 SENTIMENT_BULLISH_KEYWORDS = [
     # 经典看多

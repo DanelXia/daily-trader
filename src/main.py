@@ -161,8 +161,15 @@ def trade(stock, pool):
             print(f"  [跳过] 无法获取K线数据")
             continue
 
-        # 生成交易信号（传入情绪指数用于逆向加分）
-        signal = engine.analyze(code, name, indicators, market_vol_ratio, sentiment_index)
+        # 生成交易信号（传入情绪指数用于逆向加分，传入筹码数据用于集中度加减分）
+        concentration = None
+        try:
+            from src.data.fetcher import fetch_shareholder_data
+            concentration = fetch_shareholder_data(code)
+        except Exception:
+            pass
+
+        signal = engine.analyze(code, name, indicators, market_vol_ratio, sentiment_index, concentration)
         if s.get("industry"):
             signal["industry"] = s["industry"]
         suggestions.append(signal)

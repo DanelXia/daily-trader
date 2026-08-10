@@ -1,7 +1,7 @@
 """
 散户情绪分析引擎。
 
-从东方财富股吧（上证指数吧）多页抓取收盘后的散户帖子，
+从东方财富股吧（上证指数吧）多页抓取当日散户帖子，
 过滤机构内容，基于中文金融关键词进行看多/看空情绪评分。
 """
 
@@ -251,7 +251,7 @@ class SentimentAnalyzer:
         return posts
 
     def _filter_by_time(self, posts: list[dict]) -> list[dict]:
-        """只保留今日收盘后的帖子"""
+        """只保留今日全天的帖子"""
         today_str = self.today.strftime("%Y-%m-%d")
         filtered = []
         for p in posts:
@@ -284,7 +284,7 @@ class SentimentAnalyzer:
                 dt = dt.replace(hour=dt.hour + 12)
 
             dt_str = dt.strftime("%Y-%m-%d")
-            if dt_str == today_str and dt.hour >= SENTIMENT_MARKET_CLOSE_HOUR:
+            if dt_str == today_str:
                 filtered.append(p)
         return filtered
 

@@ -276,6 +276,15 @@
           "qual_notes": "IDC数据中心，7/22 MACD金叉+放量突破MA60(22.43)。等回踩22.5确认支撑后建仓，止损20.26",
           "metrics": { "price_latest": 23.04 },
           "rank": 10
+        },
+        {
+          "code": "002384",
+          "name": "东山精密",
+          "composite_score": 0,
+          "qual_risk": "高",
+          "qual_notes": "PCB+光模块双龙头，索尔思贡献53%利润。260%预增，动态PE~47x。8/10筹码30.6万户非常分散，V反待金叉确认",
+          "metrics": { "price_latest": 181.70 },
+          "rank": 11
         }
       ]
     }

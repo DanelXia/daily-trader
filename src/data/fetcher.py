@@ -16,7 +16,7 @@ import baostock as bs
 
 from config import (
     CACHE_DIR, CACHE_TTL_SNAPSHOT, CACHE_TTL_FINANCIAL,
-    CACHE_TTL_KLINE, CACHE_TTL_FUND_FLOW,
+    CACHE_TTL_KLINE, CACHE_TTL_FUND_FLOW, CACHE_TTL_SHAREHOLDER,
     SPLIT_DETECTION_THRESHOLD,
 )
 
@@ -675,3 +675,72 @@ def fetch_realtime_prices(codes: list[str]) -> dict[str, dict]:
             result[code] = data
         time.sleep(0.1)  # 避免请求过快
     return result
+
+
+# ===================================================================
+# 股东户数 & 筹码集中度（东方财富 F10 API）
+# ===================================================================
+
+@cached(ttl=CACHE_TTL_SHAREHOLDER)
+def fetch_shareholder_data(code: str) -> dict | None:
+    """
+    获取个股股东户数及变动趋势，用于筹码集中度评估。
+    数据源：东方财富 F10 股东研究 API
+    返回:
+      {
+        holder_count: int,          # 最新股东户数
+        holder_change_pct: float,   # 环比变化率 (-0.1 = 减少10%)
+        trend: "concentrating" | "dispersing" | "stable",
+        prev_count: int,            # 上期股东户数(估算)
+        report_date: str,           # 报告期
+        focus_level: str,           # 集中度评级(中文)
+      }
+    """
+    prefix = "SH" if code.startswith("6") else "SZ"
+    url = (f"https://emweb.securities.eastmoney.com/PC_HSF10/"
+           f"ShareholderResearch/PageAjax?code={prefix}{code}")
+
+    try:
+        import requests
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+        if r.status_code != 200:
+            return None
+        data = r.json()
+    except Exception:
+        return None
+
+    holders = data.get("gdrs") or data.get("sdhs") or []
+    if not holders or len(holders) == 0:
+        return None
+
+    latest = holders[0]
+    holder_count = latest.get("HOLDER_TOTAL_NUM", 0)
+    ratio = latest.get("TOTAL_NUM_RATIO", 0)  # 正=增加, 负=减少
+    change_pct = ratio / 100.0  # 转为小数
+    focus = latest.get("HOLD_FOCUS", "")
+    end_date = latest.get("END_DATE", "")
+
+    if holder_count == 0:
+        return None
+
+    # 估算上期股东户数
+    if change_pct != -1:  # 不是 -100%
+        prev_count = int(holder_count / (1 + change_pct))
+    else:
+        prev_count = 0
+
+    if change_pct <= -0.05:
+        trend = "concentrating"
+    elif change_pct >= 0.10:
+        trend = "dispersing"
+    else:
+        trend = "stable"
+
+    return {
+        "holder_count": holder_count,
+        "holder_change_pct": round(change_pct, 4),
+        "prev_count": prev_count,
+        "report_date": end_date[:10] if end_date else "",
+        "trend": trend,
+        "focus_level": focus,
+    }
