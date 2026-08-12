@@ -239,7 +239,7 @@ class DivergenceTracker:
         """
         扫描全市场，寻找曾3+连板 → 已断板 → 现处回调企稳的股票。
 
-        回溯近6个交易日涨停池，寻找断板回调候选。
+        回溯近12个交易日涨停池，与断板回调10天上限对齐。
 
         返回 {"triggered": bool, "stocks": [...], "summary": str} 或 None
         """
@@ -258,7 +258,7 @@ class DivergenceTracker:
         seen_codes = set()
         broken_candidates = []
 
-        for days_back in range(1, 7):  # 回溯1~6天，覆盖完整回调周期
+        for days_back in range(1, 13):  # 回溯1~12天，对齐断板10天上限
             lookback_date = (datetime.now() - timedelta(days=days_back)).strftime("%Y%m%d")
             if days_back == 1:
                 pool = fetch_previous_zt_pool()
