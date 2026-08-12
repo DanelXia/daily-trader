@@ -113,6 +113,8 @@ def generate_daily_report(
     intraday: dict | None = None,
     sentiment: dict | None = None,
     output_dir: Path | None = None,
+    consecutive_zt: dict | None = None,
+    divergence: dict | None = None,
 ) -> tuple[Path, Path]:
     """
     生成每日交易建议报告。
@@ -132,6 +134,8 @@ def generate_daily_report(
         "intraday": intraday,
         "sentiment": sentiment,
         "suggestions": suggestions,
+        "consecutive_zt": consecutive_zt,
+        "divergence": divergence,
     }
     json_path = output_dir / f"{base_name}-signals.json"
     json_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -293,9 +297,121 @@ def _build_daily_md(data: dict) -> str:
         "strong_sell": "[STRONG SELL]",
     }
 
-    for s in data["suggestions"]:
+    # 按来源拆分信号
+    pool_signals = [s for s in data["suggestions"] if s.get("source") != "consecutive_zt"]
+    zt_signals = [s for s in data["suggestions"] if s.get("source") == "consecutive_zt"]
+
+    # --- 股票池交易信号 ---
+    if pool_signals:
+        lines.append("## 股票池交易信号")
+        lines.append("")
+        _render_signals(lines, pool_signals, action_emoji)
+
+    # --- 连板主线选股 ---
+    consecutive_zt = data.get("consecutive_zt")
+    if consecutive_zt:
+        lines.append("## 连板主线选股")
+        lines.append("")
+
+        # 状态
+        if consecutive_zt.get("triggered"):
+            main = consecutive_zt.get("main_thread_industry")
+            no_thread = consecutive_zt.get("no_main_thread", True)
+            lines.append(f"**主线判断**: {'不明确' if no_thread else f'主线: {main}'}")
+            lines.append("")
+
+            # 行业分布表
+            ind_dist = consecutive_zt.get("industry_distribution", {})
+            if ind_dist:
+                lines.append("### 行业分布")
+                lines.append("")
+                lines.append("| 行业 | 连板股数 |")
+                lines.append("|------|----------|")
+                for ind_name, cnt in ind_dist.items():
+                    lines.append(f"| {ind_name} | {cnt} |")
+                lines.append("")
+
+            # 摘要 & 交易建议
+            summary = consecutive_zt.get("summary", "")
+            if summary:
+                lines.append(f"**{summary}**")
+                lines.append("")
+            suggestion = consecutive_zt.get("trading_suggestion", "")
+            if suggestion:
+                lines.append(f"> {suggestion}")
+                lines.append("")
+
+            # 连板选股交易信号
+            if zt_signals:
+                lines.append("### 连板选股交易信号")
+                lines.append("")
+                _render_signals(lines, zt_signals, action_emoji, is_zt=True)
+        else:
+            lines.append(f"**状态**: 未触发")
+            lines.append("")
+
+    # --- 分歧回调企稳 ---
+    divergence = data.get("divergence")
+    if divergence:
+        lines.append("## 分歧回调企稳")
+        lines.append("")
+
+        if divergence.get("triggered"):
+            div_stocks = divergence.get("stocks", [])
+            lines.append(f"**{divergence.get('summary', '')}**")
+            lines.append("")
+
+            if div_stocks:
+                lines.append("### 回调质量评估")
+                lines.append("")
+                lines.append("| 代码 | 名称 | 曾连板 | 断板天数 | 回调幅度 | 缩量 | 支撑 | 企稳信号 | 评分 |")
+                lines.append("|------|------|--------|----------|----------|------|------|----------|------|")
+                for ds in div_stocks:
+                    lines.append(
+                        f"| {ds['code']} | {ds['name']} | {ds['peak_zt_days']}板 | "
+                        f"{ds['days_since_break']}天 | -{ds['pullback_pct']}% | "
+                        f"{ds['volume_contract']:.1f}x | {ds['held_support']} | "
+                        f"{ds['stabilization']} | **{ds['divergence_score']}** |"
+                    )
+                lines.append("")
+
+            # 分歧回调股的技术信号
+            div_signals = [s for s in data["suggestions"] if s.get("source") == "divergence"]
+            if div_signals:
+                lines.append("### 分歧回调交易信号")
+                lines.append("")
+                _render_signals(lines, div_signals, action_emoji, is_divergence=True)
+        else:
+            lines.append(f"**状态**: 未触发")
+            lines.append("")
+
+    lines.append("> 免责声明: 本报告由量化模型自动生成，不构成投资建议。投资有风险，入市须谨慎。")
+    return "\n".join(lines)
+
+
+def _render_signals(
+    lines: list[str],
+    signals: list[dict],
+    action_emoji: dict,
+    is_zt: bool = False,
+    is_divergence: bool = False,
+):
+    """渲染个股交易信号列表"""
+    for s in signals:
         action = action_emoji.get(s.get("action", ""), s.get("action", ""))
-        lines.append(f"## {s['name']} ({s['code']}) — {action}  [{s['trading_score']}分]")
+        extra_label = ""
+        if is_zt:
+            zt_info = s.get("zt_info", {})
+            cnt = zt_info.get("consecutive_count", "")
+            lu_type = zt_info.get("limit_up_type", "")
+            extra_label = f" [连板{cnt} {lu_type}]"
+        elif is_divergence:
+            di = s.get("divergence_info", {})
+            score = di.get("divergence_score", "")
+            pullback = di.get("pullback_pct", "")
+            extra_label = f" [断板回调 评分{score} 回撤-{pullback}%]"
+
+        lines.append(f"## {s['name']} ({s['code']}) — {action}  [{s['trading_score']}分]{extra_label}")
         lines.append("")
 
         entry = s.get("entry", {})
@@ -359,6 +475,3 @@ def _build_daily_md(data: dict) -> str:
 
         lines.append("---")
         lines.append("")
-
-    lines.append("> 免责声明: 本报告由量化模型自动生成，不构成投资建议。投资有风险，入市须谨慎。")
-    return "\n".join(lines)

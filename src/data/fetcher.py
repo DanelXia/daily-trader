@@ -744,3 +744,129 @@ def fetch_shareholder_data(code: str) -> dict | None:
         "trend": trend,
         "focus_level": focus,
     }
+
+
+@cached(ttl=300)
+def fetch_limit_up_pool(date: str | None = None) -> pd.DataFrame | None:
+    """
+    获取当日涨停股票池（来自东方财富，通过 akshare）。
+
+    返回 DataFrame: code, name, consecutive_count, first_seal_time,
+    industry, market_cap, turnover_rate, seal_amount, latest_price, pct_change
+    失败时返回 None
+    """
+    try:
+        import akshare as ak
+
+        if date is None:
+            date = datetime.now().strftime("%Y%m%d")
+
+        df = ak.stock_zt_pool_em(date=date)
+
+        if df is None or df.empty:
+            return None
+
+        # 列位置固定（akshare 1.14+ 标准输出）:
+        # 0=序号, 1=代码, 2=名称, 3=涨跌幅, 4=最新价, 5=成交额,
+        # 6=流通市值, 7=总市值, 8=换手率, 9=封板资金,
+        # 10=首次封板时间, 11=最后封板时间, 12=炸板次数,
+        # 13=涨停统计, 14=连板数, 15=所属行业
+        cols = df.columns.tolist()
+        n = len(cols)
+
+        def _col(idx, default=None):
+            """安全取列，索引越界返回默认值"""
+            if idx < n:
+                return df.iloc[:, idx]
+            return default
+
+        def _num(idx, default=0):
+            """取数值列"""
+            val = _col(idx)
+            if val is None:
+                return default
+            try:
+                return pd.to_numeric(val, errors="coerce").fillna(0)
+            except Exception:
+                return default
+
+        result = pd.DataFrame()
+        result["code"] = _col(1).astype(str).str.strip() if _col(1) is not None else ""
+        result["name"] = _col(2).astype(str).str.strip() if _col(2) is not None else ""
+        result["consecutive_count"] = _num(14).astype(int)
+        result["first_seal_time"] = _col(10).astype(str).str.strip() if _col(10) is not None else ""
+        result["industry"] = _col(15).astype(str).str.strip() if _col(15) is not None else ""
+        result["market_cap"] = _num(6)         # 流通市值(亿)
+        result["turnover_rate"] = _num(8)       # 换手率(%)
+        result["seal_amount"] = _num(9)         # 封板资金
+        result["latest_price"] = _num(4)        # 最新价
+        result["pct_change"] = _num(3)          # 涨跌幅(%)
+        result["zt_stats"] = _col(13).astype(str).str.strip() if _col(13) is not None else ""
+
+        return result
+
+    except Exception as e:
+        print(f"[数据] 获取涨停池失败: {e}")
+        return None
+
+
+@cached(ttl=300)
+def fetch_previous_zt_pool(date: str | None = None) -> pd.DataFrame | None:
+    """
+    获取前一日涨停股票池，用于识别断板回调股票。
+
+    返回 DataFrame 格式同 fetch_limit_up_pool。
+    """
+    try:
+        import akshare as ak
+        from datetime import timedelta
+
+        if date is None:
+            today = datetime.now()
+            date = (today - timedelta(days=1)).strftime("%Y%m%d")
+
+        # akshare 的 stock_zt_pool_previous_em 直接获取前一交易日数据
+        df = ak.stock_zt_pool_previous_em(date=date)
+
+        if df is None or df.empty:
+            return None
+
+        # stock_zt_pool_previous_em 列布局不同（多了涨停价列）:
+        # 0=序号, 1=代码, 2=名称, 3=涨跌幅, 4=最新价, 5=涨停价,
+        # 6=成交额, 7=流通市值, 8=总市值, 9=换手率, 10=封板资金,
+        # 11=炸板次数, 12=首次封板时间, 13=连板数, 14=涨停统计, 15=所属行业
+        cols = df.columns.tolist()
+        n = len(cols)
+
+        def _col(idx, default=None):
+            if idx < n:
+                return df.iloc[:, idx]
+            return default
+
+        def _num(idx, default=0):
+            val = _col(idx)
+            if val is None:
+                return default
+            try:
+                return pd.to_numeric(val, errors="coerce").fillna(0)
+            except Exception:
+                return default
+
+        result = pd.DataFrame()
+        result["code"] = _col(1).astype(str).str.strip() if _col(1) is not None else ""
+        result["name"] = _col(2).astype(str).str.strip() if _col(2) is not None else ""
+        result["consecutive_count"] = _num(13).astype(int)   # 连板数
+        result["first_seal_time"] = _col(12).astype(str).str.strip() if _col(12) is not None else ""
+        result["industry"] = _col(15).astype(str).str.strip() if _col(15) is not None else ""
+        result["market_cap"] = _num(7)         # 流通市值(亿)
+        result["turnover_rate"] = _num(9)       # 换手率(%)
+        result["seal_amount"] = _num(10)        # 封板资金
+        result["latest_price"] = _num(4)        # 最新价
+        result["pct_change"] = _num(3)          # 涨跌幅(%)
+        result["zt_stats"] = _col(14).astype(str).str.strip() if _col(14) is not None else ""
+
+        return result
+
+    except Exception as e:
+        print(f"[数据] 获取前日涨停池失败: {e}")
+        return None

@@ -170,6 +170,7 @@ def trade(stock, pool):
             pass
 
         signal = engine.analyze(code, name, indicators, market_vol_ratio, sentiment_index, concentration)
+        signal["source"] = "stock_pool"
         if s.get("industry"):
             signal["industry"] = s["industry"]
         suggestions.append(signal)
@@ -185,13 +186,147 @@ def trade(stock, pool):
         print(f"  {action_str}  [{signal['trading_score']}分]"
               f"  入场={signal['entry']['price']}  止损={signal['stop_loss']}")
 
+    # ================================================================
+    # 连板主线选股模型（额外分析，不影响现有流程）
+    # ================================================================
+    consecutive_zt_result = None
+    try:
+        from src.trading.consecutive_zt import ConsecutiveZtScanner
+        scanner = ConsecutiveZtScanner()
+        zt_result = scanner.scan()
+
+        if zt_result and zt_result.get("triggered"):
+            zt_stocks = zt_result["stocks"]
+            print(f"\n[连板选股] 发现 {len(zt_stocks)} 只跳空连板股，"
+                  f"主线: {'不明确' if zt_result['no_main_thread'] else zt_result.get('main_thread_industry', '')}")
+
+            # 去重：排除已在 stock_pool 中的股票
+            existing_codes = {s["code"] for s in stocks}
+            zt_analyzed = 0
+            for zt_stock in zt_stocks:
+                zt_code = zt_stock["code"]
+                if zt_code in existing_codes:
+                    continue
+
+                zt_name = zt_stock["name"]
+                print(f"  [{zt_name}({zt_code})] {zt_stock['consecutive_count']}连板 "
+                      f"| {zt_stock['limit_up_type']} | {zt_stock['industry']}")
+
+                # 走完整技术分析+信号打分流程
+                indicators = ta.compute_all(zt_code)
+                if indicators is None:
+                    print(f"    [跳过] 无法获取K线数据")
+                    continue
+
+                concentration = None
+                try:
+                    concentration = fetch_shareholder_data(zt_code)
+                except Exception:
+                    pass
+
+                signal = engine.analyze(
+                    zt_code, zt_name, indicators,
+                    market_vol_ratio, sentiment_index, concentration
+                )
+                signal["source"] = "consecutive_zt"
+                signal["industry"] = zt_stock["industry"]
+                signal["zt_info"] = {
+                    "consecutive_count": zt_stock["consecutive_count"],
+                    "gap_days": zt_stock["gap_days"],
+                    "limit_up_type": zt_stock["limit_up_type"],
+                }
+                suggestions.append(signal)
+                zt_analyzed += 1
+
+                action_str = action_map.get(signal["action"], signal["action"])
+                print(f"    {action_str}  [{signal['trading_score']}分]"
+                      f"  入场={signal['entry']['price']}  止损={signal['stop_loss']}")
+
+            print(f"  [连板选股] 新增分析 {zt_analyzed} 只股票")
+            consecutive_zt_result = zt_result
+        else:
+            print(f"\n[连板选股] 今日无满足条件的跳空连板股")
+    except Exception as e:
+        print(f"\n[警告] 连板主线选股模型失败: {e}")
+
+    # ================================================================
+    # 分歧回调企稳扫描（连板断板后的回调机会）
+    # ================================================================
+    divergence_result = None
+    try:
+        from src.trading.consecutive_zt import DivergenceTracker
+        tracker = DivergenceTracker()
+        div_result = tracker.scan()
+
+        if div_result and div_result.get("triggered"):
+            div_stocks = div_result["stocks"]
+            print(f"\n[分歧回调] 发现 {len(div_stocks)} 只断板回调企稳股")
+            for ds in div_stocks[:5]:
+                print(f"  [{ds['name']}({ds['code']})] "
+                      f"曾{ds['peak_zt_days']}连板 断板{ds['days_since_break']}天 "
+                      f"回调{ds['pullback_pct']}% 评分{ds['divergence_score']} "
+                      f"支撑={ds['held_support']} | {ds['stabilization']}")
+
+            # 去重
+            existing_codes = {s["code"] for s in stocks}
+            for zt_sig in suggestions:
+                existing_codes.add(zt_sig["code"])
+
+            div_analyzed = 0
+            for ds in div_stocks:
+                if ds["code"] in existing_codes:
+                    continue
+
+                indicators = ta.compute_all(ds["code"])
+                if indicators is None:
+                    continue
+
+                concentration = None
+                try:
+                    concentration = fetch_shareholder_data(ds["code"])
+                except Exception:
+                    pass
+
+                signal = engine.analyze(
+                    ds["code"], ds["name"], indicators,
+                    market_vol_ratio, sentiment_index, concentration
+                )
+                signal["source"] = "divergence"
+                signal["industry"] = ds.get("industry", "")
+                signal["divergence_info"] = {
+                    "peak_zt_days": ds["peak_zt_days"],
+                    "days_since_break": ds["days_since_break"],
+                    "pullback_pct": ds["pullback_pct"],
+                    "held_support": ds["held_support"],
+                    "stabilization": ds["stabilization"],
+                    "divergence_score": ds["divergence_score"],
+                }
+                suggestions.append(signal)
+                div_analyzed += 1
+
+                action_str = action_map.get(signal["action"], signal["action"])
+                print(f"    {action_str} [{signal['trading_score']}分]"
+                      f"  入场={signal['entry']['price']}  止损={signal['stop_loss']}")
+
+            if div_analyzed > 0:
+                print(f"  [分歧回调] 新增分析 {div_analyzed} 只股票")
+            divergence_result = div_result
+        else:
+            print(f"\n[分歧回调] 今日无满足条件的断板回调企稳股")
+    except Exception as e:
+        print(f"\n[警告] 分歧回调扫描失败: {e}")
+
     # 生成报告
     from src.reports.generator import generate_daily_report
     from src.data.fetcher import fetch_intraday_analysis
     intraday = fetch_intraday_analysis()
     if intraday:
         print(f"\n大盘分时分析: {intraday.get('summary', '')}")
-    md_path, json_path = generate_daily_report(suggestions, market_snapshot, intraday, sentiment)
+    md_path, json_path = generate_daily_report(
+        suggestions, market_snapshot, intraday, sentiment,
+        consecutive_zt=consecutive_zt_result,
+        divergence=divergence_result,
+    )
 
     print(f"\n{'=' * 60}")
     print(f"  交易分析完成!")
