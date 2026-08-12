@@ -298,7 +298,7 @@ def _build_daily_md(data: dict) -> str:
     }
 
     # 按来源拆分信号
-    pool_signals = [s for s in data["suggestions"] if s.get("source") != "consecutive_zt"]
+    pool_signals = [s for s in data["suggestions"] if s.get("source") == "stock_pool"]
     zt_signals = [s for s in data["suggestions"] if s.get("source") == "consecutive_zt"]
 
     # --- 股票池交易信号 ---
