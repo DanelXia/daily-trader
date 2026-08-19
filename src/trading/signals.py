@@ -44,8 +44,8 @@ class TradingSignalEngine:
 
         # 计算点位
         entry = self._calc_entry(indicators, price, action)
-        stop_loss = self._calc_stop_loss(indicators, price)
-        take_profit = self._calc_take_profit(indicators, price)
+        stop_loss = self._calc_stop_loss(indicators, entry)
+        take_profit = self._calc_take_profit(indicators, price, entry)
 
         # 低波动低收益股票封顶
         tp1_pct = take_profit.get("tp1_pct", 0)
@@ -361,20 +361,21 @@ class TradingSignalEngine:
             return round(price, 2)
         return round(price, 2)
 
-    def _calc_stop_loss(self, ind: dict, price: float) -> float:
-        atr = ind.get("atr14", price * 0.03)
-        supports = ind.get("support_levels", [])
+    def _calc_stop_loss(self, ind: dict, entry: float) -> float:
+        atr = ind.get("atr14", entry * 0.03)
+        # 只在入场价下方寻找支撑，确保止损价低于入场价
+        supports = [s for s in ind.get("support_levels", []) if s < entry]
 
         # ATR止损
-        atr_sl = price - 2 * atr
-        # 支撑位止损
-        support_sl = max(supports) * 0.97 if supports else price * 0.93
+        atr_sl = entry - 2 * atr
+        # 支撑位止损（入场价下方最近支撑，跌破3%离场）
+        support_sl = max(supports) * 0.97 if supports else entry * 0.93
         # 硬止损（至少7%）
-        hard_sl = price * 0.93
+        hard_sl = entry * 0.93
 
         return round(max(atr_sl, support_sl, hard_sl), 2)
 
-    def _calc_take_profit(self, ind: dict, price: float) -> dict:
+    def _calc_take_profit(self, ind: dict, price: float, entry: float) -> dict:
         resistances = ind.get("resistance_levels", [])
         bb_upper = ind["bb"].get("upper", price * 1.15)
 
@@ -383,14 +384,14 @@ class TradingSignalEngine:
             tp1 = min(resistances[0], price * 1.15)
         else:
             tp1 = price * 1.10
-        tp1_pct = round((tp1 - price) / price * 100, 1)
+        tp1_pct = round((tp1 - entry) / entry * 100, 1)
 
         # TP2: BB上轨或远期阻力，约20-30%收益
         if len(resistances) > 1:
             tp2 = min(resistances[-1], bb_upper, price * 1.30)
         else:
             tp2 = min(bb_upper, price * 1.25)
-        tp2_pct = round((tp2 - price) / price * 100, 1)
+        tp2_pct = round((tp2 - entry) / entry * 100, 1)
 
         return {
             "tp1": round(tp1, 2),
