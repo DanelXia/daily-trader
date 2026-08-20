@@ -132,14 +132,14 @@ class StockSelector:
         # 财务（可能失败，使用默认分）
         fin = fetch_stock_financials(code)
 
+        # 技术 (30) — 先算，产出 details["price"] 供价值评分计算 PE
+        details["technical"] = self._score_technical(code, details)
+
         # 价值 (50)
         details["value"] = self._score_value(fin, details)
 
         # 成长 (20)
         details["growth"] = self._score_growth(fin, details)
-
-        # 技术 (30) — 从K线计算，这个最关键且通常能成功
-        details["technical"] = self._score_technical(code, details)
 
         total = (details["value"] + details["growth"] + details["technical"])
         return total, details
@@ -154,6 +154,12 @@ class StockSelector:
 
         # PE 估值 (15)
         pe = fin.get("市盈率") or fin.get("PE")
+        if pe is None or not isinstance(pe, (int, float)):
+            # 无现成 PE 时用 现价 / 每股收益(TTM) 派生
+            eps_ttm = fin.get("epsTTM")
+            price = details.get("price")
+            if eps_ttm and price and eps_ttm > 0:
+                pe = price / eps_ttm
         if pe and isinstance(pe, (int, float)) and 0 < pe < 200:
             details["pe"] = round(float(pe), 1)
             if pe < 15:

@@ -574,12 +574,20 @@ def fetch_stock_profit_data(code: str, year: int = None, quarter: int = None) ->
     _ensure_login()
     prefix = "sh." if code.startswith("6") else "sz."
     full_code = f"{prefix}{code}"
-    try:
-        rs = bs.query_profit_data(code=full_code, year=year, quarter=quarter)
-        df = rs.get_data()
-        return df
-    except Exception:
-        return None
+    periods = (
+        [(year, quarter)]
+        if (year is not None and quarter is not None)
+        else _recent_report_periods()
+    )
+    for y, q in periods:
+        try:
+            rs = _safe_bs_query(lambda: bs.query_profit_data(code=full_code, year=y, quarter=q))
+            df = rs.get_data() if rs else pd.DataFrame()
+            if not df.empty:
+                return df
+        except Exception:
+            continue
+    return None
 
 
 @cached(ttl=CACHE_TTL_FINANCIAL)
@@ -667,26 +675,34 @@ def fetch_dupont_data(code: str, year: int = None, quarter: int = None) -> Optio
 
 @cached(ttl=CACHE_TTL_FINANCIAL)
 def fetch_stock_financials(code: str) -> Optional[dict]:
-    """获取个股关键财务指标，返回字典格式（轻量版，仅杜邦分析）"""
-    dupont = fetch_dupont_data(code)
-
-    if dupont is None or dupont.empty:
-        return None
-
+    """获取个股关键财务指标（杜邦ROE + 利润表epsTTM），返回字典格式。"""
     result = {}
-    latest = dupont.iloc[0]
-    for col in dupont.columns:
-        try:
-            if col != "code" and col != "code_name":
-                result[col] = float(latest[col]) if latest[col] else None
-        except Exception:
-            pass
 
-    # baostock 杜邦 ROE 为小数（如 0.254 = 25.4%），评分引擎按百分比阈值
-    # (>=20 / >=15 / >=10 ...) 比较，故换算为百分比并暴露中文字段名。
-    roe = result.get("dupontROE")
-    if roe is not None:
-        result["净资产收益率"] = round(roe * 100, 2)
+    dupont = fetch_dupont_data(code)
+    if dupont is not None and not dupont.empty:
+        latest = dupont.iloc[0]
+        for col in dupont.columns:
+            try:
+                if col != "code" and col != "code_name":
+                    result[col] = float(latest[col]) if latest[col] else None
+            except Exception:
+                pass
+
+        # baostock 杜邦 ROE 为小数（如 0.254 = 25.4%），评分引擎按百分比阈值
+        # (>=20 / >=15 / >=10 ...) 比较，故换算为百分比并暴露中文字段名。
+        roe = result.get("dupontROE")
+        if roe is not None:
+            result["净资产收益率"] = round(roe * 100, 2)
+
+    # 每股收益(TTM)，用于 PE = 现价 / epsTTM
+    profit = fetch_stock_profit_data(code)
+    if profit is not None and not profit.empty:
+        try:
+            eps = float(profit.iloc[0]["epsTTM"])
+            if eps == eps:  # 排除 NaN
+                result["epsTTM"] = eps
+        except (KeyError, TypeError, ValueError):
+            pass
 
     return result if result else None
 
