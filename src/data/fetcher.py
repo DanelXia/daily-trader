@@ -333,67 +333,115 @@ def fetch_sw_industry_kline(code: str, days: int = 100) -> Optional[pd.DataFrame
 # 大盘指数
 # ===================================================================
 
+def _intraday_elapsed_fraction(now: datetime) -> float:
+    """当前时刻已过交易时间占比(0~1)。A股时段 9:30-11:30 / 13:00-15:00。"""
+    am_start = now.replace(hour=9, minute=30, second=0, microsecond=0)
+    am_end = now.replace(hour=11, minute=30, second=0, microsecond=0)
+    pm_start = now.replace(hour=13, minute=0, second=0, microsecond=0)
+    pm_end = now.replace(hour=15, minute=0, second=0, microsecond=0)
+
+    if now < am_start:
+        return 0.0
+    if now <= am_end:
+        return (now - am_start).total_seconds() / (am_end - am_start).total_seconds() * 0.5
+    if now < pm_start:
+        return 0.5
+    if now <= pm_end:
+        return 0.5 + (now - pm_start).total_seconds() / (pm_end - pm_start).total_seconds() * 0.5
+    return 1.0
+
+
 def fetch_index_snapshot() -> dict:
-    """获取上证指数和深证成指快照（含成交额 + 大盘量比）"""
-    _ensure_login()
+    """获取上证指数和深证成指快照（实时价格 + 成交额 + 大盘量比）。
+
+    价格/涨跌幅/当日成交额来自新浪实时行情（交易时段实时更新），
+    20日均额基线来自 baostock 历史日K；盘中量比按已过交易时间占比外推全天。
+    """
     result = {}
+
+    # --- 1. 实时指数行情（新浪 API） ---
     try:
-        lookback = 25  # 取25天，用于计算20日均量
-        start_date = (datetime.now() - timedelta(days=lookback + 10)).strftime("%Y-%m-%d")
-        end_date = datetime.now().strftime("%Y-%m-%d")
+        import urllib.request
 
-        # 上证
-        rs = _safe_bs_query(lambda: bs.query_history_k_data_plus(
-            "sh.000001", "date,close,pctChg,volume,amount",
-            start_date=start_date, end_date=end_date,
-            frequency="d", adjustflag="3",
-        ))
-        df_sh = rs.get_data() if rs else pd.DataFrame()
-        if not df_sh.empty:
-            df_sh["close"] = pd.to_numeric(df_sh["close"], errors="coerce")
-            df_sh["pctChg"] = pd.to_numeric(df_sh["pctChg"], errors="coerce")
-            df_sh["amount"] = pd.to_numeric(df_sh["amount"], errors="coerce")
-            df_sh = df_sh[df_sh["amount"] > 0].tail(lookback)
-            result["sh_index"] = float(df_sh["close"].iloc[-1])
-            result["sh_change_pct"] = float(df_sh["pctChg"].iloc[-1])
-            result["sh_amount"] = float(df_sh["amount"].iloc[-1]) / 1e8  # 元→亿
-            sh_amounts = df_sh["amount"].values
+        url = "https://hq.sinajs.cn/list=sh000001,sz399001"
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://finance.sina.com.cn",
+        })
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            text = resp.read().decode("gbk")
 
-        # 深证
-        rs = _safe_bs_query(lambda: bs.query_history_k_data_plus(
-            "sz.399001", "date,close,pctChg,volume,amount",
-            start_date=start_date, end_date=end_date,
-            frequency="d", adjustflag="3",
-        ))
-        df_sz = rs.get_data() if rs else pd.DataFrame()
-        if not df_sz.empty:
-            df_sz["close"] = pd.to_numeric(df_sz["close"], errors="coerce")
-            df_sz["pctChg"] = pd.to_numeric(df_sz["pctChg"], errors="coerce")
-            df_sz["amount"] = pd.to_numeric(df_sz["amount"], errors="coerce")
-            df_sz = df_sz[df_sz["amount"] > 0].tail(lookback)
-            result["sz_index"] = float(df_sz["close"].iloc[-1])
-            result["sz_change_pct"] = float(df_sz["pctChg"].iloc[-1])
-            result["sz_amount"] = float(df_sz["amount"].iloc[-1]) / 1e8  # 元→亿
-            sz_amounts = df_sz["amount"].values
+        for line in text.strip().split("\n"):
+            if '"' not in line:
+                continue
+            seg = line.split('"')
+            if len(seg) < 2:
+                continue
+            code_key = seg[0].split("hq_str_")[-1].rstrip("=") if "hq_str_" in seg[0] else ""
+            vals = seg[1].split(",")
+            if len(vals) < 10:
+                continue
+            current = float(vals[3]) if vals[3] else 0.0
+            prev = float(vals[2]) if vals[2] else 0.0
+            amount = float(vals[9]) if vals[9] else 0.0
+            chg = (current - prev) / prev * 100 if prev else 0.0
 
-        # 两市合计 + 大盘量比 (vs 20日均值)
-        if "sh_amount" in result and "sz_amount" in result:
-            result["total_amount"] = round(result["sh_amount"] + result["sz_amount"], 1)
-            # 对齐两指数数据长度，取交集
-            min_len = min(len(sh_amounts), len(sz_amounts))
-            if min_len > 1:
-                sh_recent = sh_amounts[-min_len:]
-                sz_recent = sz_amounts[-min_len:]
-                total_daily = (sh_recent + sz_recent) / 1e8
-                today_total = total_daily[-1]
-                # 20日均量（不含今天）
-                avg_n = min(20, len(total_daily) - 1)
-                avg_total = total_daily[-1 - avg_n:-1].mean() if avg_n > 0 else today_total
-                result["market_volume_ratio"] = round(today_total / avg_total, 2) if avg_total > 0 else 1.0
-            else:
-                result["market_volume_ratio"] = 1.0
+            if code_key == "sh000001":
+                result["sh_index"] = current
+                result["sh_change_pct"] = round(chg, 2)
+                result["sh_amount"] = round(amount / 1e8, 1)
+            elif code_key == "sz399001":
+                result["sz_index"] = current
+                result["sz_change_pct"] = round(chg, 2)
+                result["sz_amount"] = round(amount / 1e8, 1)
     except Exception:
         pass
+
+    # --- 2. 大盘量比（20日均额基线，baostock） ---
+    if "sh_amount" in result and "sz_amount" in result:
+        result["total_amount"] = round(result["sh_amount"] + result["sz_amount"], 1)
+        try:
+            _ensure_login()
+            lookback = 25
+            start_date = (datetime.now() - timedelta(days=lookback + 10)).strftime("%Y-%m-%d")
+            end_date = datetime.now().strftime("%Y-%m-%d")
+
+            def _hist_amounts(code: str):
+                rs = _safe_bs_query(lambda: bs.query_history_k_data_plus(
+                    code, "date,amount",
+                    start_date=start_date, end_date=end_date,
+                    frequency="d", adjustflag="3",
+                ))
+                df = rs.get_data() if rs else pd.DataFrame()
+                if df.empty:
+                    return None
+                df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
+                df = df[df["amount"] > 0].tail(lookback)
+                return df["amount"].values
+
+            sh_a = _hist_amounts("sh.000001")
+            sz_a = _hist_amounts("sz.399001")
+
+            avg_total = 0.0
+            if sh_a is not None and sz_a is not None and len(sh_a) > 1 and len(sz_a) > 1:
+                min_len = min(len(sh_a), len(sz_a))
+                total_daily = (sh_a[-min_len:] + sz_a[-min_len:]) / 1e8
+                avg_n = min(20, len(total_daily) - 1)
+                if avg_n > 0:
+                    avg_total = float(total_daily[-1 - avg_n:-1].mean())
+
+            today_total = result["total_amount"]
+            if avg_total > 0 and today_total > 0:
+                fraction = _intraday_elapsed_fraction(datetime.now())
+                if fraction < 0.1:
+                    result["market_volume_ratio"] = 1.0  # 开盘初期样本太小
+                else:
+                    result["market_volume_ratio"] = round(today_total / avg_total / fraction, 2)
+            else:
+                result["market_volume_ratio"] = 1.0
+        except Exception:
+            result["market_volume_ratio"] = 1.0
+
     return result
 
 
@@ -576,18 +624,45 @@ def fetch_operation_data(code: str, year: int = None, quarter: int = None) -> Op
         return None
 
 
+def _recent_report_periods(n: int = 8) -> list[tuple[int, int]]:
+    """生成最近 n 个报告期 (year, quarter)，从最新到最旧。
+
+    baostock 的杜邦/财务查询在 year/quarter 均为 None 时返回空结果，
+    因此需要显式指定报告期。最新报告期可能尚未披露（返回空），故按
+    时间倒序逐个回退，直到命中首个有数据的报告期。
+    """
+    now = datetime.now()
+    year, quarter = now.year, (now.month - 1) // 3 + 1
+    periods = []
+    for _ in range(n):
+        periods.append((year, quarter))
+        quarter -= 1
+        if quarter == 0:
+            quarter = 4
+            year -= 1
+    return periods
+
+
 @cached(ttl=CACHE_TTL_FINANCIAL)
 def fetch_dupont_data(code: str, year: int = None, quarter: int = None) -> Optional[pd.DataFrame]:
     """获取个股杜邦指标（含ROE）"""
     _ensure_login()
     prefix = "sh." if code.startswith("6") else "sz."
     full_code = f"{prefix}{code}"
-    try:
-        rs = _safe_bs_query(lambda: bs.query_dupont_data(code=full_code, year=year, quarter=quarter))
-        df = rs.get_data() if rs else pd.DataFrame()
-        return df
-    except Exception:
-        return None
+    periods = (
+        [(year, quarter)]
+        if (year is not None and quarter is not None)
+        else _recent_report_periods()
+    )
+    for y, q in periods:
+        try:
+            rs = _safe_bs_query(lambda: bs.query_dupont_data(code=full_code, year=y, quarter=q))
+            df = rs.get_data() if rs else pd.DataFrame()
+            if not df.empty:
+                return df
+        except Exception:
+            continue
+    return None
 
 
 @cached(ttl=CACHE_TTL_FINANCIAL)
@@ -606,6 +681,12 @@ def fetch_stock_financials(code: str) -> Optional[dict]:
                 result[col] = float(latest[col]) if latest[col] else None
         except Exception:
             pass
+
+    # baostock 杜邦 ROE 为小数（如 0.254 = 25.4%），评分引擎按百分比阈值
+    # (>=20 / >=15 / >=10 ...) 比较，故换算为百分比并暴露中文字段名。
+    roe = result.get("dupontROE")
+    if roe is not None:
+        result["净资产收益率"] = round(roe * 100, 2)
 
     return result if result else None
 
