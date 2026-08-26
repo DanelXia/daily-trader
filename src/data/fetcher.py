@@ -610,12 +610,20 @@ def fetch_growth_data(code: str, year: int = None, quarter: int = None) -> Optio
     _ensure_login()
     prefix = "sh." if code.startswith("6") else "sz."
     full_code = f"{prefix}{code}"
-    try:
-        rs = bs.query_growth_data(code=full_code, year=year, quarter=quarter)
-        df = rs.get_data()
-        return df
-    except Exception:
-        return None
+    periods = (
+        [(year, quarter)]
+        if (year is not None and quarter is not None)
+        else _recent_report_periods()
+    )
+    for y, q in periods:
+        try:
+            rs = _safe_bs_query(lambda: bs.query_growth_data(code=full_code, year=y, quarter=q))
+            df = rs.get_data() if rs else pd.DataFrame()
+            if not df.empty:
+                return df
+        except Exception:
+            continue
+    return None
 
 
 @cached(ttl=CACHE_TTL_FINANCIAL)
@@ -675,7 +683,7 @@ def fetch_dupont_data(code: str, year: int = None, quarter: int = None) -> Optio
 
 @cached(ttl=CACHE_TTL_FINANCIAL)
 def fetch_stock_financials(code: str) -> Optional[dict]:
-    """获取个股关键财务指标（杜邦ROE + 利润表epsTTM），返回字典格式。"""
+    """获取个股关键财务指标（杜邦ROE + 利润表epsTTM + 成长性指标），返回字典格式。"""
     result = {}
 
     dupont = fetch_dupont_data(code)
@@ -704,7 +712,69 @@ def fetch_stock_financials(code: str) -> Optional[dict]:
         except (KeyError, TypeError, ValueError):
             pass
 
+    # 成长性指标（净利润同比增速，小数换算为百分比）
+    growth = fetch_growth_data(code)
+    if growth is not None and not growth.empty:
+        latest = growth.iloc[0]
+        for col, key in (("YOYNI", "净利润增长率"), ("YOYPNI", "归属净利润增长率")):
+            try:
+                val = float(latest[col])
+                if val == val:  # 排除 NaN
+                    result[key] = round(val * 100, 2)
+            except (KeyError, TypeError, ValueError):
+                pass
+
+    # 营业收入同比增速（利润表 MBRevenue 同期比较）
+    rev_g = _fetch_revenue_growth(code, profit)
+    if rev_g is not None:
+        result["营业收入增长率"] = round(rev_g, 2)
+
     return result if result else None
+
+
+def _fetch_revenue_growth(code: str, latest_profit: Optional[pd.DataFrame]) -> Optional[float]:
+    """计算营业收入同比增速(%)，比较利润表派生营业收入的同期值。
+
+    baostock 的 MBRevenue(主营业务收入) 字段对部分股票为空，改用
+    营业收入 = netProfit / npMargin(销售净利率) 派生，二者均有值。
+    """
+    if latest_profit is None or latest_profit.empty:
+        return None
+    row = latest_profit.iloc[0]
+    try:
+        stat_date = str(row["statDate"])
+        year = int(stat_date[:4])
+        month = int(stat_date[5:7])
+        quarter = (month - 1) // 3 + 1
+    except (ValueError, IndexError):
+        return None
+    rev_curr = _revenue_from_profit(row)
+    if not rev_curr:
+        return None
+    prev = fetch_stock_profit_data(code, year=year - 1, quarter=quarter)
+    if prev is None or prev.empty:
+        return None
+    rev_prev = _revenue_from_profit(prev.iloc[0])
+    if not rev_prev:
+        return None
+    return (rev_curr - rev_prev) / rev_prev * 100
+
+
+def _revenue_from_profit(row) -> Optional[float]:
+    """从利润表行派生营业收入：优先 netProfit / npMargin，其次 MBRevenue。"""
+    try:
+        np_margin = float(row["npMargin"])
+        net_profit = float(row["netProfit"])
+    except (KeyError, TypeError, ValueError):
+        np_margin = None
+        net_profit = None
+    if net_profit is not None and np_margin and np_margin > 0:
+        return net_profit / np_margin
+    try:
+        mb_rev = float(row["MBRevenue"])
+    except (KeyError, TypeError, ValueError):
+        return None
+    return mb_rev if mb_rev > 0 else None
 
 
 def invalidate_cache(pattern: Optional[str] = None):

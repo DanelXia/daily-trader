@@ -1,304 +1,348 @@
 {
-  "report_date": "2026-07-20",
+  "report_date": "2026-08-26",
   "report_type": "weekly",
   "version": "1.0.0",
   "industries": [
     {
-      "industry_name": "C27医药制造业",
-      "industry_display": "C27医药制造业(证监会行业分类)",
-      "momentum_score": 54.4,
-      "fundamental_score": 30.0,
+      "industry_name": "C39计算机、通信和其他电子设备制造业",
+      "industry_display": "C39计算机、通信和其他电子设备制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 22.9,
       "capital_flow_score": 0,
       "policy_catalyst_score": 0,
       "composite_score": 100.0,
       "rank": 1,
       "stocks": [
         {
-          "code": "600285",
-          "name": "羚锐制药",
-          "composite_score": 49.8,
-          "value_score": 15.0,
-          "growth_score": 5.0,
-          "technical_score": 29.8,
+          "code": "603025",
+          "name": "大豪科技",
+          "composite_score": 55.0,
+          "value_score": 22.0,
+          "growth_score": 18.0,
+          "technical_score": 15.0,
           "metrics": {
-            "pe_dynamic": null,
+            "pe_dynamic": 18.2,
             "pb": null,
-            "roe": null,
-            "price_latest": 22.4,
+            "roe": 19.4,
+            "price_latest": 13.72,
             "market_cap_billion": null,
-            "revenue_growth_yoy": null,
-            "profit_growth_yoy": null,
-            "price_change_20d_pct": 12.4,
-            "price_change_60d_pct": 9.5
+            "revenue_growth_yoy": 23.4,
+            "profit_growth_yoy": 35.5,
+            "price_change_20d_pct": 3.3,
+            "price_change_60d_pct": -13.9
           },
           "rank": 1
         },
         {
-          "code": "600535",
-          "name": "天士力",
-          "composite_score": 46.9,
-          "value_score": 15.0,
-          "growth_score": 5.0,
-          "technical_score": 26.9,
+          "code": "600839",
+          "name": "四川长虹",
+          "composite_score": 54.2,
+          "value_score": 24.0,
+          "growth_score": 13.0,
+          "technical_score": 17.2,
+          "metrics": {
+            "pe_dynamic": 15.0,
+            "pb": null,
+            "roe": 10.3,
+            "price_latest": 6.92,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 2.8,
+            "profit_growth_yoy": 80.3,
+            "price_change_20d_pct": 2.8,
+            "price_change_60d_pct": -2.9
+          },
+          "rank": 2
+        },
+        {
+          "code": "601869",
+          "name": "长飞光纤",
+          "composite_score": 53.6,
+          "value_score": 12.0,
+          "growth_score": 20.0,
+          "technical_score": 21.6,
+          "metrics": {
+            "pe_dynamic": 94.9,
+            "pb": null,
+            "roe": 19.4,
+            "price_latest": 394.5,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 53.6,
+            "profit_growth_yoy": 819.8,
+            "price_change_20d_pct": 40.2,
+            "price_change_60d_pct": -3.4
+          },
+          "rank": 3
+        },
+        {
+          "code": "600183",
+          "name": "生益科技",
+          "composite_score": 51.8,
+          "value_score": 12.0,
+          "growth_score": 20.0,
+          "technical_score": 19.8,
+          "metrics": {
+            "pe_dynamic": 60.3,
+            "pb": null,
+            "roe": 18.7,
+            "price_latest": 129.0,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 50.0,
+            "profit_growth_yoy": 129.1,
+            "price_change_20d_pct": 19.2,
+            "price_change_60d_pct": -8.0
+          },
+          "rank": 4
+        },
+        {
+          "code": "601138",
+          "name": "工业富联",
+          "composite_score": 51.0,
+          "value_score": 14.0,
+          "growth_score": 20.0,
+          "technical_score": 17.0,
+          "metrics": {
+            "pe_dynamic": 25.4,
+            "pb": null,
+            "roe": 13.9,
+            "price_latest": 60.15,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 54.6,
+            "profit_growth_yoy": 95.7,
+            "price_change_20d_pct": 5.4,
+            "price_change_60d_pct": -24.0
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "C38电气机械和器材制造业",
+      "industry_display": "C38电气机械和器材制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 22.0,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 99.4,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "601877",
+          "name": "正泰电器",
+          "composite_score": 53.9,
+          "value_score": 20.0,
+          "growth_score": 15.0,
+          "technical_score": 18.9,
+          "metrics": {
+            "pe_dynamic": 11.0,
+            "pb": null,
+            "roe": 6.9,
+            "price_latest": 25.95,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 28.5,
+            "profit_growth_yoy": 18.4,
+            "price_change_20d_pct": 4.5,
+            "price_change_60d_pct": -8.6
+          },
+          "rank": 1
+        },
+        {
+          "code": "600105",
+          "name": "永鼎股份",
+          "composite_score": 48.0,
+          "value_score": 9.0,
+          "growth_score": 20.0,
+          "technical_score": 19.0,
+          "metrics": {
+            "pe_dynamic": 134.4,
+            "pb": null,
+            "roe": 14.8,
+            "price_latest": 38.48,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 47.8,
+            "profit_growth_yoy": 67.0,
+            "price_change_20d_pct": 25.3,
+            "price_change_60d_pct": -22.4
+          },
+          "rank": 2
+        },
+        {
+          "code": "600973",
+          "name": "宝胜股份",
+          "composite_score": 46.2,
+          "value_score": 7.0,
+          "growth_score": 20.0,
+          "technical_score": 19.2,
           "metrics": {
             "pe_dynamic": null,
             "pb": null,
-            "roe": null,
-            "price_latest": 15.38,
+            "roe": 1.4,
+            "price_latest": 6.21,
             "market_cap_billion": null,
-            "revenue_growth_yoy": null,
-            "profit_growth_yoy": null,
-            "price_change_20d_pct": 12.3,
-            "price_change_60d_pct": 9.8
+            "revenue_growth_yoy": 37.0,
+            "profit_growth_yoy": 43.5,
+            "price_change_20d_pct": 6.2,
+            "price_change_60d_pct": -9.6
           },
-          "rank": 2
+          "rank": 3
+        },
+        {
+          "code": "600522",
+          "name": "中天科技",
+          "composite_score": 46.0,
+          "value_score": 7.0,
+          "growth_score": 20.0,
+          "technical_score": 19.0,
+          "metrics": {
+            "pe_dynamic": 36.2,
+            "pb": null,
+            "roe": 2.4,
+            "price_latest": 33.89,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 34.7,
+            "profit_growth_yoy": 51.8,
+            "price_change_20d_pct": 15.5,
+            "price_change_60d_pct": -20.5
+          },
+          "rank": 4
+        },
+        {
+          "code": "600854",
+          "name": "春兰股份",
+          "composite_score": 45.0,
+          "value_score": 12.0,
+          "growth_score": 10.0,
+          "technical_score": 23.0,
+          "metrics": {
+            "pe_dynamic": 22.5,
+            "pb": null,
+            "roe": 4.0,
+            "price_latest": 4.65,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 65.0,
+            "profit_growth_yoy": -17.1,
+            "price_change_20d_pct": 8.9,
+            "price_change_60d_pct": -2.6
+          },
+          "rank": 5
         }
-      ],
-      "qual_review": {
-        "review_date": "2026-07-20",
-        "reviewer": "审核员",
-        "total_reviewed": 5,
-        "passed": 2,
-        "rejected": 3,
-        "rejected_stocks": [
-          {"code": "600267", "name": "海正药业", "reason": "财务信披违规+二股东清仓减持。2025年因信披违规被上交所通报批评，二股东浙江海正集团2026Q1清仓式减持2.3亿股，信号极度负面"},
-          {"code": "600664", "name": "哈药股份", "reason": "大股东质押66.3%+5连板炒作。控股股东哈药集团质押比例高达66.3%，近期5连板暴涨73%属纯资金炒作，无基本面支撑"},
-          {"code": "600671", "name": "天目药业", "reason": "控制权变更纠纷+对外担保412%净资产+刚摘帽又收行政处罚。2025年摘帽后2026年再被浙江证监局处罚，控股股东股权被冻结"}
-        ]
-      }
+      ]
     },
     {
-      "industry_name": "F52零售业",
-      "industry_display": "F52零售业(证监会行业分类)",
+      "industry_name": "C34通用设备制造业",
+      "industry_display": "C34通用设备制造业(证监会行业分类)",
       "momentum_score": 60.0,
-      "fundamental_score": 19.2,
+      "fundamental_score": 20.0,
       "capital_flow_score": 0,
       "policy_catalyst_score": 0,
-      "composite_score": 96.4,
-      "rank": 2,
-      "stocks": [],
-      "qual_review": {
-        "review_date": "2026-07-20",
-        "reviewer": "审核员",
-        "total_reviewed": 5,
-        "passed": 0,
-        "rejected": 5,
-        "note": "F52零售业全部5只个股均存在致命合规/治理问题，整行业剔除。零售业当前处于监管高压期(医保局约谈+反垄断处罚+实控人风险集中爆发)，建议等待行业洗牌后再关注。",
-        "rejected_stocks": [
-          {"code": "603233", "name": "大参林", "reason": "实控人刑事犯罪。董事长柯云峰2025年因行贿罪被判刑，公司被证监会立案调查，股票面临退市风险警示"},
-          {"code": "600857", "name": "宁波中百", "reason": "主业崩塌(-65.73%)+非理性炒作。2026H1营收暴跌65.73%，近期涨幅完全由游资对倒驱动，无基本面支撑"},
-          {"code": "600539", "name": "狮头股份", "reason": "持续亏损+密集处罚。连续3年扣非净利润为负，2026年累计收到8张监管函/行政处罚，内部控制失效"},
-          {"code": "601607", "name": "上海医药", "reason": "垄断罚没7亿+6高管贪腐。2025年被市场监管总局以垄断协议罚款4.62亿并没收违法所得2.5亿，同期6名高管因商业贿赂被刑事拘留"},
-          {"code": "603883", "name": "老百姓", "reason": "医保局约谈+商誉占净资产80%。2026年6月被国家医保局约谈，商誉余额42亿占净资产80%以上，减值风险巨大"}
-        ]
-      }
-    },
-    {
-      "industry_name": "G54道路运输业",
-      "industry_display": "G54道路运输业(证监会行业分类)",
-      "momentum_score": 60.0,
-      "fundamental_score": 13.2,
-      "capital_flow_score": 0,
-      "policy_catalyst_score": 0,
-      "composite_score": 92.3,
+      "composite_score": 98.0,
       "rank": 3,
       "stocks": [
         {
-          "code": "000429",
-          "name": "粤高速A",
-          "composite_score": 47.6,
-          "value_score": 15.0,
-          "growth_score": 5.0,
+          "code": "601002",
+          "name": "晋亿实业",
+          "composite_score": 46.6,
+          "value_score": 12.0,
+          "growth_score": 7.0,
           "technical_score": 27.6,
           "metrics": {
-            "pe_dynamic": null,
+            "pe_dynamic": 19.8,
             "pb": null,
-            "roe": null,
-            "price_latest": 14.33,
+            "roe": 1.6,
+            "price_latest": 5.32,
             "market_cap_billion": null,
-            "revenue_growth_yoy": null,
-            "profit_growth_yoy": null,
-            "price_change_20d_pct": 4.7,
-            "price_change_60d_pct": 13.0
+            "revenue_growth_yoy": -4.9,
+            "profit_growth_yoy": 24.8,
+            "price_change_20d_pct": 8.8,
+            "price_change_60d_pct": 3.9
           },
           "rank": 1
         },
         {
-          "code": "600012",
-          "name": "皖通高速",
-          "composite_score": 45.7,
+          "code": "601177",
+          "name": "杭齿前进",
+          "composite_score": 45.0,
           "value_score": 15.0,
-          "growth_score": 5.0,
-          "technical_score": 25.7,
+          "growth_score": 13.0,
+          "technical_score": 17.0,
           "metrics": {
-            "pe_dynamic": null,
+            "pe_dynamic": 19.5,
             "pb": null,
-            "roe": null,
-            "price_latest": 17.25,
+            "roe": 5.4,
+            "price_latest": 13.63,
             "market_cap_billion": null,
-            "revenue_growth_yoy": null,
-            "profit_growth_yoy": null,
-            "price_change_20d_pct": 11.7,
-            "price_change_60d_pct": 9.2
+            "revenue_growth_yoy": 11.3,
+            "profit_growth_yoy": 26.0,
+            "price_change_20d_pct": 7.7,
+            "price_change_60d_pct": -22.2
           },
           "rank": 2
         },
         {
-          "code": "600020",
-          "name": "中原高速",
+          "code": "603269",
+          "name": "海鸥股份",
+          "composite_score": 44.0,
+          "value_score": 4.0,
+          "growth_score": 10.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": 47.8,
+            "pb": null,
+            "roe": 2.2,
+            "price_latest": 18.43,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 32.1,
+            "profit_growth_yoy": -0.5,
+            "price_change_20d_pct": 58.6,
+            "price_change_60d_pct": 22.6
+          },
+          "rank": 3
+        },
+        {
+          "code": "600215",
+          "name": "派斯林",
           "composite_score": 43.9,
-          "value_score": 15.0,
-          "growth_score": 5.0,
+          "value_score": 5.0,
+          "growth_score": 15.0,
           "technical_score": 23.9,
           "metrics": {
             "pe_dynamic": null,
             "pb": null,
-            "roe": null,
-            "price_latest": 3.86,
+            "roe": -1.1,
+            "price_latest": 6.51,
             "market_cap_billion": null,
-            "revenue_growth_yoy": null,
-            "profit_growth_yoy": null,
-            "price_change_20d_pct": 4.4,
-            "price_change_60d_pct": 4.1
+            "revenue_growth_yoy": 26.6,
+            "profit_growth_yoy": 21.0,
+            "price_change_20d_pct": 12.6,
+            "price_change_60d_pct": -0.2
           },
-          "rank": 3
-        }
-      ],
-      "qual_review": {
-        "review_date": "2026-07-20",
-        "reviewer": "审核员",
-        "total_reviewed": 5,
-        "passed": 3,
-        "rejected": 2,
-        "rejected_stocks": [
-          {"code": "600350", "name": "山东高速", "reason": "大股东质押20.7%+86亿资金缺口。山东高速集团质押10.2亿股占总股本20.7%，公司2026年计划资本开支86亿远超经营现金流，融资压力巨大"},
-          {"code": "600368", "name": "五洲交通", "reason": "证监局+交易所双处罚。2026年因关联交易未披露被广西证监局出具警示函，同时因定期报告数据差错被上交所通报批评，内控管理存疑"}
-        ]
-      }
-    },
-    {
-      "industry_name": "USER_SELECTED",
-      "industry_display": "手动精选",
-      "momentum_score": 0,
-      "fundamental_score": 0,
-      "capital_flow_score": 0,
-      "policy_catalyst_score": 0,
-      "composite_score": 0,
-      "rank": 4,
-      "note": "用户手动指定+当前持仓跟踪标的",
-      "stocks": [
-        {
-          "code": "002558",
-          "name": "巨人网络",
-          "composite_score": 0,
-          "qual_risk": "中",
-          "qual_notes": "持仓中，成本27.907。7/20收盘30.08触发第1批止盈。剩余200股止损28.50，目标32",
-          "metrics": { "price_latest": 30.08 },
-          "rank": 1
-        },
-        {
-          "code": "603725",
-          "name": "天安新材",
-          "composite_score": 0,
-          "qual_risk": "中",
-          "qual_notes": "持仓中，成本13.42。7/20信号翻多72 BUY，MACD金叉",
-          "metrics": { "price_latest": 13.41 },
-          "rank": 2
-        },
-        {
-          "code": "601211",
-          "name": "国泰海通",
-          "composite_score": 0,
-          "qual_risk": "低",
-          "qual_notes": "持仓中，成本18.25。评分32 REDUCE，反弹至19+减仓",
-          "metrics": { "price_latest": 18.98 },
-          "rank": 3
-        },
-        {
-          "code": "600030",
-          "name": "中信证券",
-          "composite_score": 0,
-          "qual_risk": "低",
-          "qual_notes": "持仓中，成本28.28。评分53 HOLD，横盘持有",
-          "metrics": { "price_latest": 28.19 },
           "rank": 4
         },
         {
-          "code": "603259",
-          "name": "药明康德",
-          "composite_score": 0,
-          "qual_risk": "中",
-          "qual_notes": "CRO龙头，MACD金叉后回踩~118。等125-128确认支撑后可建仓",
-          "metrics": { "price_latest": 117.89 },
+          "code": "603277",
+          "name": "银都股份",
+          "composite_score": 42.6,
+          "value_score": 15.0,
+          "growth_score": 0.0,
+          "technical_score": 27.6,
+          "metrics": {
+            "pe_dynamic": 24.4,
+            "pb": null,
+            "roe": 6.3,
+            "price_latest": 12.56,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -4.5,
+            "profit_growth_yoy": -49.3,
+            "price_change_20d_pct": 18.6,
+            "price_change_60d_pct": 8.9
+          },
           "rank": 5
-        },
-        {
-          "code": "002714",
-          "name": "牧原股份",
-          "composite_score": 0,
-          "qual_risk": "中",
-          "qual_notes": "猪周期龙头，80 STRONG BUY。等回踩37-38建仓",
-          "metrics": { "price_latest": 37.06 },
-          "rank": 6
-        },
-        {
-          "code": "159516",
-          "name": "半导体设备ETF",
-          "composite_score": 0,
-          "qual_risk": "高",
-          "qual_notes": "7/10拆分后暴跌-18%，RSI14=27.3超卖。等止跌信号，暂不抄底",
-          "metrics": { "price_latest": 0.70 },
-          "rank": 7
-        },
-        {
-          "code": "002281",
-          "name": "光迅科技",
-          "composite_score": 0,
-          "qual_risk": "高",
-          "qual_notes": "光模块龙头，7天暴跌-25%，评分38 REDUCE。等企稳",
-          "metrics": { "price_latest": 171.52 },
-          "rank": 8
-        },
-        {
-          "code": "603986",
-          "name": "兆易创新",
-          "composite_score": 0,
-          "qual_risk": "高",
-          "qual_notes": "存储龙头，7天暴跌-28%，评分28 STRONG SELL。远离",
-          "metrics": { "price_latest": 460.67 },
-          "rank": 9
-        },
-        {
-          "code": "300738",
-          "name": "奥飞数据",
-          "composite_score": 0,
-          "qual_risk": "中",
-          "qual_notes": "IDC数据中心，7/22 MACD金叉+放量突破MA60(22.43)。等回踩22.5确认支撑后建仓，止损20.26",
-          "metrics": { "price_latest": 23.04 },
-          "rank": 10
-        },
-        {
-          "code": "002384",
-          "name": "东山精密",
-          "composite_score": 0,
-          "qual_risk": "高",
-          "qual_notes": "PCB+光模块双龙头，索尔思贡献53%利润。260%预增，动态PE~47x。8/10筹码30.6万户非常分散，V反待金叉确认",
-          "metrics": { "price_latest": 181.70 },
-          "rank": 11
         }
       ]
     }
   ],
   "summary": {
-    "total_industries_selected": 4,
+    "total_industries_selected": 3,
     "total_stocks_recommended": 15,
-    "qual_review_summary": {
-      "total_reviewed": 15,
-      "passed": 5,
-      "rejected": 10,
-      "elimination_rate_pct": 66.7,
-      "note": "F52零售业整行业剔除(5/5全灭)，C27医药剔除3/5，G54公路剔除2/5。合规/治理风险为本轮主要淘汰原因。"
-    },
     "methodology_version": "1.0.0"
   }
 }
