@@ -1,0 +1,348 @@
+{
+  "report_date": "2026-08-20",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C26化学原料和化学制品制造业",
+      "industry_display": "C26化学原料和化学制品制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 30.0,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 1,
+      "stocks": [
+        {
+          "code": "600227",
+          "name": "赤天化",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 3.72,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 11.4,
+            "price_change_60d_pct": 22.8
+          },
+          "rank": 1
+        },
+        {
+          "code": "600722",
+          "name": "金牛化工",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 12.84,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 17.8,
+            "price_change_60d_pct": 22.4
+          },
+          "rank": 2
+        },
+        {
+          "code": "600346",
+          "name": "恒力石化",
+          "composite_score": 49.5,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 29.5,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 18.86,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 13.5,
+            "price_change_60d_pct": 8.6
+          },
+          "rank": 3
+        },
+        {
+          "code": "600367",
+          "name": "红星发展",
+          "composite_score": 47.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 39.88,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 28.9,
+            "price_change_60d_pct": 32.1
+          },
+          "rank": 4
+        },
+        {
+          "code": "600731",
+          "name": "湖南海利",
+          "composite_score": 45.6,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.6,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 5.96,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 8.0,
+            "price_change_60d_pct": 4.0
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "C34通用设备制造业",
+      "industry_display": "C34通用设备制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 30.0,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "601002",
+          "name": "晋亿实业",
+          "composite_score": 47.6,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.6,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 5.22,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 9.9,
+            "price_change_60d_pct": 4.0
+          },
+          "rank": 1
+        },
+        {
+          "code": "603011",
+          "name": "合锻智能",
+          "composite_score": 47.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 23.02,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 27.0,
+            "price_change_60d_pct": 11.8
+          },
+          "rank": 2
+        },
+        {
+          "code": "603269",
+          "name": "海鸥股份",
+          "composite_score": 47.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 17.86,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 56.0,
+            "price_change_60d_pct": 11.5
+          },
+          "rank": 3
+        },
+        {
+          "code": "603082",
+          "name": "北自科技",
+          "composite_score": 46.4,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 26.4,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 39.7,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 18.6,
+            "price_change_60d_pct": 5.9
+          },
+          "rank": 4
+        },
+        {
+          "code": "603277",
+          "name": "银都股份",
+          "composite_score": 43.6,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 23.6,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 12.08,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 19.0,
+            "price_change_60d_pct": 3.9
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "C30非金属矿物制品业",
+      "industry_display": "C30非金属矿物制品业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 20.5,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 93.6,
+      "rank": 3,
+      "stocks": [
+        {
+          "code": "600801",
+          "name": "华新建材",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 22.98,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 6.1,
+            "price_change_60d_pct": 22.5
+          },
+          "rank": 1
+        },
+        {
+          "code": "600881",
+          "name": "亚泰集团",
+          "composite_score": 50.0,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 1.88,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 9.9,
+            "price_change_60d_pct": 28.8
+          },
+          "rank": 2
+        },
+        {
+          "code": "600660",
+          "name": "福耀玻璃",
+          "composite_score": 47.1,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 27.1,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 57.9,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 2.6,
+            "price_change_60d_pct": 9.8
+          },
+          "rank": 3
+        },
+        {
+          "code": "600172",
+          "name": "黄河旋风",
+          "composite_score": 46.5,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 26.5,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 14.42,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 21.5,
+            "price_change_60d_pct": 8.7
+          },
+          "rank": 4
+        },
+        {
+          "code": "600425",
+          "name": "青松建化",
+          "composite_score": 45.6,
+          "value_score": 15.0,
+          "growth_score": 5.0,
+          "technical_score": 25.6,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": null,
+            "price_latest": 3.59,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": null,
+            "profit_growth_yoy": null,
+            "price_change_20d_pct": 4.7,
+            "price_change_60d_pct": 0.1
+          },
+          "rank": 5
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 3,
+    "total_stocks_recommended": 15,
+    "methodology_version": "1.0.0"
+  }
+}
