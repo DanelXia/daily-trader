@@ -1,393 +1,328 @@
 {
-  "report_date": "2026-08-26",
+  "report_date": "2026-09-07",
   "report_type": "weekly",
   "version": "1.0.0",
   "industries": [
     {
       "industry_name": "C39计算机、通信和其他电子设备制造业",
       "industry_display": "C39计算机、通信和其他电子设备制造业(证监会行业分类)",
-      "momentum_score": 60.0,
-      "fundamental_score": 22.9,
+      "momentum_score": 55.4,
+      "fundamental_score": 23.2,
       "capital_flow_score": 0,
       "policy_catalyst_score": 9,
       "composite_score": 100.0,
       "rank": 1,
+      "policy_catalyst_notes": "大基金三期3440亿密集入股国产替代项目、十五五规划将集成电路列为新兴支柱产业、算力网+智算集群建设、前7月集成电路出口+91.6%；美国出口管制升级倒逼国产替代。",
       "stocks": [
+        {
+          "code": "600060",
+          "name": "海信视像",
+          "composite_score": 56.8,
+          "value_score": 20.0,
+          "growth_score": 10.0,
+          "technical_score": 26.8,
+          "metrics": {
+            "pe_dynamic": 14.4,
+            "pb": null,
+            "roe": 5.5,
+            "price_latest": 28.6,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 3.7,
+            "profit_growth_yoy": 15.8,
+            "price_change_20d_pct": 10.0,
+            "price_change_60d_pct": 6.9
+          },
+          "rank": 1,
+          "qual_risk": "低",
+          "qual_notes": "主要股东质押/冻结均为0、无减持；仅2026/9/10约480万股(0.37%)股权激励解禁且自愿锁24个月，无实质负面。"
+        },
         {
           "code": "603025",
           "name": "大豪科技",
-          "composite_score": 55.0,
+          "composite_score": 52.8,
           "value_score": 22.0,
           "growth_score": 18.0,
-          "technical_score": 15.0,
+          "technical_score": 12.8,
           "metrics": {
-            "pe_dynamic": 18.2,
+            "pe_dynamic": 17.8,
             "pb": null,
             "roe": 19.4,
-            "price_latest": 13.72,
+            "price_latest": 13.43,
             "market_cap_billion": null,
             "revenue_growth_yoy": 23.4,
             "profit_growth_yoy": 35.5,
-            "price_change_20d_pct": 3.3,
-            "price_change_60d_pct": -13.9
-          },
-          "rank": 1,
-          "qual_risk": "中高",
-          "qual_notes": "多名股东及前董事长郑建军密集减持：孙雪理/赵玉岭各减持1%已完成，郑建军6/18-9/17再减持≤1%(此前已套现1.12亿)。无质押、无解禁。"
-        },
-        {
-          "code": "600839",
-          "name": "四川长虹",
-          "composite_score": 54.2,
-          "value_score": 24.0,
-          "growth_score": 13.0,
-          "technical_score": 17.2,
-          "metrics": {
-            "pe_dynamic": 15.0,
-            "pb": null,
-            "roe": 10.3,
-            "price_latest": 6.92,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 2.8,
-            "profit_growth_yoy": 80.3,
-            "price_change_20d_pct": 2.8,
-            "price_change_60d_pct": -2.9
+            "price_change_20d_pct": -0.8,
+            "price_change_60d_pct": -3.0
           },
           "rank": 2,
-          "qual_risk": "低",
-          "qual_notes": "公司2026/6/15回应无董监高减持、无操控市场；未发现质押/解禁负面。"
+          "qual_risk": "中",
+          "qual_notes": "无质押/解禁，但2026股东高管密集减持：孙雪理、赵玉岭各减持1%(各套现约1.7亿)、郑建军减持1%(约1.49亿)，内部人持续抛压。"
+        },
+        {
+          "code": "600203",
+          "name": "福日电子",
+          "composite_score": 52.6,
+          "value_score": 10.0,
+          "growth_score": 20.0,
+          "technical_score": 22.6,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 5.0,
+            "price_latest": 11.0,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 48.6,
+            "profit_growth_yoy": 172.7,
+            "price_change_20d_pct": 6.7,
+            "price_change_60d_pct": -1.1
+          },
+          "rank": 3,
+          "qual_risk": "中",
+          "qual_notes": "控股股东2026/5增持545万股、质押0无减持；但2025年亏损约4850万、2026H1扭亏(8335万/+277%)，属亏损边缘微利+福建电子概念炒作。"
         },
         {
           "code": "601869",
           "name": "长飞光纤",
-          "composite_score": 53.6,
-          "value_score": 12.0,
-          "growth_score": 20.0,
-          "technical_score": 21.6,
-          "metrics": {
-            "pe_dynamic": 94.9,
-            "pb": null,
-            "roe": 19.4,
-            "price_latest": 394.5,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 53.6,
-            "profit_growth_yoy": 819.8,
-            "price_change_20d_pct": 40.2,
-            "price_change_60d_pct": -3.4
-          },
-          "rank": 3,
-          "qual_risk": "低",
-          "qual_notes": "股东长江通信减持0.12%(套现4.12亿)已完成，规模小；无解禁、无质押负面。"
-        },
-        {
-          "code": "600183",
-          "name": "生益科技",
-          "composite_score": 51.8,
-          "value_score": 12.0,
-          "growth_score": 20.0,
-          "technical_score": 19.8,
-          "metrics": {
-            "pe_dynamic": 60.3,
-            "pb": null,
-            "roe": 18.7,
-            "price_latest": 129.0,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 50.0,
-            "profit_growth_yoy": 129.1,
-            "price_change_20d_pct": 19.2,
-            "price_change_60d_pct": -8.0
-          },
-          "rank": 4,
-          "qual_risk": "低",
-          "qual_notes": "广新控股减持1%已完成，董事长减持0.0138%极小；未发现质押负面。"
-        },
-        {
-          "code": "601138",
-          "name": "工业富联",
           "composite_score": 51.0,
-          "value_score": 14.0,
-          "growth_score": 20.0,
-          "technical_score": 17.0,
-          "metrics": {
-            "pe_dynamic": 25.4,
-            "pb": null,
-            "roe": 13.9,
-            "price_latest": 60.15,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 54.6,
-            "profit_growth_yoy": 95.7,
-            "price_change_20d_pct": 5.4,
-            "price_change_60d_pct": -24.0
-          },
-          "rank": 5,
-          "qual_risk": "低",
-          "qual_notes": "员工持股解禁0.3%极小，大股东减持承诺严(限价+限比例+提前公告)。"
-        }
-      ],
-      "policy_catalyst_notes": "国家核心战略产业。大基金三期3440亿(70%投向设备材料国产替代)、十五五规划列为支柱产业、先进制程10年免税、长鑫IPO获批。半导体指数年内+104%。",
-      "qual_review": {
-        "removed": [],
-        "kept": [
-          "603025 大豪科技",
-          "600839 四川长虹",
-          "601869 长飞光纤",
-          "600183 生益科技",
-          "601138 工业富联"
-        ],
-        "note": ""
-      }
-    },
-    {
-      "industry_name": "C38电气机械和器材制造业",
-      "industry_display": "C38电气机械和器材制造业(证监会行业分类)",
-      "momentum_score": 60.0,
-      "fundamental_score": 22.0,
-      "capital_flow_score": 0,
-      "policy_catalyst_score": 8,
-      "composite_score": 99.4,
-      "rank": 2,
-      "stocks": [
-        {
-          "code": "601877",
-          "name": "正泰电器",
-          "composite_score": 53.9,
-          "value_score": 20.0,
-          "growth_score": 15.0,
-          "technical_score": 18.9,
-          "metrics": {
-            "pe_dynamic": 11.0,
-            "pb": null,
-            "roe": 6.9,
-            "price_latest": 25.95,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 28.5,
-            "profit_growth_yoy": 18.4,
-            "price_change_20d_pct": 4.5,
-            "price_change_60d_pct": -8.6
-          },
-          "rank": 1,
-          "qual_risk": "低",
-          "qual_notes": "未发现2026减持/质押/解禁负面，仅员工持股历史减持。"
-        },
-        {
-          "code": "600105",
-          "name": "永鼎股份",
-          "composite_score": 48.0,
-          "value_score": 9.0,
+          "value_score": 12.0,
           "growth_score": 20.0,
           "technical_score": 19.0,
           "metrics": {
-            "pe_dynamic": 134.4,
+            "pe_dynamic": 91.1,
             "pb": null,
-            "roe": 14.8,
-            "price_latest": 38.48,
+            "roe": 19.4,
+            "price_latest": 378.8,
             "market_cap_billion": null,
-            "revenue_growth_yoy": 47.8,
-            "profit_growth_yoy": 67.0,
-            "price_change_20d_pct": 25.3,
-            "price_change_60d_pct": -22.4
-          },
-          "rank": 2,
-          "qual_risk": "中高",
-          "qual_notes": "控股股东永鼎集团质押率56.65%(>50%危险线)，叠加减持1%已完成。"
-        },
-        {
-          "code": "600973",
-          "name": "宝胜股份",
-          "composite_score": 46.2,
-          "value_score": 7.0,
-          "growth_score": 20.0,
-          "technical_score": 19.2,
-          "metrics": {
-            "pe_dynamic": null,
-            "pb": null,
-            "roe": 1.4,
-            "price_latest": 6.21,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 37.0,
-            "profit_growth_yoy": 43.5,
-            "price_change_20d_pct": 6.2,
-            "price_change_60d_pct": -9.6
-          },
-          "rank": 3,
-          "qual_risk": "低",
-          "qual_notes": "2026/1大宗交易(机构接盘)，无明确减持/质押负面。"
-        },
-        {
-          "code": "600854",
-          "name": "春兰股份",
-          "composite_score": 45.0,
-          "value_score": 12.0,
-          "growth_score": 10.0,
-          "technical_score": 23.0,
-          "metrics": {
-            "pe_dynamic": 22.5,
-            "pb": null,
-            "roe": 4.0,
-            "price_latest": 4.65,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 65.0,
-            "profit_growth_yoy": -17.1,
-            "price_change_20d_pct": 8.9,
-            "price_change_60d_pct": -2.6
+            "revenue_growth_yoy": 53.6,
+            "profit_growth_yoy": 819.8,
+            "price_change_20d_pct": 10.5,
+            "price_change_60d_pct": -13.1
           },
           "rank": 5,
-          "qual_risk": "低",
-          "qual_notes": "未发现减持/质押负面，仅小股东变动。"
+          "qual_risk": "高",
+          "qual_notes": "估值泡沫(PE91、近一年最高600元)，长江通信两轮减持套现超5亿、Draka清仓H股，减持+高估值双风险。"
         }
       ],
-      "policy_catalyst_notes": "新型电力系统十五五规划(8/3发布)：电网投资5万亿+、特高压15回新通道、算电协同写入政府工作报告。2026电网投资首破8000亿(+15%)。",
       "qual_review": {
         "removed": [
-          "600522 中天科技 (2021年卷入专网通信骗局(隋田力案)，计提36.19亿减值、内控缺陷、涉合同诈骗诉讼，历史财务暴雷。剔除。)"
+          "600405 动力源 (连续六年亏损累计约12亿、ROE-102.8%、资产负债率96%、实控人质押69.58%并2026/7转让实控权，持续经营风险高。剔除。)"
         ],
         "kept": [
-          "601877 正泰电器",
-          "600105 永鼎股份",
-          "600973 宝胜股份",
-          "600854 春兰股份"
+          "600060 海信视像",
+          "603025 大豪科技",
+          "600203 福日电子",
+          "601869 长飞光纤"
         ],
-        "note": ""
+        "note": "长飞光纤估值泡沫+股东清仓减持，标记高风险保留，需重点跟踪。"
       }
     },
     {
-      "industry_name": "C34通用设备制造业",
-      "industry_display": "C34通用设备制造业(证监会行业分类)",
+      "industry_name": "C25石油、煤炭及其他燃料加工业",
+      "industry_display": "C25石油、煤炭及其他燃料加工业(证监会行业分类)",
       "momentum_score": 60.0,
-      "fundamental_score": 20.0,
+      "fundamental_score": 12.3,
       "capital_flow_score": 0,
-      "policy_catalyst_score": 6,
-      "composite_score": 98.0,
-      "rank": 3,
+      "policy_catalyst_score": 5,
+      "composite_score": 95.3,
+      "rank": 2,
+      "policy_catalyst_notes": "能源安全托底(煤炭兜底保障+油气增储上产、四大煤制油气基地)，但双碳约束同步收紧(碳达峰行动方案将炼油/甲醇纳入攻坚、碳价逼近百元、CBAM实质征收)，净催化中性偏弱。",
       "stocks": [
         {
-          "code": "601002",
-          "name": "晋亿实业",
-          "composite_score": 46.6,
-          "value_score": 12.0,
-          "growth_score": 7.0,
-          "technical_score": 27.6,
+          "code": "600506",
+          "name": "统一股份",
+          "composite_score": 59.0,
+          "value_score": 9.0,
+          "growth_score": 20.0,
+          "technical_score": 30.0,
           "metrics": {
-            "pe_dynamic": 19.8,
+            "pe_dynamic": 94.2,
             "pb": null,
-            "roe": 1.6,
-            "price_latest": 5.32,
+            "roe": 14.6,
+            "price_latest": 18.46,
             "market_cap_billion": null,
-            "revenue_growth_yoy": -4.9,
-            "profit_growth_yoy": 24.8,
-            "price_change_20d_pct": 8.8,
-            "price_change_60d_pct": 3.9
+            "revenue_growth_yoy": 36.4,
+            "profit_growth_yoy": 167.7,
+            "price_change_20d_pct": 25.4,
+            "price_change_60d_pct": 13.0
           },
           "rank": 1,
-          "qual_risk": "低",
-          "qual_notes": "未发现减持/质押/解禁负面。"
+          "qual_risk": "中高",
+          "qual_notes": "股东融盛投资2026/7拟减持≤3%(748.87万股)，此前两轮仅完成0.39%；2025/12定增解禁4431万股(占23.08%)抛压；PE94偏高。"
         },
         {
-          "code": "601177",
-          "name": "杭齿前进",
-          "composite_score": 45.0,
-          "value_score": 15.0,
-          "growth_score": 13.0,
-          "technical_score": 17.0,
+          "code": "002377",
+          "name": "国创高新",
+          "composite_score": 44.0,
+          "value_score": 2.0,
+          "growth_score": 20.0,
+          "technical_score": 22.0,
           "metrics": {
-            "pe_dynamic": 19.5,
+            "pe_dynamic": 87.2,
             "pb": null,
-            "roe": 5.4,
-            "price_latest": 13.63,
+            "roe": 4.8,
+            "price_latest": 2.75,
             "market_cap_billion": null,
-            "revenue_growth_yoy": 11.3,
-            "profit_growth_yoy": 26.0,
-            "price_change_20d_pct": 7.7,
-            "price_change_60d_pct": -22.2
+            "revenue_growth_yoy": 167.2,
+            "profit_growth_yoy": 94.9,
+            "price_change_20d_pct": 2.2,
+            "price_change_60d_pct": -1.8
+          },
+          "rank": 4,
+          "qual_risk": "中高",
+          "qual_notes": "2025前三季仍亏2633万、扭亏受2025-2027业绩承诺压力；股东减持0.15%、历史质押19.27%；低价2.75元PE87倍，经营承压。"
+        }
+      ],
+      "qual_review": {
+        "removed": [
+          "000059 华锦股份 (2024-2025两年累计亏45.58亿、副总被留置立案、437亿关联交易遭否决，治理+财务风险突出。剔除。)",
+          "300135 宝利国际 (实控人质押81.62%、连年亏损2025亏9847万、两次控制权转让失败，基本面薄弱。剔除。)",
+          "300839 博汇股份 (连续三年亏5.7亿、侵权诉讼6931万、定增终止、芳烃装置停产、PE189。剔除。)"
+        ],
+        "kept": [
+          "600506 统一股份",
+          "002377 国创高新"
+        ],
+        "note": "行业基本面分仅12.3/50，5只个股全部踩雷，剔除3只后仅存2只中高风险标的，整体偏弱。"
+      }
+    },
+    {
+      "industry_name": "C37铁路、船舶、航空航天和其他运输设备制造业",
+      "industry_display": "C37铁路、船舶、航空航天和其他运输设备制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 10.7,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 8,
+      "composite_score": 94.2,
+      "rank": 3,
+      "policy_catalyst_notes": "船舶超级周期(上半年新接订单全球份额82.3%、出口+52.8%，中国船舶合并中国重工成全球最大船企)；C919批产提速+首条国际航线；轨交设备更新+动车组高级修集中释放；国防预算稳增+军贸扩张。",
+      "stocks": [
+        {
+          "code": "600150",
+          "name": "中国船舶",
+          "composite_score": 61.4,
+          "value_score": 15.0,
+          "growth_score": 20.0,
+          "technical_score": 26.4,
+          "metrics": {
+            "pe_dynamic": 20.1,
+            "pb": null,
+            "roe": 6.7,
+            "price_latest": 37.47,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 127.0,
+            "profit_growth_yoy": 108.6,
+            "price_change_20d_pct": 7.6,
+            "price_change_60d_pct": 8.6
           },
           "rank": 2,
           "qual_risk": "低",
-          "qual_notes": "解禁235.65万股(0.58%股权激励)小，无大股东减持。"
+          "qual_notes": "央企，换股吸收合并中国重工完成，重组期承诺无减持，无质押/解禁/暴雷负面。"
         },
         {
-          "code": "603269",
-          "name": "海鸥股份",
-          "composite_score": 44.0,
-          "value_score": 4.0,
-          "growth_score": 10.0,
+          "code": "601766",
+          "name": "中国中车",
+          "composite_score": 54.0,
+          "value_score": 17.0,
+          "growth_score": 7.0,
           "technical_score": 30.0,
           "metrics": {
-            "pe_dynamic": 47.8,
+            "pe_dynamic": 12.9,
             "pb": null,
-            "roe": 2.2,
-            "price_latest": 18.43,
+            "roe": 4.6,
+            "price_latest": 6.25,
             "market_cap_billion": null,
-            "revenue_growth_yoy": 32.1,
-            "profit_growth_yoy": -0.5,
-            "price_change_20d_pct": 58.6,
-            "price_change_60d_pct": 22.6
-          },
-          "rank": 3,
-          "qual_risk": "中高",
-          "qual_notes": "实控人金敖大减持计划≤3%(7/27-10/24进行中)，已减持0.66%；无质押。"
-        },
-        {
-          "code": "600215",
-          "name": "派斯林",
-          "composite_score": 43.9,
-          "value_score": 5.0,
-          "growth_score": 15.0,
-          "technical_score": 23.9,
-          "metrics": {
-            "pe_dynamic": null,
-            "pb": null,
-            "roe": -1.1,
-            "price_latest": 6.51,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": 26.6,
-            "profit_growth_yoy": 21.0,
-            "price_change_20d_pct": 12.6,
-            "price_change_60d_pct": -0.2
-          },
-          "rank": 4,
-          "qual_risk": "中",
-          "qual_notes": "ROE为负(-1.1%)，机器人概念(中证机器人ETF退出)；小股东减持，无质押负面。"
-        },
-        {
-          "code": "603277",
-          "name": "银都股份",
-          "composite_score": 42.6,
-          "value_score": 15.0,
-          "growth_score": 0.0,
-          "technical_score": 27.6,
-          "metrics": {
-            "pe_dynamic": 24.4,
-            "pb": null,
-            "roe": 6.3,
-            "price_latest": 12.56,
-            "market_cap_billion": null,
-            "revenue_growth_yoy": -4.5,
-            "profit_growth_yoy": -49.3,
-            "price_change_20d_pct": 18.6,
-            "price_change_60d_pct": 8.9
+            "revenue_growth_yoy": 10.0,
+            "profit_growth_yoy": 8.5,
+            "price_change_20d_pct": 6.8,
+            "price_change_60d_pct": 10.7
           },
           "rank": 5,
           "qual_risk": "低",
-          "qual_notes": "控股股东一致行动人减持0.01%极小，已完成；无解禁。"
+          "qual_notes": "央企，近10年股东净增持约2919万股、质押仅0.01%，无减持/解禁/立案负面，PE12.9低估值。"
+        },
+        {
+          "code": "601890",
+          "name": "亚星锚链",
+          "composite_score": 56.5,
+          "value_score": 12.0,
+          "growth_score": 16.0,
+          "technical_score": 28.5,
+          "metrics": {
+            "pe_dynamic": 24.7,
+            "pb": null,
+            "roe": 4.0,
+            "price_latest": 9.15,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 12.3,
+            "profit_growth_yoy": 35.5,
+            "price_change_20d_pct": 6.0,
+            "price_change_60d_pct": 6.1
+          },
+          "rank": 4,
+          "qual_risk": "中",
+          "qual_notes": "董监高2025年持续减持累计约1.1%比例不大，无质押/暴雷，业绩稳健(2025净利3.17亿+12.6%)，深海科技概念有炒作成分。"
+        },
+        {
+          "code": "600316",
+          "name": "洪都航空",
+          "composite_score": 57.0,
+          "value_score": 7.0,
+          "growth_score": 20.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 0.2,
+            "price_latest": 32.39,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 80.0,
+            "profit_growth_yoy": 171.9,
+            "price_change_20d_pct": 13.5,
+            "price_change_60d_pct": 17.1
+          },
+          "rank": 3,
+          "qual_risk": "中高",
+          "qual_notes": "军工微利(2025净利仅3976万、ROE0.2%)，业绩波动大(2023营收腰斩)，纯军工概念、盈利与估值不匹配，无减持/质押负面。"
+        },
+        {
+          "code": "603268",
+          "name": "松发股份",
+          "composite_score": 68.0,
+          "value_score": 20.0,
+          "growth_score": 20.0,
+          "technical_score": 28.0,
+          "metrics": {
+            "pe_dynamic": 33.3,
+            "pb": null,
+            "roe": 32.1,
+            "price_latest": 192.6,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 251.9,
+            "profit_growth_yoy": 457.7,
+            "price_change_20d_pct": 5.1,
+            "price_change_60d_pct": 30.3
+          },
+          "rank": 1,
+          "qual_risk": "高",
+          "qual_notes": "恒力重工借壳已完成、2025扣非25.79亿超额完成业绩承诺，但股价涨超10倍(12→192.6)、PE73.9/PB10-15倍处历史高位、机构目标价已低于现价、主力净流出；2028/5约76%限售解禁+借款95亿+关联交易。"
         }
       ],
-      "policy_catalyst_notes": "设备更新政策普惠催化：超长期国债2000亿(首批936亿+二批915亿)+贷款贴息1.5pct。工程机械/机床更新需求释放，催化力度弱于电子/电力设备。",
       "qual_review": {
         "removed": [],
         "kept": [
-          "601002 晋亿实业",
-          "601177 杭齿前进",
-          "603269 海鸥股份",
-          "600215 派斯林",
-          "603277 银都股份"
+          "600150 中国船舶",
+          "601766 中国中车",
+          "601890 亚星锚链",
+          "600316 洪都航空",
+          "603268 松发股份"
         ],
-        "note": ""
+        "note": "松发股份(恒力重工借壳)业绩兑现但估值透支10倍+76%限售解禁，标记高风险保留。"
       }
     }
   ],
   "summary": {
     "total_industries_selected": 3,
-    "total_stocks_recommended": 14,
+    "total_stocks_recommended": 11,
     "methodology_version": "1.0.0"
   }
 }
