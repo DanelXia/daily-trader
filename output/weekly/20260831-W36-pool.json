@@ -1,0 +1,348 @@
+{
+  "report_date": "2026-08-31",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C39计算机、通信和其他电子设备制造业",
+      "industry_display": "C39计算机、通信和其他电子设备制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 23.2,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 1,
+      "stocks": [
+        {
+          "code": "600060",
+          "name": "海信视像",
+          "composite_score": 59.5,
+          "value_score": 20.0,
+          "growth_score": 10.0,
+          "technical_score": 29.5,
+          "metrics": {
+            "pe_dynamic": 14.0,
+            "pb": null,
+            "roe": 5.5,
+            "price_latest": 27.82,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 3.7,
+            "profit_growth_yoy": 15.8,
+            "price_change_20d_pct": 4.6,
+            "price_change_60d_pct": 13.3
+          },
+          "rank": 1
+        },
+        {
+          "code": "600183",
+          "name": "生益科技",
+          "composite_score": 57.4,
+          "value_score": 12.0,
+          "growth_score": 20.0,
+          "technical_score": 25.4,
+          "metrics": {
+            "pe_dynamic": 68.1,
+            "pb": null,
+            "roe": 18.7,
+            "price_latest": 145.65,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 50.0,
+            "profit_growth_yoy": 129.1,
+            "price_change_20d_pct": 42.8,
+            "price_change_60d_pct": 6.0
+          },
+          "rank": 2
+        },
+        {
+          "code": "601869",
+          "name": "长飞光纤",
+          "composite_score": 53.3,
+          "value_score": 12.0,
+          "growth_score": 20.0,
+          "technical_score": 21.3,
+          "metrics": {
+            "pe_dynamic": 101.6,
+            "pb": null,
+            "roe": 19.4,
+            "price_latest": 422.36,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 53.6,
+            "profit_growth_yoy": 819.8,
+            "price_change_20d_pct": 61.2,
+            "price_change_60d_pct": -4.3
+          },
+          "rank": 3
+        },
+        {
+          "code": "601138",
+          "name": "工业富联",
+          "composite_score": 53.0,
+          "value_score": 14.0,
+          "growth_score": 20.0,
+          "technical_score": 19.0,
+          "metrics": {
+            "pe_dynamic": 27.1,
+            "pb": null,
+            "roe": 13.9,
+            "price_latest": 64.04,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 54.6,
+            "profit_growth_yoy": 95.7,
+            "price_change_20d_pct": 14.6,
+            "price_change_60d_pct": -12.5
+          },
+          "rank": 4
+        },
+        {
+          "code": "600839",
+          "name": "四川长虹",
+          "composite_score": 52.5,
+          "value_score": 19.0,
+          "growth_score": 13.0,
+          "technical_score": 20.5,
+          "metrics": {
+            "pe_dynamic": 15.1,
+            "pb": null,
+            "roe": 10.3,
+            "price_latest": 6.97,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 2.8,
+            "profit_growth_yoy": 80.3,
+            "price_change_20d_pct": 0.9,
+            "price_change_60d_pct": -1.3
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "C26化学原料和化学制品制造业",
+      "industry_display": "C26化学原料和化学制品制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 22.6,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 99.6,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "600989",
+          "name": "宝丰能源",
+          "composite_score": 74.8,
+          "value_score": 27.0,
+          "growth_score": 20.0,
+          "technical_score": 27.8,
+          "metrics": {
+            "pe_dynamic": 11.7,
+            "pb": null,
+            "roe": 18.8,
+            "price_latest": 24.49,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 32.3,
+            "profit_growth_yoy": 70.1,
+            "price_change_20d_pct": 6.9,
+            "price_change_60d_pct": 4.5
+          },
+          "rank": 1
+        },
+        {
+          "code": "600309",
+          "name": "万华化学",
+          "composite_score": 67.4,
+          "value_score": 20.0,
+          "growth_score": 20.0,
+          "technical_score": 27.4,
+          "metrics": {
+            "pe_dynamic": 14.8,
+            "pb": null,
+            "roe": 9.1,
+            "price_latest": 78.04,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 31.3,
+            "profit_growth_yoy": 72.2,
+            "price_change_20d_pct": 3.6,
+            "price_change_60d_pct": 7.7
+          },
+          "rank": 2
+        },
+        {
+          "code": "600346",
+          "name": "恒力石化",
+          "composite_score": 64.0,
+          "value_score": 24.0,
+          "growth_score": 10.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": 12.3,
+            "pb": null,
+            "roe": 10.4,
+            "price_latest": 19.66,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -5.5,
+            "profit_growth_yoy": 136.1,
+            "price_change_20d_pct": 15.0,
+            "price_change_60d_pct": 15.9
+          },
+          "rank": 3
+        },
+        {
+          "code": "600844",
+          "name": "金煤科技",
+          "composite_score": 63.0,
+          "value_score": 20.0,
+          "growth_score": 13.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 28.6,
+            "price_latest": 3.81,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 2.1,
+            "profit_growth_yoy": 133.2,
+            "price_change_20d_pct": 11.7,
+            "price_change_60d_pct": 28.3
+          },
+          "rank": 4
+        },
+        {
+          "code": "600227",
+          "name": "赤天化",
+          "composite_score": 57.0,
+          "value_score": 7.0,
+          "growth_score": 20.0,
+          "technical_score": 30.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 1.7,
+            "price_latest": 4.58,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 37.1,
+            "profit_growth_yoy": 179.3,
+            "price_change_20d_pct": 40.5,
+            "price_change_60d_pct": 55.8
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "C38电气机械和器材制造业",
+      "industry_display": "C38电气机械和器材制造业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 21.8,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 99.1,
+      "rank": 3,
+      "stocks": [
+        {
+          "code": "603045",
+          "name": "福达合金",
+          "composite_score": 62.0,
+          "value_score": 25.0,
+          "growth_score": 20.0,
+          "technical_score": 17.0,
+          "metrics": {
+            "pe_dynamic": 21.4,
+            "pb": null,
+            "roe": 25.5,
+            "price_latest": 62.18,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 96.3,
+            "profit_growth_yoy": 1164.2,
+            "price_change_20d_pct": 33.7,
+            "price_change_60d_pct": -25.3
+          },
+          "rank": 1
+        },
+        {
+          "code": "601877",
+          "name": "正泰电器",
+          "composite_score": 52.4,
+          "value_score": 20.0,
+          "growth_score": 15.0,
+          "technical_score": 17.4,
+          "metrics": {
+            "pe_dynamic": 10.9,
+            "pb": null,
+            "roe": 6.9,
+            "price_latest": 25.74,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 28.5,
+            "profit_growth_yoy": 18.4,
+            "price_change_20d_pct": -0.5,
+            "price_change_60d_pct": -5.0
+          },
+          "rank": 2
+        },
+        {
+          "code": "600525",
+          "name": "长园集团",
+          "composite_score": 50.3,
+          "value_score": 7.0,
+          "growth_score": 16.0,
+          "technical_score": 27.3,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 1.3,
+            "price_latest": 5.32,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 10.9,
+            "profit_growth_yoy": 107.5,
+            "price_change_20d_pct": 8.1,
+            "price_change_60d_pct": 3.3
+          },
+          "rank": 3
+        },
+        {
+          "code": "600522",
+          "name": "中天科技",
+          "composite_score": 49.0,
+          "value_score": 10.0,
+          "growth_score": 20.0,
+          "technical_score": 19.0,
+          "metrics": {
+            "pe_dynamic": 32.1,
+            "pb": null,
+            "roe": 6.3,
+            "price_latest": 35.04,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 31.1,
+            "profit_growth_yoy": 54.1,
+            "price_change_20d_pct": 23.4,
+            "price_change_60d_pct": -23.5
+          },
+          "rank": 4
+        },
+        {
+          "code": "600105",
+          "name": "永鼎股份",
+          "composite_score": 48.0,
+          "value_score": 9.0,
+          "growth_score": 20.0,
+          "technical_score": 19.0,
+          "metrics": {
+            "pe_dynamic": 139.0,
+            "pb": null,
+            "roe": 14.8,
+            "price_latest": 39.8,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 47.8,
+            "profit_growth_yoy": 67.0,
+            "price_change_20d_pct": 27.7,
+            "price_change_60d_pct": -28.2
+          },
+          "rank": 5
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 3,
+    "total_stocks_recommended": 15,
+    "methodology_version": "1.0.0"
+  }
+}

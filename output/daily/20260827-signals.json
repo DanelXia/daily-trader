@@ -1,0 +1,1465 @@
+{
+  "generated_at": "2026-08-27T15:34:52",
+  "market_snapshot": {
+    "sh_index": 3956.571,
+    "sh_change_pct": 1.13,
+    "sh_amount": 10102.3,
+    "sz_index": 14048.876,
+    "sz_change_pct": 1.5,
+    "sz_amount": 11157.0,
+    "total_amount": 21259.3,
+    "market_volume_ratio": 0.92
+  },
+  "intraday": {
+    "bars": [
+      {
+        "time": "10:00",
+        "sh": 3913.0,
+        "sh_pct": 0.01,
+        "sz": 13865.0,
+        "sz_pct": 0.17,
+        "cy": 3426.0,
+        "cy_pct": 0.33,
+        "sh_amt": 3074.0
+      },
+      {
+        "time": "10:30",
+        "sh": 3917.0,
+        "sh_pct": 0.11,
+        "sz": 13883.0,
+        "sz_pct": 0.3,
+        "cy": 3432.0,
+        "cy_pct": 0.49,
+        "sh_amt": 1392.0
+      },
+      {
+        "time": "11:00",
+        "sh": 3929.0,
+        "sh_pct": 0.41,
+        "sz": 13961.0,
+        "sz_pct": 0.86,
+        "cy": 3451.0,
+        "cy_pct": 1.05,
+        "sh_amt": 1201.0
+      },
+      {
+        "time": "11:30",
+        "sh": 3936.0,
+        "sh_pct": 0.6,
+        "sz": 14006.0,
+        "sz_pct": 1.19,
+        "cy": 3466.0,
+        "cy_pct": 1.51,
+        "sh_amt": 824.0
+      },
+      {
+        "time": "13:30",
+        "sh": 3943.0,
+        "sh_pct": 0.77,
+        "sz": 13959.0,
+        "sz_pct": 0.85,
+        "cy": 3444.0,
+        "cy_pct": 0.84,
+        "sh_amt": 1019.0
+      },
+      {
+        "time": "14:00",
+        "sh": 3945.0,
+        "sh_pct": 0.84,
+        "sz": 13975.0,
+        "sz_pct": 0.96,
+        "cy": 3447.0,
+        "cy_pct": 0.95,
+        "sh_amt": 676.0
+      },
+      {
+        "time": "14:30",
+        "sh": 3949.0,
+        "sh_pct": 0.93,
+        "sz": 14025.0,
+        "sz_pct": 1.33,
+        "cy": 3468.0,
+        "cy_pct": 1.55,
+        "sh_amt": 657.0
+      },
+      {
+        "time": "15:00",
+        "sh": 3957.0,
+        "sh_pct": 1.13,
+        "sz": 14049.0,
+        "sz_pct": 1.5,
+        "cy": 3473.0,
+        "cy_pct": 1.71,
+        "sh_amt": 1258.0
+      }
+    ],
+    "sh_prev_close": 3913.0,
+    "sz_prev_close": 13841.0,
+    "cy_prev_close": 3415.0,
+    "total_sh_amt": 10102.0,
+    "am_pct": 64.3,
+    "summary": "窄幅震荡，量能分布较均匀"
+  },
+  "sentiment": {
+    "sentiment_index": 49.8,
+    "bullish_ratio": 0.091,
+    "bullish_count": 18,
+    "bearish_count": 18,
+    "neutral_count": 161,
+    "total_posts_analyzed": 197,
+    "top_keywords": [
+      {
+        "keyword": "满仓",
+        "count": 7
+      },
+      {
+        "keyword": "反弹",
+        "count": 5
+      },
+      {
+        "keyword": "清仓",
+        "count": 5
+      },
+      {
+        "keyword": "反转",
+        "count": 3
+      },
+      {
+        "keyword": "死叉",
+        "count": 3
+      }
+    ],
+    "platform_breakdown": {
+      "eastmoney": 197
+    },
+    "summary_text": "散户情绪中性（指数=49.8，样本=197帖，看多比例=9%），热门词: 满仓, 反弹, 清仓"
+  },
+  "suggestions": [
+    {
+      "code": "603025",
+      "name": "大豪科技",
+      "trading_score": 27.0,
+      "action": "strong_sell",
+      "action_cn": "强烈卖出",
+      "entry": {
+        "price": 13.72,
+        "type": "market",
+        "suggestion": "建议清仓离场"
+      },
+      "stop_loss": 12.76,
+      "take_profit": {
+        "tp1": 14.82,
+        "tp1_pct": 8.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 14.82,
+        "tp2_pct": 8.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 13.73,
+        "ma10": 14.09,
+        "ma20": 13.83,
+        "ma60": 13.73,
+        "macd": 0.105,
+        "signal": 0.143,
+        "histogram": -0.038,
+        "rsi6": 44.9,
+        "rsi14": 49.8,
+        "bb_upper": 14.82,
+        "bb_middle": 13.83,
+        "bb_lower": 12.84,
+        "atr14": 0.48,
+        "volume_ratio": 0.52
+      },
+      "support_levels": [
+        12.84
+      ],
+      "resistance_levels": [
+        14.82,
+        15.21
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-08-10T00:00:00.000000000), BullishEngulfing(2026-08-14T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-04T00:00:00.000000000), BearishEngulfing(2026-08-18T00:00:00.000000000), BearishEngulfing(2026-08-21T00:00:00.000000000)",
+        "筹码集中中(4.7万户, 环比+2.1%)，加分+2.0"
+      ],
+      "concentration": {
+        "holder_count": 46590,
+        "holder_change_pct": 0.0206,
+        "prev_count": 45651,
+        "report_date": "2026-06-30",
+        "trend": "stable",
+        "focus_level": "较分散"
+      },
+      "source": "stock_pool",
+      "industry": "C39计算机、通信和其他电子设备制造业"
+    },
+    {
+      "code": "600839",
+      "name": "四川长虹",
+      "trading_score": 55.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 6.98,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 6.73,
+      "take_profit": {
+        "tp1": 7.22,
+        "tp1_pct": 3.4,
+        "tp1_action": "减仓1/3",
+        "tp2": 7.22,
+        "tp2_pct": 3.4,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 6.9,
+        "ma10": 7.0,
+        "ma20": 6.94,
+        "ma60": 6.86,
+        "macd": 0.009,
+        "signal": 0.014,
+        "histogram": -0.005,
+        "rsi6": 53.9,
+        "rsi14": 51.6,
+        "bb_upper": 7.22,
+        "bb_middle": 6.94,
+        "bb_lower": 6.66,
+        "atr14": 0.22,
+        "volume_ratio": 0.81
+      },
+      "support_levels": [
+        6.94,
+        6.86,
+        6.66
+      ],
+      "resistance_levels": [
+        7.22,
+        7.45
+      ],
+      "key_notes": [
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-07-31T00:00:00.000000000), BullishEngulfing(2026-08-10T00:00:00.000000000), BullishEngulfing(2026-08-25T00:00:00.000000000)"
+      ],
+      "concentration": {
+        "holder_count": 593445,
+        "holder_change_pct": -0.0579,
+        "prev_count": 629921,
+        "report_date": "2026-06-30",
+        "trend": "concentrating",
+        "focus_level": "非常分散"
+      },
+      "source": "stock_pool",
+      "industry": "C39计算机、通信和其他电子设备制造业"
+    },
+    {
+      "code": "601869",
+      "name": "长飞光纤",
+      "trading_score": 57.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 341.47,
+        "type": "limit",
+        "suggestion": "建议挂单 341.47 附近买入"
+      },
+      "stop_loss": 327.95,
+      "take_profit": {
+        "tp1": 414.0,
+        "tp1_pct": 21.2,
+        "tp1_action": "减仓1/3",
+        "tp2": 420.16,
+        "tp2_pct": 23.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 376.6,
+        "ma10": 367.96,
+        "ma20": 338.09,
+        "ma60": 406.19,
+        "macd": 3.561,
+        "signal": -6.212,
+        "histogram": 9.773,
+        "rsi6": 65.5,
+        "rsi14": 56.2,
+        "bb_upper": 420.16,
+        "bb_middle": 338.09,
+        "bb_lower": 256.01,
+        "atr14": 30.22,
+        "volume_ratio": 1.31
+      },
+      "support_levels": [
+        338.09,
+        256.01
+      ],
+      "resistance_levels": [
+        414.0,
+        420.16
+      ],
+      "key_notes": [
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-08-04T00:00:00.000000000), BullishEngulfing(2026-08-11T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-13T00:00:00.000000000), BearishEngulfing(2026-08-19T00:00:00.000000000)",
+        "筹码快速分散(12.2万户, 环比+83.6%)，减分-4.0"
+      ],
+      "concentration": {
+        "holder_count": 121520,
+        "holder_change_pct": 0.8356,
+        "prev_count": 66203,
+        "report_date": "2026-06-30",
+        "trend": "dispersing",
+        "focus_level": "非常分散"
+      },
+      "source": "stock_pool",
+      "industry": "C39计算机、通信和其他电子设备制造业"
+    },
+    {
+      "code": "600183",
+      "name": "生益科技",
+      "trading_score": 48.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 130.01,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 124.44,
+      "take_profit": {
+        "tp1": 149.51,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 155.94,
+        "tp2_pct": 19.9,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 128.88,
+        "ma10": 133.87,
+        "ma20": 128.29,
+        "ma60": 143.18,
+        "macd": -0.806,
+        "signal": -0.867,
+        "histogram": 0.061,
+        "rsi6": 47.6,
+        "rsi14": 48.6,
+        "bb_upper": 155.94,
+        "bb_middle": 128.29,
+        "bb_lower": 100.64,
+        "atr14": 10.32,
+        "volume_ratio": 0.82
+      },
+      "support_levels": [
+        128.29,
+        100.64
+      ],
+      "resistance_levels": [
+        151.9,
+        155.94
+      ],
+      "key_notes": [
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-08-12T00:00:00.000000000), BullishEngulfing(2026-08-21T00:00:00.000000000)",
+        "筹码快速分散(34.3万户, 环比+99.9%)，减分-6.0"
+      ],
+      "concentration": {
+        "holder_count": 343008,
+        "holder_change_pct": 0.9985,
+        "prev_count": 171634,
+        "report_date": "2026-06-30",
+        "trend": "dispersing",
+        "focus_level": "非常分散"
+      },
+      "source": "stock_pool",
+      "industry": "C39计算机、通信和其他电子设备制造业"
+    },
+    {
+      "code": "601138",
+      "name": "工业富联",
+      "trading_score": 18.2,
+      "action": "strong_sell",
+      "action_cn": "强烈卖出",
+      "entry": {
+        "price": 60.57,
+        "type": "market",
+        "suggestion": "建议清仓离场"
+      },
+      "stop_loss": 56.33,
+      "take_profit": {
+        "tp1": 69.66,
+        "tp1_pct": 15.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 72.24,
+        "tp2_pct": 19.3,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 61.22,
+        "ma10": 63.38,
+        "ma20": 63.1,
+        "ma60": 65.93,
+        "macd": -0.53,
+        "signal": -0.059,
+        "histogram": -0.471,
+        "rsi6": 35.5,
+        "rsi14": 44.3,
+        "bb_upper": 72.24,
+        "bb_middle": 63.1,
+        "bb_lower": 53.96,
+        "atr14": 3.08,
+        "volume_ratio": 0.53
+      },
+      "support_levels": [
+        53.96
+      ],
+      "resistance_levels": [
+        70.97,
+        72.24
+      ],
+      "key_notes": [
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-08-10T00:00:00.000000000), BullishEngulfing(2026-08-21T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-11T00:00:00.000000000), BearishEngulfing(2026-08-18T00:00:00.000000000), BearishEngulfing(2026-08-24T00:00:00.000000000)",
+        "筹码分散中(82.2万户, 环比+13.7%)，减分-4.0"
+      ],
+      "concentration": {
+        "holder_count": 821520,
+        "holder_change_pct": 0.1369,
+        "prev_count": 722583,
+        "report_date": "2026-06-30",
+        "trend": "dispersing",
+        "focus_level": "非常分散"
+      },
+      "source": "stock_pool",
+      "industry": "C39计算机、通信和其他电子设备制造业"
+    },
+    {
+      "code": "601877",
+      "name": "正泰电器",
+      "trading_score": 60.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 25.7,
+        "type": "limit",
+        "suggestion": "建议挂单 25.7 附近买入"
+      },
+      "stop_loss": 24.69,
+      "take_profit": {
+        "tp1": 26.59,
+        "tp1_pct": 3.5,
+        "tp1_action": "减仓1/3",
+        "tp2": 26.59,
+        "tp2_pct": 3.5,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "低",
+      "indicators": {
+        "ma5": 26.05,
+        "ma10": 25.41,
+        "ma20": 25.45,
+        "ma60": 25.44,
+        "macd": 0.167,
+        "signal": 0.047,
+        "histogram": 0.12,
+        "rsi6": 58.5,
+        "rsi14": 55.3,
+        "bb_upper": 26.59,
+        "bb_middle": 25.45,
+        "bb_lower": 24.32,
+        "atr14": 0.73,
+        "volume_ratio": 1.05
+      },
+      "support_levels": [
+        25.45,
+        25.44,
+        24.32
+      ],
+      "resistance_levels": [
+        26.59,
+        26.77
+      ],
+      "key_notes": [
+        "中期趋势向好，短周期待确认",
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-08-20T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-06T00:00:00.000000000), BearishEngulfing(2026-08-11T00:00:00.000000000)"
+      ],
+      "concentration": {
+        "holder_count": 114692,
+        "holder_change_pct": 0.0694,
+        "prev_count": 107246,
+        "report_date": "2026-06-30",
+        "trend": "stable",
+        "focus_level": "非常分散"
+      },
+      "source": "stock_pool",
+      "industry": "C38电气机械和器材制造业"
+    },
+    {
+      "code": "600105",
+      "name": "永鼎股份",
+      "trading_score": 45.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 39.14,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 36.84,
+      "take_profit": {
+        "tp1": 43.36,
+        "tp1_pct": 10.8,
+        "tp1_action": "减仓1/3",
+        "tp2": 44.42,
+        "tp2_pct": 13.5,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 38.85,
+        "ma10": 39.89,
+        "ma20": 37.98,
+        "ma60": 46.83,
+        "macd": -0.764,
+        "signal": -1.249,
+        "histogram": 0.485,
+        "rsi6": 50.7,
+        "rsi14": 48.2,
+        "bb_upper": 44.42,
+        "bb_middle": 37.98,
+        "bb_lower": 31.55,
+        "atr14": 3.04,
+        "volume_ratio": 0.75
+      },
+      "support_levels": [
+        37.98,
+        31.55
+      ],
+      "resistance_levels": [
+        43.36,
+        44.42
+      ],
+      "key_notes": [
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-08-17T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-10T00:00:00.000000000), BearishEngulfing(2026-08-24T00:00:00.000000000)",
+        "筹码分散中(34.9万户, 环比+25.8%)，减分-4.0"
+      ],
+      "concentration": {
+        "holder_count": 349282,
+        "holder_change_pct": 0.2578,
+        "prev_count": 277695,
+        "report_date": "2026-06-30",
+        "trend": "dispersing",
+        "focus_level": "非常分散"
+      },
+      "source": "stock_pool",
+      "industry": "C38电气机械和器材制造业"
+    },
+    {
+      "code": "600973",
+      "name": "宝胜股份",
+      "trading_score": 51.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 6.25,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 5.95,
+      "take_profit": {
+        "tp1": 6.35,
+        "tp1_pct": 1.6,
+        "tp1_action": "减仓1/3",
+        "tp2": 6.39,
+        "tp2_pct": 2.2,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 6.13,
+        "ma10": 6.13,
+        "ma20": 6.13,
+        "ma60": 6.29,
+        "macd": 0.011,
+        "signal": -0.009,
+        "histogram": 0.02,
+        "rsi6": 64.5,
+        "rsi14": 54.9,
+        "bb_upper": 6.39,
+        "bb_middle": 6.13,
+        "bb_lower": 5.87,
+        "atr14": 0.19,
+        "volume_ratio": 0.82
+      },
+      "support_levels": [
+        6.13,
+        5.87
+      ],
+      "resistance_levels": [
+        6.35,
+        6.39
+      ],
+      "key_notes": [
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-08-17T00:00:00.000000000), BullishEngulfing(2026-08-25T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-11T00:00:00.000000000), BearishEngulfing(2026-08-13T00:00:00.000000000), BearishEngulfing(2026-08-18T00:00:00.000000000)",
+        "筹码集中中(8.1万户, 环比-7.8%)，加分+2.0"
+      ],
+      "concentration": {
+        "holder_count": 81082,
+        "holder_change_pct": -0.0777,
+        "prev_count": 87911,
+        "report_date": "2026-03-31",
+        "trend": "concentrating",
+        "focus_level": "非常分散"
+      },
+      "source": "stock_pool",
+      "industry": "C38电气机械和器材制造业"
+    },
+    {
+      "code": "600854",
+      "name": "春兰股份",
+      "trading_score": 64.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 4.53,
+        "type": "limit",
+        "suggestion": "建议挂单 4.53 附近买入"
+      },
+      "stop_loss": 4.36,
+      "take_profit": {
+        "tp1": 4.7,
+        "tp1_pct": 3.8,
+        "tp1_action": "减仓1/3",
+        "tp2": 4.7,
+        "tp2_pct": 3.8,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "低",
+      "indicators": {
+        "ma5": 4.59,
+        "ma10": 4.55,
+        "ma20": 4.49,
+        "ma60": 4.35,
+        "macd": 0.082,
+        "signal": 0.066,
+        "histogram": 0.017,
+        "rsi6": 74.7,
+        "rsi14": 64.5,
+        "bb_upper": 4.7,
+        "bb_middle": 4.49,
+        "bb_lower": 4.28,
+        "atr14": 0.13,
+        "volume_ratio": 1.97
+      },
+      "support_levels": [
+        4.49,
+        4.35,
+        4.28
+      ],
+      "resistance_levels": [
+        4.7,
+        4.74
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "量比=1.97，放量明显",
+        "出现看涨形态: Hammer(2026-08-07T00:00:00.000000000), BullishEngulfing(2026-08-10T00:00:00.000000000), BullishEngulfing(2026-08-12T00:00:00.000000000), BullishEngulfing(2026-08-25T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-13T00:00:00.000000000), BearishEngulfing(2026-08-19T00:00:00.000000000)",
+        "筹码集中中(2.4万户, 环比+1.6%)，加分+4.0"
+      ],
+      "concentration": {
+        "holder_count": 24231,
+        "holder_change_pct": 0.016,
+        "prev_count": 23849,
+        "report_date": "2026-06-30",
+        "trend": "stable",
+        "focus_level": "较集中"
+      },
+      "source": "stock_pool",
+      "industry": "C38电气机械和器材制造业"
+    },
+    {
+      "code": "601002",
+      "name": "晋亿实业",
+      "trading_score": 72.6,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 5.33,
+        "type": "limit",
+        "suggestion": "可现价 5.33 买入"
+      },
+      "stop_loss": 5.09,
+      "take_profit": {
+        "tp1": 5.6,
+        "tp1_pct": 5.1,
+        "tp1_action": "减仓1/3",
+        "tp2": 5.6,
+        "tp2_pct": 5.1,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 5.27,
+        "ma10": 5.28,
+        "ma20": 5.25,
+        "ma60": 4.88,
+        "macd": 0.107,
+        "signal": 0.125,
+        "histogram": -0.017,
+        "rsi6": 59.4,
+        "rsi14": 58.8,
+        "bb_upper": 5.6,
+        "bb_middle": 5.25,
+        "bb_lower": 4.9,
+        "atr14": 0.17,
+        "volume_ratio": 0.56
+      },
+      "support_levels": [
+        5.25,
+        4.9,
+        4.88
+      ],
+      "resistance_levels": [
+        5.6,
+        5.63
+      ],
+      "key_notes": [
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: BullishEngulfing(2026-08-10T00:00:00.000000000), BullishEngulfing(2026-08-17T00:00:00.000000000), BullishEngulfing(2026-08-21T00:00:00.000000000), BullishEngulfing(2026-08-25T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-13T00:00:00.000000000)",
+        "筹码快速集中(5.0万户, 环比-16.6%)，加分+6.0"
+      ],
+      "concentration": {
+        "holder_count": 49954,
+        "holder_change_pct": -0.1663,
+        "prev_count": 59918,
+        "report_date": "2026-06-30",
+        "trend": "concentrating",
+        "focus_level": "较分散"
+      },
+      "source": "stock_pool",
+      "industry": "C34通用设备制造业"
+    },
+    {
+      "code": "601177",
+      "name": "杭齿前进",
+      "trading_score": 85.0,
+      "action": "strong_buy",
+      "action_cn": "强烈买入",
+      "entry": {
+        "price": 13.4,
+        "type": "limit",
+        "suggestion": "建议挂单 13.4 附近买入"
+      },
+      "stop_loss": 12.87,
+      "take_profit": {
+        "tp1": 14.05,
+        "tp1_pct": 4.9,
+        "tp1_action": "减仓1/3",
+        "tp2": 14.05,
+        "tp2_pct": 4.9,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 13.53,
+        "ma10": 13.37,
+        "ma20": 13.27,
+        "ma60": 13.25,
+        "macd": 0.13,
+        "signal": 0.061,
+        "histogram": 0.069,
+        "rsi6": 56.2,
+        "rsi14": 54.3,
+        "bb_upper": 14.05,
+        "bb_middle": 13.27,
+        "bb_lower": 12.49,
+        "atr14": 0.54,
+        "volume_ratio": 1.44
+      },
+      "support_levels": [
+        13.27,
+        13.25,
+        12.49
+      ],
+      "resistance_levels": [
+        14.05,
+        14.65
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-07-31T00:00:00.000000000), BullishEngulfing(2026-08-10T00:00:00.000000000), BullishEngulfing(2026-08-17T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-13T00:00:00.000000000), BearishEngulfing(2026-08-19T00:00:00.000000000)",
+        "筹码集中中(4.5万户, 环比-6.7%)，加分+4.0"
+      ],
+      "concentration": {
+        "holder_count": 45275,
+        "holder_change_pct": -0.0671,
+        "prev_count": 48534,
+        "report_date": "2026-06-30",
+        "trend": "concentrating",
+        "focus_level": "较分散"
+      },
+      "source": "stock_pool",
+      "industry": "C34通用设备制造业"
+    },
+    {
+      "code": "603269",
+      "name": "海鸥股份",
+      "trading_score": 60.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 18.33,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 17.05,
+      "take_profit": {
+        "tp1": 18.79,
+        "tp1_pct": 2.5,
+        "tp1_action": "减仓1/3",
+        "tp2": 21.29,
+        "tp2_pct": 16.1,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 18.06,
+        "ma10": 17.94,
+        "ma20": 15.71,
+        "ma60": 15.31,
+        "macd": 1.228,
+        "signal": 0.951,
+        "histogram": 0.277,
+        "rsi6": 76.1,
+        "rsi14": 69.5,
+        "bb_upper": 21.29,
+        "bb_middle": 15.71,
+        "bb_lower": 10.13,
+        "atr14": 1.05,
+        "volume_ratio": 0.7
+      },
+      "support_levels": [
+        15.71,
+        15.31,
+        10.13
+      ],
+      "resistance_levels": [
+        18.79,
+        21.29
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "出现看涨形态: BullishEngulfing(2026-08-04T00:00:00.000000000), BullishEngulfing(2026-08-18T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-17T00:00:00.000000000)",
+        "筹码集中中(2.2万户, 环比+11.9%)，加分+2.0"
+      ],
+      "concentration": {
+        "holder_count": 21612,
+        "holder_change_pct": 0.1193,
+        "prev_count": 19307,
+        "report_date": "2026-03-31",
+        "trend": "dispersing",
+        "focus_level": "较集中"
+      },
+      "source": "stock_pool",
+      "industry": "C34通用设备制造业"
+    },
+    {
+      "code": "600215",
+      "name": "派斯林",
+      "trading_score": 54.0,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 6.39,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 5.97,
+      "take_profit": {
+        "tp1": 6.9,
+        "tp1_pct": 8.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 6.9,
+        "tp2_pct": 8.0,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 6.47,
+        "ma10": 6.57,
+        "ma20": 6.41,
+        "ma60": 6.15,
+        "macd": 0.135,
+        "signal": 0.152,
+        "histogram": -0.017,
+        "rsi6": 42.5,
+        "rsi14": 52.5,
+        "bb_upper": 6.9,
+        "bb_middle": 6.41,
+        "bb_lower": 5.91,
+        "atr14": 0.26,
+        "volume_ratio": 1.22
+      },
+      "support_levels": [
+        6.15,
+        5.91
+      ],
+      "resistance_levels": [
+        6.9,
+        7.07
+      ],
+      "key_notes": [
+        "长周期均线偏多，但MACD短期走弱，等待金叉确认",
+        "MACD死叉，短期偏空",
+        "出现看涨形态: Hammer(2026-08-07T00:00:00.000000000), BullishEngulfing(2026-08-05T00:00:00.000000000), BullishEngulfing(2026-08-17T00:00:00.000000000), BullishEngulfing(2026-08-25T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-14T00:00:00.000000000), BearishEngulfing(2026-08-24T00:00:00.000000000)",
+        "筹码集中中(3.1万户, 环比-5.1%)，加分+4.0"
+      ],
+      "concentration": {
+        "holder_count": 30688,
+        "holder_change_pct": -0.0505,
+        "prev_count": 32319,
+        "report_date": "2026-06-30",
+        "trend": "concentrating",
+        "focus_level": "较分散"
+      },
+      "source": "stock_pool",
+      "industry": "C34通用设备制造业"
+    },
+    {
+      "code": "603277",
+      "name": "银都股份",
+      "trading_score": 68.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 11.56,
+        "type": "limit",
+        "suggestion": "建议挂单 11.56 附近买入"
+      },
+      "stop_loss": 11.11,
+      "take_profit": {
+        "tp1": 12.94,
+        "tp1_pct": 11.9,
+        "tp1_action": "减仓1/3",
+        "tp2": 12.94,
+        "tp2_pct": 11.9,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 12.31,
+        "ma10": 12.08,
+        "ma20": 11.45,
+        "ma60": 10.8,
+        "macd": 0.466,
+        "signal": 0.373,
+        "histogram": 0.093,
+        "rsi6": 51.2,
+        "rsi14": 57.0,
+        "bb_upper": 12.94,
+        "bb_middle": 11.45,
+        "bb_lower": 9.97,
+        "atr14": 0.73,
+        "volume_ratio": 0.87
+      },
+      "support_levels": [
+        11.45,
+        10.8,
+        9.97
+      ],
+      "resistance_levels": [
+        12.94,
+        13.3
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "出现看涨形态: Hammer(2026-07-31T00:00:00.000000000), BullishEngulfing(2026-08-03T00:00:00.000000000), BullishEngulfing(2026-08-12T00:00:00.000000000), BullishEngulfing(2026-08-19T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-26T00:00:00.000000000)",
+        "筹码集中中(1.0万户, 环比+4.5%)，加分+4.0"
+      ],
+      "concentration": {
+        "holder_count": 10497,
+        "holder_change_pct": 0.045,
+        "prev_count": 10044,
+        "report_date": "2026-06-30",
+        "trend": "stable",
+        "focus_level": "非常集中"
+      },
+      "source": "stock_pool",
+      "industry": "C34通用设备制造业"
+    },
+    {
+      "code": "002084",
+      "name": "海鸥住工",
+      "trading_score": 59.7,
+      "action": "hold",
+      "action_cn": "观望",
+      "entry": {
+        "price": 4.79,
+        "type": "market",
+        "suggestion": "暂时观望，等待明确信号"
+      },
+      "stop_loss": 4.45,
+      "take_profit": {
+        "tp1": 5.27,
+        "tp1_pct": 10.0,
+        "tp1_action": "减仓1/3",
+        "tp2": 4.33,
+        "tp2_pct": -9.6,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "中高",
+      "indicators": {
+        "ma5": 4.01,
+        "ma10": 3.75,
+        "ma20": 3.58,
+        "ma60": 3.5,
+        "macd": 0.179,
+        "signal": 0.05,
+        "histogram": 0.129,
+        "rsi6": 91.3,
+        "rsi14": 80.3,
+        "bb_upper": 4.33,
+        "bb_middle": 3.58,
+        "bb_lower": 2.83,
+        "atr14": 0.23,
+        "volume_ratio": 0.18
+      },
+      "support_levels": [
+        3.58,
+        3.5,
+        2.83
+      ],
+      "resistance_levels": [
+        5.27
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "RSI=80.3，严重超买，注意回调风险",
+        "量比=0.18，缩量",
+        "出现看涨形态: BullishEngulfing(2026-08-10T00:00:00.000000000), BullishEngulfing(2026-08-14T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-07T00:00:00.000000000), BearishEngulfing(2026-08-11T00:00:00.000000000), BearishEngulfing(2026-08-13T00:00:00.000000000)",
+        "筹码集中中(2.8万户, 环比-13.5%)，加分+6.0"
+      ],
+      "concentration": {
+        "holder_count": 27512,
+        "holder_change_pct": -0.1351,
+        "prev_count": 31807,
+        "report_date": "2026-06-30",
+        "trend": "concentrating",
+        "focus_level": "较分散"
+      },
+      "source": "consecutive_zt",
+      "industry": "家居用品",
+      "zt_info": {
+        "consecutive_count": 4,
+        "gap_days": 3,
+        "limit_up_type": "一字板（3/4跳空）"
+      }
+    },
+    {
+      "code": "003040",
+      "name": "楚天龙",
+      "trading_score": 84.0,
+      "action": "strong_buy",
+      "action_cn": "强烈买入",
+      "entry": {
+        "price": 12.51,
+        "type": "limit",
+        "suggestion": "建议挂单 12.51 附近买入"
+      },
+      "stop_loss": 12.02,
+      "take_profit": {
+        "tp1": 18.73,
+        "tp1_pct": 49.7,
+        "tp1_action": "减仓1/3",
+        "tp2": 15.53,
+        "tp2_pct": 24.1,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 14.2,
+        "ma10": 12.89,
+        "ma20": 12.39,
+        "ma60": 11.51,
+        "macd": 0.942,
+        "signal": 0.461,
+        "histogram": 0.48,
+        "rsi6": 89.1,
+        "rsi14": 80.2,
+        "bb_upper": 15.53,
+        "bb_middle": 12.39,
+        "bb_lower": 9.25,
+        "atr14": 0.86,
+        "volume_ratio": 3.82
+      },
+      "support_levels": [
+        12.39,
+        11.51,
+        9.25
+      ],
+      "resistance_levels": [
+        18.73
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "RSI=80.2，严重超买，注意回调风险",
+        "量比=3.82，放量明显",
+        "出现看涨形态: Hammer(2026-08-17T00:00:00.000000000), Hammer(2026-08-25T00:00:00.000000000), BullishEngulfing(2026-08-05T00:00:00.000000000), BullishEngulfing(2026-08-20T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-12T00:00:00.000000000), BearishEngulfing(2026-08-18T00:00:00.000000000)",
+        "筹码集中中(5.7万户, 环比-14.0%)，加分+4.0"
+      ],
+      "concentration": {
+        "holder_count": 56615,
+        "holder_change_pct": -0.1399,
+        "prev_count": 65820,
+        "report_date": "2026-06-30",
+        "trend": "concentrating",
+        "focus_level": "较分散"
+      },
+      "source": "consecutive_zt",
+      "industry": "通信设备",
+      "zt_info": {
+        "consecutive_count": 5,
+        "gap_days": 1,
+        "limit_up_type": "跳空连板(1/5天)"
+      }
+    },
+    {
+      "code": "000017",
+      "name": "深中华A",
+      "trading_score": 80.0,
+      "action": "strong_buy",
+      "action_cn": "强烈买入",
+      "entry": {
+        "price": 6.6,
+        "type": "limit",
+        "suggestion": "建议挂单 6.6 附近买入"
+      },
+      "stop_loss": 6.33,
+      "take_profit": {
+        "tp1": 10.41,
+        "tp1_pct": 57.7,
+        "tp1_action": "减仓1/3",
+        "tp2": 8.49,
+        "tp2_pct": 28.6,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 7.89,
+        "ma10": 6.94,
+        "ma20": 6.53,
+        "ma60": 5.88,
+        "macd": 0.613,
+        "signal": 0.287,
+        "histogram": 0.326,
+        "rsi6": 95.3,
+        "rsi14": 87.0,
+        "bb_upper": 8.49,
+        "bb_middle": 6.53,
+        "bb_lower": 4.57,
+        "atr14": 0.4,
+        "volume_ratio": 6.22
+      },
+      "support_levels": [
+        6.53,
+        5.88,
+        4.57
+      ],
+      "resistance_levels": [
+        10.41
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "RSI=87.0，严重超买，注意回调风险",
+        "量比=6.22，放量明显",
+        "出现看涨形态: Hammer(2026-08-03T00:00:00.000000000), Hammer(2026-08-21T00:00:00.000000000), Hammer(2026-08-25T00:00:00.000000000), BullishEngulfing(2026-08-05T00:00:00.000000000), BullishEngulfing(2026-08-20T00:00:00.000000000)",
+        "筹码集中中(4.5万户, 环比-4.9%)，加分+2.0"
+      ],
+      "concentration": {
+        "holder_count": 44677,
+        "holder_change_pct": -0.0485,
+        "prev_count": 46956,
+        "report_date": "2026-06-30",
+        "trend": "stable",
+        "focus_level": "较分散"
+      },
+      "source": "consecutive_zt",
+      "industry": "饰品",
+      "zt_info": {
+        "consecutive_count": 6,
+        "gap_days": 4,
+        "limit_up_type": "跳空连板(4/6天)"
+      }
+    },
+    {
+      "code": "000505",
+      "name": "京粮控股",
+      "trading_score": 78.0,
+      "action": "strong_buy",
+      "action_cn": "强烈买入",
+      "entry": {
+        "price": 6.24,
+        "type": "limit",
+        "suggestion": "建议挂单 6.24 附近买入"
+      },
+      "stop_loss": 5.99,
+      "take_profit": {
+        "tp1": 7.53,
+        "tp1_pct": 20.7,
+        "tp1_action": "减仓1/3",
+        "tp2": 7.53,
+        "tp2_pct": 20.7,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 6.98,
+        "ma10": 6.66,
+        "ma20": 6.18,
+        "ma60": 5.65,
+        "macd": 0.403,
+        "signal": 0.308,
+        "histogram": 0.095,
+        "rsi6": 64.4,
+        "rsi14": 65.5,
+        "bb_upper": 7.53,
+        "bb_middle": 6.18,
+        "bb_lower": 4.83,
+        "atr14": 0.44,
+        "volume_ratio": 2.28
+      },
+      "support_levels": [
+        6.18,
+        5.65,
+        4.83
+      ],
+      "resistance_levels": [
+        7.53,
+        8.1
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "量比=2.28，放量明显",
+        "出现看涨形态: BullishEngulfing(2026-08-06T00:00:00.000000000), BullishEngulfing(2026-08-17T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-13T00:00:00.000000000)",
+        "筹码集中中(5.2万户, 环比-2.9%)，加分+2.0"
+      ],
+      "concentration": {
+        "holder_count": 51588,
+        "holder_change_pct": -0.0294,
+        "prev_count": 53152,
+        "report_date": "2026-06-30",
+        "trend": "stable",
+        "focus_level": "较分散"
+      },
+      "source": "divergence",
+      "industry": "农产品加",
+      "divergence_info": {
+        "peak_zt_days": 3,
+        "days_since_break": 6,
+        "pullback_pct": 3.5,
+        "held_support": "MA5",
+        "stabilization": "缩量小阳(+2.7%)",
+        "divergence_score": 60
+      }
+    },
+    {
+      "code": "300684",
+      "name": "中石科技",
+      "trading_score": 73.0,
+      "action": "buy",
+      "action_cn": "买入",
+      "entry": {
+        "price": 65.39,
+        "type": "limit",
+        "suggestion": "建议挂单 65.39 附近买入"
+      },
+      "stop_loss": 62.8,
+      "take_profit": {
+        "tp1": 97.0,
+        "tp1_pct": 48.3,
+        "tp1_action": "减仓1/3",
+        "tp2": 104.17,
+        "tp2_pct": 59.3,
+        "tp2_action": "剩余全部平仓"
+      },
+      "position_pct": 10.0,
+      "risk_assessment": "高",
+      "indicators": {
+        "ma5": 86.48,
+        "ma10": 82.03,
+        "ma20": 64.74,
+        "ma60": 60.15,
+        "macd": 9.241,
+        "signal": 6.363,
+        "histogram": 2.878,
+        "rsi6": 68.4,
+        "rsi14": 66.7,
+        "bb_upper": 104.17,
+        "bb_middle": 64.74,
+        "bb_lower": 25.31,
+        "atr14": 7.09,
+        "volume_ratio": 0.99
+      },
+      "support_levels": [
+        64.74,
+        60.15,
+        25.31
+      ],
+      "resistance_levels": [
+        97.0,
+        104.17
+      ],
+      "key_notes": [
+        "均线多头排列，趋势向好",
+        "MACD金叉，动能增强",
+        "出现看涨形态: Hammer(2026-08-18T00:00:00.000000000), BullishEngulfing(2026-08-04T00:00:00.000000000), BullishEngulfing(2026-08-25T00:00:00.000000000)",
+        "出现看跌形态: BearishEngulfing(2026-08-19T00:00:00.000000000), BearishEngulfing(2026-08-21T00:00:00.000000000)",
+        "筹码集中中(3.8万户, 环比+1.2%)，加分+2.0"
+      ],
+      "concentration": {
+        "holder_count": 37800,
+        "holder_change_pct": 0.0118,
+        "prev_count": 37360,
+        "report_date": "2026-06-30",
+        "trend": "stable",
+        "focus_level": "较分散"
+      },
+      "source": "divergence",
+      "industry": "电子化学",
+      "divergence_info": {
+        "peak_zt_days": 3,
+        "days_since_break": 7,
+        "pullback_pct": 7.3,
+        "held_support": "MA5",
+        "stabilization": "缩量小阳(+2.9%)",
+        "divergence_score": 60
+      }
+    }
+  ],
+  "consecutive_zt": {
+    "triggered": true,
+    "no_main_thread": true,
+    "main_thread_industry": null,
+    "industry_distribution": {
+      "家居用品": 1,
+      "通信设备": 1,
+      "饰品": 1
+    },
+    "stocks": [
+      {
+        "code": "002084",
+        "name": "海鸥住工",
+        "consecutive_count": 4,
+        "gap_days": 3,
+        "first_seal_time": "092500",
+        "industry": "家居用品",
+        "limit_up_type": "一字板（3/4跳空）"
+      },
+      {
+        "code": "003040",
+        "name": "楚天龙",
+        "consecutive_count": 5,
+        "gap_days": 1,
+        "first_seal_time": "093048",
+        "industry": "通信设备",
+        "limit_up_type": "跳空连板(1/5天)"
+      },
+      {
+        "code": "000017",
+        "name": "深中华A",
+        "consecutive_count": 6,
+        "gap_days": 4,
+        "first_seal_time": "093224",
+        "industry": "饰品",
+        "limit_up_type": "跳空连板(4/6天)"
+      }
+    ],
+    "summary": "市场暂无明确主线，存在 3 只 3+连板跳空股，分布在 3 个行业：家居用品(1只)、通信设备(1只)、饰品(1只)",
+    "trading_suggestion": "连板股分散在多个行业，未形成一致主线。建议控制仓位，关注最先分歧回封的龙头，警惕高位炸板风险。若后续行业集中度提升，可适度加大仓位。"
+  },
+  "divergence": {
+    "triggered": true,
+    "stocks": [
+      {
+        "code": "000505",
+        "name": "京粮控股",
+        "peak_zt_days": 3,
+        "days_since_break": 6,
+        "peak_price": 7.47,
+        "current_price": 7.21,
+        "pullback_pct": 3.5,
+        "volume_contract": 1.65,
+        "held_support": "MA5",
+        "stabilization": "缩量小阳(+2.7%)",
+        "divergence_score": 60,
+        "industry": "农产品加"
+      },
+      {
+        "code": "300684",
+        "name": "中石科技",
+        "peak_zt_days": 3,
+        "days_since_break": 7,
+        "peak_price": 97.0,
+        "current_price": 89.93,
+        "pullback_pct": 7.3,
+        "volume_contract": 1.38,
+        "held_support": "MA5",
+        "stabilization": "缩量小阳(+2.9%)",
+        "divergence_score": 60,
+        "industry": "电子化学"
+      }
+    ],
+    "summary": "发现 2 只断板回调股，曾 3+ 连板现已断板并缩量企稳。回调质量最高的: 京粮控股(60分)"
+  }
+}
