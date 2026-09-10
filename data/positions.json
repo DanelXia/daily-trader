@@ -2,45 +2,6 @@
   "start_date": "2026-07-10",
   "account_capital": 100000,
   "positions": {
-    "002558": {
-      "name": "巨人网络",
-      "entry_price": 28.247,
-      "entry_date": "2026-07-10",
-      "stop_loss": 27.50,
-      "take_profit": 29.96,
-      "position_pct": 10,
-      "shares": 300,
-      "cost": 8474.1,
-      "risk_amount": 224.0,
-      "industry": "USER_SELECTED",
-      "note": "7/15涨停29.56，止损上移至27.50保本线，止盈29.96。分批止盈策略：30出1/3，32出1/3，剩余移动止损"
-    },
-    "603725": {
-      "name": "天安新材",
-      "entry_price": 13.42,
-      "entry_date": "2026-07-10",
-      "stop_loss": 11.52,
-      "take_profit": 14.52,
-      "position_pct": 10,
-      "shares": 700,
-      "cost": 9394.0,
-      "risk_amount": 1330.0,
-      "industry": "C30非金属矿物制品业",
-      "note": "7/15收盘13.11，距止损12.2%，MACD濒临死叉。继续持有观察"
-    },
-    "601211": {
-      "name": "国泰海通",
-      "entry_price": 18.25,
-      "entry_date": "2026-07-10",
-      "stop_loss": 17.55,
-      "take_profit": 19.86,
-      "position_pct": 10,
-      "shares": 500,
-      "cost": 9125.0,
-      "risk_amount": 350.0,
-      "industry": "J67资本市场服务",
-      "note": "7/15评分33 REDUCE，收盘18.58弱反弹。反弹到19以上可减仓"
-    },
     "600030": {
       "name": "中信证券",
       "entry_price": 28.28,
@@ -107,27 +68,112 @@
       "cost": 11755.0,
       "pnl": -2000.0,
       "pnl_pct": -17.02
+    },
+    {
+      "code": "002558",
+      "name": "巨人网络",
+      "entry_price": 28.247,
+      "entry_date": "2026-07-10",
+      "exit_price": 26.13,
+      "exit_date": "2026-09-09",
+      "exit_reason": "止损触发",
+      "shares": 300,
+      "cost": 8474.1,
+      "pnl": -635.1,
+      "pnl_pct": -7.49
+    },
+    {
+      "code": "603725",
+      "name": "天安新材",
+      "entry_price": 13.42,
+      "entry_date": "2026-07-10",
+      "exit_price": 10.58,
+      "exit_date": "2026-09-09",
+      "exit_reason": "止损触发",
+      "shares": 700,
+      "cost": 9394.0,
+      "pnl": -1988.0,
+      "pnl_pct": -21.16
+    },
+    {
+      "code": "601211",
+      "name": "国泰海通",
+      "entry_price": 18.25,
+      "entry_date": "2026-07-10",
+      "exit_price": 17.52,
+      "exit_date": "2026-09-09",
+      "exit_reason": "止损触发",
+      "shares": 500,
+      "cost": 9125.0,
+      "pnl": -365.0,
+      "pnl_pct": -4.0
     }
   ],
   "watchlist": [
-    {"code": "603259", "name": "药明康德", "reason": "MACD金叉+放量突破前高129，回踩128-130可建仓"},
-    {"code": "002714", "name": "牧原股份", "reason": "猪周期标的，待技术分析后制定策略"},
-    {"code": "159516", "name": "半导体设备ETF", "reason": "国泰半导体设备ETF，规模512亿流动性最好"},
-    {"code": "002281", "name": "光迅科技", "reason": "HOLD 57分，MACD死叉修复中，等金叉确认"},
-    {"code": "603986", "name": "兆易创新", "reason": "REDUCE 36分，MACD绿柱放大，等企稳"},
-    {"code": "600999", "name": "招商证券", "reason": "REDUCE 36分，连续跌破MA5/MA10"},
-    {"code": "600497", "name": "驰宏锌锗", "reason": "REDUCE 32分，弱势继续"},
-    {"code": "688231", "name": "隆达股份", "reason": "7/13止损退出，-8.5%，等企稳再观察"},
-    {"code": "600366", "name": "宁波韵升", "reason": "7/13止损退出，-8.3%，等企稳再观察"}
+    {
+      "code": "603259",
+      "name": "药明康德",
+      "reason": "MACD金叉+放量突破前高129，回踩128-130可建仓"
+    },
+    {
+      "code": "002714",
+      "name": "牧原股份",
+      "reason": "猪周期标的，待技术分析后制定策略"
+    },
+    {
+      "code": "159516",
+      "name": "半导体设备ETF",
+      "reason": "国泰半导体设备ETF，规模512亿流动性最好"
+    },
+    {
+      "code": "002281",
+      "name": "光迅科技",
+      "reason": "HOLD 57分，MACD死叉修复中，等金叉确认"
+    },
+    {
+      "code": "603986",
+      "name": "兆易创新",
+      "reason": "REDUCE 36分，MACD绿柱放大，等企稳"
+    },
+    {
+      "code": "600999",
+      "name": "招商证券",
+      "reason": "REDUCE 36分，连续跌破MA5/MA10"
+    },
+    {
+      "code": "600497",
+      "name": "驰宏锌锗",
+      "reason": "REDUCE 32分，弱势继续"
+    },
+    {
+      "code": "688231",
+      "name": "隆达股份",
+      "reason": "7/13止损退出，-8.5%，等企稳再观察"
+    },
+    {
+      "code": "600366",
+      "name": "宁波韵升",
+      "reason": "7/13止损退出，-8.3%，等企稳再观察"
+    },
+    {
+      "code": "002041",
+      "name": "登海种业",
+      "reason": "种业首选(玉米龙头净利+41%)，回踩11.2建仓/止损10.19/突破12.35追趋势"
+    },
+    {
+      "code": "000998",
+      "name": "隆平高科",
+      "reason": "种业龙头(全球前七)，回踩9.5小仓位/止损8.89，当前亏损仅题材博弈"
+    }
   ],
   "summary": {
-    "total_cost": 42998.1,
-    "capital_used_pct": 43.0,
-    "total_risk": 2500.0,
-    "risk_pct": 2.5,
-    "positions_count": 5,
-    "watchlist_count": 9,
-    "closed_pnl": -3122.0,
-    "closed_count": 3
+    "total_cost": 16005.0,
+    "capital_used_pct": 16.0,
+    "total_risk": 596.0,
+    "risk_pct": 0.6,
+    "positions_count": 2,
+    "watchlist_count": 11,
+    "closed_pnl": -6110.1,
+    "closed_count": 6
   }
 }
