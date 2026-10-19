@@ -15,13 +15,14 @@ from config import (
 class TradingSignalEngine:
     """交易信号引擎"""
 
-    def analyze(self, code: str, name: str, indicators: dict, market_vol_ratio: float = 1.0, sentiment_index: float | None = None, concentration: dict | None = None) -> dict:
+    def analyze(self, code: str, name: str, indicators: dict, market_vol_ratio: float = 1.0, sentiment_index: float | None = None, concentration: dict | None = None, regime_state: dict | None = None) -> dict:
         """
         综合分析，返回完整交易建议。
         indicators 来自 TechnicalAnalyzer.compute_all()
         market_vol_ratio 大盘量比（两市合计 vs 20日均值），用于缩量环境下降级买入信号
         sentiment_index 散户情绪指数(0-100)，用于极端看空时逆向加分
         concentration 筹码集中度数据 {holder_count, holder_change_pct, trend}，用于加减分
+        regime_state 市场场景 {regime, highvol, target_position_pct}，用于仓位/止损联动
         """
         price = indicators["price"]
 
@@ -44,7 +45,9 @@ class TradingSignalEngine:
 
         # 计算点位
         entry = self._calc_entry(indicators, price, action)
-        stop_loss = self._calc_stop_loss(indicators, entry)
+        regime_info = regime_state or {}
+        highvol = bool(regime_info.get("highvol", False))
+        stop_loss = self._calc_stop_loss(indicators, entry, highvol=highvol)
         take_profit = self._calc_take_profit(indicators, price, entry)
 
         # 低波动低收益股票封顶
@@ -97,17 +100,33 @@ class TradingSignalEngine:
             concentration_adjust = self._score_concentration(concentration)
             total += concentration_adjust
 
-        # 仓位建议
+        # 仓位建议（单只风险预算，再按账户目标仓位缩放）
         position_pct = min(
             MAX_POSITION_PCT * 100,
             RISK_PER_TRADE_PCT * DEFAULT_ACCOUNT_CAPITAL / max(2 * atr * 100, 1) * 100
         )
+        target_pos = regime_info.get("target_position_pct", 1.0)
+        position_pct = round(position_pct * target_pos, 1)
 
         # 风险评估
         risk = self._assess_risk(total, indicators)
 
         # 关键信号摘要
         key_notes = self._generate_notes(indicators, price, total, contrarian_adjust, sentiment_index, concentration, concentration_adjust)
+
+        # 市场场景联动提示
+        regime_notes = []
+        regime_name = regime_info.get("regime", "")
+        if regime_name == "BEAR":
+            regime_notes.append(f"熊市场景，账户目标仓位≤{target_pos * 100:.0f}%，建议空仓或轻仓防守")
+        elif regime_name == "BULL":
+            regime_notes.append(f"牛市场景，账户目标仓位≤{target_pos * 100:.0f}%，可积极持仓")
+        elif regime_name == "SIDEWAYS":
+            regime_notes.append(f"震荡场景，账户目标仓位≤{target_pos * 100:.0f}%，控制仓位低吸")
+        if highvol:
+            regime_notes.append("高波动环境，仓位减半、止损收紧")
+        if regime_notes:
+            key_notes = regime_notes + key_notes
 
         return {
             "code": code,
@@ -123,6 +142,8 @@ class TradingSignalEngine:
             "stop_loss": stop_loss,
             "take_profit": take_profit,
             "position_pct": round(position_pct, 1),
+            "account_position_pct": round(target_pos * 100, 1),
+            "regime": regime_info if regime_state else None,
             "risk_assessment": risk,
             "indicators": {
                 "ma5": indicators["ma"].get("ma5"),
@@ -361,17 +382,20 @@ class TradingSignalEngine:
             return round(price, 2)
         return round(price, 2)
 
-    def _calc_stop_loss(self, ind: dict, entry: float) -> float:
+    def _calc_stop_loss(self, ind: dict, entry: float, highvol: bool = False) -> float:
         atr = ind.get("atr14", entry * 0.03)
         # 只在入场价下方寻找支撑，确保止损价低于入场价
         supports = [s for s in ind.get("support_levels", []) if s < entry]
 
-        # ATR止损
-        atr_sl = entry - 2 * atr
-        # 支撑位止损（入场价下方最近支撑，跌破3%离场）
-        support_sl = max(supports) * 0.97 if supports else entry * 0.93
-        # 硬止损（至少7%）
-        hard_sl = entry * 0.93
+        if highvol:
+            # 高波动环境：收紧止损（更小 ATR 倍数、更近支撑、更浅硬止损）
+            atr_sl = entry - 1.5 * atr
+            support_sl = max(supports) * 0.98 if supports else entry * 0.95
+            hard_sl = entry * 0.95
+        else:
+            atr_sl = entry - 2 * atr
+            support_sl = max(supports) * 0.97 if supports else entry * 0.93
+            hard_sl = entry * 0.93
 
         return round(max(atr_sl, support_sl, hard_sl), 2)
 

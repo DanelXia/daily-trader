@@ -16,6 +16,7 @@ def _ensure_dir(path: Path):
 def generate_weekly_report(
     industries: list[dict],
     output_dir: Path | None = None,
+    regime_info: dict | None = None,
 ) -> tuple[Path, Path]:
     """
     生成周度研究报告。
@@ -41,6 +42,8 @@ def generate_weekly_report(
             "methodology_version": "1.0.0",
         },
     }
+    if regime_info:
+        pool_data["regime"] = regime_info
 
     json_path = output_dir / f"{base_name}-pool.json"
     json_path.write_text(json.dumps(pool_data, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -66,6 +69,16 @@ def _build_weekly_md(data: dict) -> str:
     lines.append(f"# 周度投资研究报告")
     lines.append(f"**日期**: {data['report_date']}  |  **方法论版本**: {data['summary']['methodology_version']}")
     lines.append(f"**入选行业**: {data['summary']['total_industries_selected']}  |  **推荐个股**: {data['summary']['total_stocks_recommended']} 只")
+
+    regime = data.get("regime")
+    if regime:
+        pos = regime.get("target_position_pct", 0)
+        highvol = "（高波动）" if regime.get("highvol") else ""
+        lines.append(
+            f"**市场场景**: {regime.get('regime', '-')}{highvol}  |  "
+            f"**选股模型**: {regime.get('model', '-')}  |  "
+            f"**目标仓位**: {pos * 100:.0f}%"
+        )
     lines.append("")
     lines.append("---")
     lines.append("")
@@ -76,8 +89,8 @@ def _build_weekly_md(data: dict) -> str:
         lines.append("")
         lines.append(f"| 维度 | 得分 |")
         lines.append(f"|------|------|")
-        lines.append(f"| 动量 | {ind['momentum_score']} / 50 |")
-        lines.append(f"| 基本面 | {ind['fundamental_score']} / 50 |")
+        lines.append(f"| 动量 | {ind['momentum_score']} / 60 |")
+        lines.append(f"| 基本面 | {ind['fundamental_score']} / 40 |")
         if ind.get("policy_catalyst_score"):
             lines.append(f"| 政策催化 | {ind.get('policy_catalyst_score', 0)} / 10 |")
         if ind.get("policy_catalyst_notes"):
@@ -115,6 +128,7 @@ def generate_daily_report(
     output_dir: Path | None = None,
     consecutive_zt: dict | None = None,
     divergence: dict | None = None,
+    regime_state: dict | None = None,
 ) -> tuple[Path, Path]:
     """
     生成每日交易建议报告。
@@ -136,6 +150,7 @@ def generate_daily_report(
         "suggestions": suggestions,
         "consecutive_zt": consecutive_zt,
         "divergence": divergence,
+        "regime_state": regime_state,
     }
     json_path = output_dir / f"{base_name}-signals.json"
     json_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -175,6 +190,16 @@ def _build_daily_md(data: dict) -> str:
             else:
                 vol_level = "正常"
             lines.append(f"- 两市成交额: {total_amt:.0f}亿  |  大盘量比: {vol_ratio:.2f}  |  量能: {vol_level}")
+        lines.append("")
+
+    # 市场场景
+    regime = data.get("regime_state")
+    if regime:
+        lines.append("## 市场场景")
+        lines.append("")
+        hv = "（高波动）" if regime.get("highvol") else ""
+        lines.append(f"- 场景: {regime.get('regime', '-')}{hv}")
+        lines.append(f"- 账户目标仓位: {regime.get('target_position_pct', 0) * 100:.0f}%")
         lines.append("")
 
     # 大盘日内分时分析

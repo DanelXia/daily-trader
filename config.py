@@ -52,6 +52,10 @@ REQUEST_DELAY_MIN = 2.0          # 最小请求间隔（秒）
 REQUEST_DELAY_MAX = 5.0          # 最大请求间隔（秒）
 MAX_RETRIES = 3                  # 最大重试次数
 
+# --- baostock 请求节流（防突发请求被服务端断开 WinError 10054） ---
+BAOSTOCK_MIN_INTERVAL = 0.3      # 两次查询最小间隔（秒）
+BAOSTOCK_RESET_COOLDOWN = 5.0    # 连接重置后的重连冷却（秒）
+
 # --- 拆股/份额拆分检测 ---
 SPLIT_DETECTION_THRESHOLD = 0.20  # 偏差阈值 20%，超过此值判定为拆分
 
@@ -124,3 +128,15 @@ CONSECUTIVE_ZT_MAIN_THREAD_THRESHOLD = 0.40  # 主线判定阈值（单行业占
 CONSECUTIVE_ZT_KLINE_LOOKBACK = 15         # K线回溯天数（验证连板用）
 CONSECUTIVE_ZT_LIMIT_UP_TOLERANCE = 0.005  # 涨停价匹配容差
 CONSECUTIVE_ZT_POOL_CACHE_TTL = 300        # 涨停池缓存 TTL（5分钟）
+
+# --- 市场场景识别（Regime）---
+REGIME_INDEX_CODE = "sh.000001"            # 场景识别用的指数（上证）
+REGIME_RET20_BEAR_THRESHOLD = -3.0         # ret20 低于此值 + 空头排列 → BEAR
+REGIME_RET20_BULL_THRESHOLD = 3.0          # ret20 高于此值 + 多头排列 → BULL
+REGIME_HIGHVOL_PCT = 0.8                   # 波动率 250 日分位 > 此值 → 叠加 HIGHVOL
+REGIME_WARNING_MA = 20                     # 预警层均线（跌破 MA20 / MA20 拐头）
+REGIME_DEBOUNCE_DAYS = 3                   # 防抖：连续 N 日确认才切换
+REGIME_STRONG_SIGNAL_RET = 5.0             # 强信号穿透阈值（ret20 绝对值超此值可跳过防抖）
+REGIME_HISTORY_FILE = DATA_DIR / "regime_history.json"
+REGIME_STATE_FILE = DATA_DIR / "regime_state.json"
+

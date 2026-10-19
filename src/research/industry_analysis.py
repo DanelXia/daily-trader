@@ -20,8 +20,11 @@ class IndustryAnalyzer:
     def __init__(self, mapper: IndustryMapper):
         self.mapper = mapper
 
-    def analyze(self, top_n: int = 5) -> list[dict]:
-        """执行全行业分析，返回 Top-N 行业评分"""
+    def analyze(self, top_n: int = 5, weights: dict | None = None) -> list[dict]:
+        """执行全行业分析，返回 Top-N 行业评分。
+
+        weights: {"momentum": 70, "fundamental": 30} 归一化加权；None 时等价原固定权重。
+        """
         industries = self.mapper.get_all_industries()
         if not industries:
             print("[IndustryAnalyzer] 错误: 无行业数据")
@@ -39,7 +42,7 @@ class IndustryAnalyzer:
             try:
                 momentum = self._score_momentum(industry, sw_data)
                 fundamental = self._score_fundamental(industry)
-                composite = momentum + fundamental
+                composite = self._combine(momentum, fundamental, weights)
                 results.append({
                     "industry_name": industry,
                     "industry_display": self.mapper.get_industry_name(industry),
@@ -66,6 +69,15 @@ class IndustryAnalyzer:
 
         print(f"[IndustryAnalyzer] 完成，共评估 {len(results)} 个行业")
         return results[:top_n]
+
+    @staticmethod
+    def _combine(momentum: float, fundamental: float, weights: dict | None) -> float:
+        """按权重合并动量/基本面分。None 时等价原固定权重（直接相加）。"""
+        if weights:
+            w_m = weights.get("momentum", 60)
+            w_f = weights.get("fundamental", 40)
+            return (momentum / 60 * w_m) + (fundamental / 40 * w_f)
+        return momentum + fundamental
 
     def _load_sw_index_data(self) -> dict:
         """加载申万行业指数K线数据"""

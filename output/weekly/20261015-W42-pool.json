@@ -1,0 +1,364 @@
+{
+  "report_date": "2026-10-15",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C36汽车制造业",
+      "industry_display": "C36汽车制造业(证监会行业分类)",
+      "momentum_score": 29.1,
+      "fundamental_score": 35.3,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 1,
+      "stocks": [
+        {
+          "code": "600066",
+          "name": "宇通客车",
+          "composite_score": 50.1,
+          "value_score": 30.0,
+          "growth_score": 0.0,
+          "technical_score": 20.1,
+          "metrics": {
+            "pe_dynamic": 11.5,
+            "pb": null,
+            "roe": 21.3,
+            "price_latest": 28.35,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -2.1,
+            "profit_growth_yoy": -4.6,
+            "price_change_20d_pct": 4.5,
+            "price_change_60d_pct": -5.8
+          },
+          "rank": 1
+        },
+        {
+          "code": "603007",
+          "name": "顺景科技",
+          "composite_score": 42.0,
+          "value_score": 17.0,
+          "growth_score": 20.0,
+          "technical_score": 5,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 15.4,
+            "price_latest": 4.1,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 1664.9,
+            "profit_growth_yoy": 264.2,
+            "price_change_20d_pct": -16.5,
+            "price_change_60d_pct": -18.7
+          },
+          "rank": 2
+        },
+        {
+          "code": "600609",
+          "name": "金杯汽车",
+          "composite_score": 40.1,
+          "value_score": 15.0,
+          "growth_score": 10.0,
+          "technical_score": 15.1,
+          "metrics": {
+            "pe_dynamic": 19.4,
+            "pb": null,
+            "roe": 5.5,
+            "price_latest": 3.34,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 10.2,
+            "profit_growth_yoy": 10.5,
+            "price_change_20d_pct": -0.6,
+            "price_change_60d_pct": 2.1
+          },
+          "rank": 3
+        },
+        {
+          "code": "600686",
+          "name": "金龙汽车",
+          "composite_score": 38.3,
+          "value_score": 20.0,
+          "growth_score": 13.0,
+          "technical_score": 5.3,
+          "metrics": {
+            "pe_dynamic": 11.2,
+            "pb": null,
+            "roe": 7.8,
+            "price_latest": 9.79,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 7.3,
+            "profit_growth_yoy": 101.1,
+            "price_change_20d_pct": -11.2,
+            "price_change_60d_pct": -9.2
+          },
+          "rank": 4
+        },
+        {
+          "code": "600166",
+          "name": "福田汽车",
+          "composite_score": 38.0,
+          "value_score": 20.0,
+          "growth_score": 13.0,
+          "technical_score": 5,
+          "metrics": {
+            "pe_dynamic": 14.1,
+            "pb": null,
+            "roe": 5.8,
+            "price_latest": 2.66,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 10.9,
+            "profit_growth_yoy": 17.9,
+            "price_change_20d_pct": -8.0,
+            "price_change_60d_pct": -13.1
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "C27医药制造业",
+      "industry_display": "C27医药制造业(证监会行业分类)",
+      "momentum_score": 21.1,
+      "fundamental_score": 29.9,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 90.5,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "600351",
+          "name": "亚宝药业",
+          "composite_score": 51.4,
+          "value_score": 20.0,
+          "growth_score": 7.0,
+          "technical_score": 24.4,
+          "metrics": {
+            "pe_dynamic": 14.8,
+            "pb": null,
+            "roe": 6.2,
+            "price_latest": 6.89,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 0.5,
+            "profit_growth_yoy": 2.3,
+            "price_change_20d_pct": 2.2,
+            "price_change_60d_pct": 4.3
+          },
+          "rank": 1
+        },
+        {
+          "code": "600566",
+          "name": "济川药业",
+          "composite_score": 44.8,
+          "value_score": 20.0,
+          "growth_score": 4.0,
+          "technical_score": 20.8,
+          "metrics": {
+            "pe_dynamic": 13.4,
+            "pb": null,
+            "roe": 5.5,
+            "price_latest": 26.63,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -15.3,
+            "profit_growth_yoy": 7.8,
+            "price_change_20d_pct": 4.4,
+            "price_change_60d_pct": 1.4
+          },
+          "rank": 2
+        },
+        {
+          "code": "600285",
+          "name": "羚锐制药",
+          "composite_score": 43.8,
+          "value_score": 19.0,
+          "growth_score": 7.0,
+          "technical_score": 17.8,
+          "metrics": {
+            "pe_dynamic": 15.4,
+            "pb": null,
+            "roe": 14.9,
+            "price_latest": 21.23,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 2.3,
+            "profit_growth_yoy": 4.6,
+            "price_change_20d_pct": 10.1,
+            "price_change_60d_pct": -7.9
+          },
+          "rank": 3
+        },
+        {
+          "code": "600521",
+          "name": "华海药业",
+          "composite_score": 43.4,
+          "value_score": 10.0,
+          "growth_score": 13.0,
+          "technical_score": 20.4,
+          "metrics": {
+            "pe_dynamic": 39.3,
+            "pb": null,
+            "roe": 8.0,
+            "price_latest": 16.49,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 8.8,
+            "profit_growth_yoy": 89.3,
+            "price_change_20d_pct": 6.1,
+            "price_change_60d_pct": -6.5
+          },
+          "rank": 4
+        },
+        {
+          "code": "600993",
+          "name": "马应龙",
+          "composite_score": 42.0,
+          "value_score": 15.0,
+          "growth_score": 7.0,
+          "technical_score": 20.0,
+          "metrics": {
+            "pe_dynamic": 17.5,
+            "pb": null,
+            "roe": 8.2,
+            "price_latest": 24.4,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 3.2,
+            "profit_growth_yoy": 5.5,
+            "price_change_20d_pct": 8.4,
+            "price_change_60d_pct": 2.6
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "M73研究和试验发展",
+      "industry_display": "M73研究和试验发展(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 10.1,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 87.7,
+      "rank": 3,
+      "stocks": [
+        {
+          "code": "603259",
+          "name": "药明康德",
+          "composite_score": 55.0,
+          "value_score": 19.0,
+          "growth_score": 17.0,
+          "technical_score": 19.0,
+          "metrics": {
+            "pe_dynamic": 21.3,
+            "pb": null,
+            "roe": 13.6,
+            "price_latest": 154.5,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 38.9,
+            "profit_growth_yoy": 28.5,
+            "price_change_20d_pct": 0.0,
+            "price_change_60d_pct": 22.1
+          },
+          "rank": 1
+        },
+        {
+          "code": "688222",
+          "name": "成都先导",
+          "composite_score": 49.8,
+          "value_score": 5.0,
+          "growth_score": 20.0,
+          "technical_score": 24.8,
+          "metrics": {
+            "pe_dynamic": 103.4,
+            "pb": null,
+            "roe": 5.3,
+            "price_latest": 36.15,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 52.4,
+            "profit_growth_yoy": 60.3,
+            "price_change_20d_pct": 15.6,
+            "price_change_60d_pct": 9.6
+          },
+          "rank": 2
+        },
+        {
+          "code": "688105",
+          "name": "诺唯赞",
+          "composite_score": 48.0,
+          "value_score": 7.0,
+          "growth_score": 16.0,
+          "technical_score": 25.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 0.3,
+            "price_latest": 22.37,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 15.5,
+            "profit_growth_yoy": 187.4,
+            "price_change_20d_pct": 14.0,
+            "price_change_60d_pct": 23.0
+          },
+          "rank": 3
+        },
+        {
+          "code": "688710",
+          "name": "益诺思",
+          "composite_score": 46.0,
+          "value_score": 7.0,
+          "growth_score": 18.0,
+          "technical_score": 21.0,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 1.7,
+            "price_latest": 89.45,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 23.9,
+            "profit_growth_yoy": 1017.7,
+            "price_change_20d_pct": 5.9,
+            "price_change_60d_pct": 16.8
+          },
+          "rank": 4
+        },
+        {
+          "code": "688073",
+          "name": "毕得医药",
+          "composite_score": 45.0,
+          "value_score": 10.0,
+          "growth_score": 13.0,
+          "technical_score": 22.0,
+          "metrics": {
+            "pe_dynamic": 30.8,
+            "pb": null,
+            "roe": 5.0,
+            "price_latest": 61.58,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 8.8,
+            "profit_growth_yoy": 40.7,
+            "price_change_20d_pct": 5.1,
+            "price_change_60d_pct": 7.5
+          },
+          "rank": 5
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 3,
+    "total_stocks_recommended": 15,
+    "methodology_version": "1.0.0"
+  },
+  "regime": {
+    "regime": "BEAR",
+    "detected_regime": "BEAR",
+    "highvol": false,
+    "model": "防守红利",
+    "target_position_pct": 0.2,
+    "features": {
+      "close": 3707.48,
+      "ret20": -6.18,
+      "arrange": "空头",
+      "ma20": 3858.65,
+      "ma60": 3885.02,
+      "vol_pct": 0.325,
+      "warning": "MA20拐头向下"
+    }
+  }
+}

@@ -70,8 +70,18 @@ class StockSelector:
 
         return passed
 
-    def score_stocks(self, industry: str, top_n: int = TOP_STOCKS_PER_INDUSTRY) -> list[dict]:
-        """对指定行业成分股打分排序"""
+    def score_stocks(
+        self,
+        industry: str,
+        top_n: int = TOP_STOCKS_PER_INDUSTRY,
+        weights: dict | None = None,
+        technical_style: str = "momentum",
+    ) -> list[dict]:
+        """对指定行业成分股打分排序。
+
+        weights: {"value": 50, "growth": 20, "technical": 30} 归一化加权；None 等价原固定权重。
+        technical_style: 技术分口径（momentum/defensive/mean_reversion），与选股模型对齐。
+        """
         all_codes = self.mapper.get_stocks_in_industry(industry)
         if not all_codes:
             print(f"  [StockSelector] 行业 {industry} 无成分股数据")
@@ -92,7 +102,7 @@ class StockSelector:
         results = []
         for code in sample:
             try:
-                score, details = self._score_stock(code)
+                score, details = self._score_stock(code, weights, technical_style)
                 if score is None:
                     continue
 
@@ -125,7 +135,8 @@ class StockSelector:
     # ------------------------------------------------------------------
     # 综合评分：价值 50 + 成长 20 + 技术 30
     # ------------------------------------------------------------------
-    def _score_stock(self, code: str) -> tuple[float | None, dict]:
+    def _score_stock(self, code: str, weights: dict | None = None,
+                     technical_style: str = "momentum") -> tuple[float | None, dict]:
         """综合评分，返回 (total_score, details_dict)"""
         details = {}
 
@@ -133,7 +144,7 @@ class StockSelector:
         fin = fetch_stock_financials(code)
 
         # 技术 (30) — 先算，产出 details["price"] 供价值评分计算 PE
-        details["technical"] = self._score_technical(code, details)
+        details["technical"] = self._score_technical(code, details, technical_style)
 
         # 价值 (50)
         details["value"] = self._score_value(fin, details)
@@ -141,8 +152,20 @@ class StockSelector:
         # 成长 (20)
         details["growth"] = self._score_growth(fin, details)
 
-        total = (details["value"] + details["growth"] + details["technical"])
+        total = self._combine(
+            details["value"], details["growth"], details["technical"], weights
+        )
         return total, details
+
+    @staticmethod
+    def _combine(value: float, growth: float, technical: float, weights: dict | None) -> float:
+        """按权重合并三维分。None 时等价原固定权重（直接相加）。"""
+        if weights:
+            w_v = weights.get("value", 50)
+            w_g = weights.get("growth", 20)
+            w_t = weights.get("technical", 30)
+            return (value / 50 * w_v) + (growth / 20 * w_g) + (technical / 30 * w_t)
+        return value + growth + technical
 
     # ------------------------------------------------------------------
     # 价值 (50): PE 15 + PB 10 + ROE 15 + 资产规模 10
@@ -253,47 +276,84 @@ class StockSelector:
         return min(score, 20)
 
     # ------------------------------------------------------------------
-    # 技术 (30): 20日动量 12 + 60日动量 8 + 均线 5 + 流动性 5
+    # 技术 (30): 按模型口径区分（momentum 追强势 / defensive 抗跌 / mean_reversion 超跌）
     # ------------------------------------------------------------------
-    def _score_technical(self, code: str, details: dict) -> float:
-        score = 10.0  # 默认
+    def _score_technical(self, code: str, details: dict, style: str = "momentum") -> float:
         df = fetch_stock_kline(code, days=120)
         if df is None or df.empty or len(df) < 20:
-            return score
+            return 10.0
 
         close = df["close"].values
         price = float(close[-1])
         details["price"] = round(price, 2)
-
-        # 20日收益 (12)
         if len(close) >= 20:
-            ret_20d = (close[-1] / close[-20] - 1) * 100
-            details["ret_20d"] = round(ret_20d, 1)
-            score = 12 * min(max(ret_20d / 10 + 0.5, 0), 1.0)
-
-        # 60日收益 (8)
+            details["ret_20d"] = round((close[-1] / close[-20] - 1) * 100, 1)
         if len(close) >= 60:
-            ret_60d = (close[-1] / close[-60] - 1) * 100
-            details["ret_60d"] = round(ret_60d, 1)
-            score += 8 * min(max(ret_60d / 20 + 0.5, 0), 1.0)
+            details["ret_60d"] = round((close[-1] / close[-60] - 1) * 100, 1)
 
-        # 均线多头 (5)
+        avg_vol = df["volume"].tail(20).mean() if "volume" in df.columns else 0.0
+
+        if style == "defensive":
+            return self._score_technical_defensive(close, price, avg_vol)
+        if style == "mean_reversion":
+            return self._score_technical_mean_reversion(close, price, avg_vol)
+        return self._score_technical_momentum(close, price, avg_vol)
+
+    @staticmethod
+    def _liquidity(avg_vol: float) -> float:
+        """流动性分(0~5)。"""
+        if avg_vol > 1e7:
+            return 5.0
+        if avg_vol > 5e6:
+            return 3.0
+        if avg_vol > 1e6:
+            return 1.0
+        return 0.0
+
+    def _score_technical_momentum(self, close: np.ndarray, price: float, avg_vol: float) -> float:
+        """追强势：20/60日动量 + 均线多头 + 放量。"""
+        score = 12 * min(max((close[-1] / close[-20] - 1) * 100 / 10 + 0.5, 0), 1.0)
         if len(close) >= 60:
+            score += 8 * min(max((close[-1] / close[-60] - 1) * 100 / 20 + 0.5, 0), 1.0)
             ma20 = np.mean(close[-20:])
             ma60 = np.mean(close[-60:])
             if price > ma20 > ma60:
                 score += 5
             elif price > ma20:
                 score += 2
+        return min(score + self._liquidity(avg_vol), 30)
 
-        # 成交量流动性 (5)
-        if "volume" in df.columns:
-            avg_vol = df["volume"].tail(20).mean()
-            if avg_vol > 1e7:
+    def _score_technical_defensive(self, close: np.ndarray, price: float, avg_vol: float) -> float:
+        """相对抗跌：低回撤 + 低波动 + 不破位 + 流动性（不追动量）。"""
+        score = 0.0
+        if len(close) >= 60:
+            running_max = np.maximum.accumulate(close)
+            mdd = float(np.min(close / running_max - 1))  # <=0
+            score += 12 * (1 - min(max(-mdd / 0.30, 0), 1.0))
+            rets = np.diff(close[-21:]) / close[-21:-1]
+            vol = float(np.std(rets, ddof=1)) * np.sqrt(252)
+            score += 8 * (1 - min(max(vol / 0.60, 0), 1.0))
+            ma20 = np.mean(close[-20:])
+            ma60 = np.mean(close[-60:])
+            if price > ma60:
                 score += 5
-            elif avg_vol > 5e6:
+            elif price > ma20:
                 score += 3
-            elif avg_vol > 1e6:
-                score += 1
+        else:
+            score += 10.0
+        return min(score + self._liquidity(avg_vol), 30)
 
-        return min(score, 30)
+    def _score_technical_mean_reversion(self, close: np.ndarray, price: float, avg_vol: float) -> float:
+        """超跌低吸：20/60日跌幅越深越高分 + 回踩支撑，不追高。"""
+        score = 12 * min(max(-(close[-1] / close[-20] - 1) * 100 / 15 + 0.5, 0), 1.0)
+        if len(close) >= 60:
+            score += 8 * min(max(-(close[-1] / close[-60] - 1) * 100 / 30 + 0.5, 0), 1.0)
+            ma20 = np.mean(close[-20:])
+            ma60 = np.mean(close[-60:])
+            if price < ma20 and price > ma60:
+                score += 5
+            elif price < ma60:
+                score += 2
+        else:
+            score += 5.0
+        return min(score + self._liquidity(avg_vol), 30)

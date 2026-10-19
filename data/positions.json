@@ -1,34 +1,7 @@
 {
   "start_date": "2026-07-10",
   "account_capital": 100000,
-  "positions": {
-    "600030": {
-      "name": "中信证券",
-      "entry_price": 28.28,
-      "entry_date": "2026-07-10",
-      "stop_loss": 27.16,
-      "take_profit": 30.12,
-      "position_pct": 10,
-      "shares": 300,
-      "cost": 8484.0,
-      "risk_amount": 336.0,
-      "industry": "J67资本市场服务",
-      "note": "7/15评分51 HOLD，收盘28.60横盘。持有不动"
-    },
-    "600309": {
-      "name": "万华化学",
-      "entry_price": 75.21,
-      "entry_date": "2026-09-02",
-      "stop_loss": 72.61,
-      "take_profit": 78.11,
-      "position_pct": 10,
-      "shares": 100,
-      "cost": 7521.0,
-      "risk_amount": 260.0,
-      "industry": "C26化学原料和化学制品制造业",
-      "note": "9/2 STRONG BUY 80分建仓，均线多头+MACD金叉+筹码稳定。止损72.61/止盈78.11"
-    }
-  },
+  "positions": {},
   "closed_trades": [
     {
       "code": "688231",
@@ -107,6 +80,32 @@
       "cost": 9125.0,
       "pnl": -365.0,
       "pnl_pct": -4.0
+    },
+    {
+      "code": "600030",
+      "name": "中信证券",
+      "entry_price": 28.28,
+      "entry_date": "2026-07-10",
+      "exit_price": 26.23,
+      "exit_date": "2026-10-15",
+      "exit_reason": "止损触发",
+      "shares": 300,
+      "cost": 8484.0,
+      "pnl": -615.0,
+      "pnl_pct": -7.25
+    },
+    {
+      "code": "600309",
+      "name": "万华化学",
+      "entry_price": 75.21,
+      "entry_date": "2026-09-02",
+      "exit_price": 64.95,
+      "exit_date": "2026-10-15",
+      "exit_reason": "止损触发",
+      "shares": 100,
+      "cost": 7521.0,
+      "pnl": -1026.0,
+      "pnl_pct": -13.64
     }
   ],
   "watchlist": [
@@ -164,16 +163,41 @@
       "code": "000998",
       "name": "隆平高科",
       "reason": "种业龙头(全球前七)，回踩9.5小仓位/止损8.89，当前亏损仅题材博弈"
+    },
+    {
+      "code": "001965",
+      "name": "招商公路",
+      "reason": "高速公路红利龙头(红利低波指数权重)，BUY64风险低，回踩10.02-10.14建仓/止损9.72"
+    },
+    {
+      "code": "600377",
+      "name": "宁沪高速",
+      "reason": "高速公路最优质龙头PE15 ROE6，HOLD等回踩13.01-13.35建仓/止损12.45，现价RSI81超买"
+    },
+    {
+      "code": "600035",
+      "name": "楚天高速",
+      "reason": "高速公路PE10.8，BUY64风险低，3.70-3.76建仓/止损3.64，波动小性价比一般"
+    },
+    {
+      "code": "601900",
+      "name": "南方传媒",
+      "reason": "出版传媒红利龙头PE11.2，BUY66，回踩12.61-12.89建仓/止损12.23，现价RSI76超买"
+    },
+    {
+      "code": "600551",
+      "name": "时代出版",
+      "reason": "出版传媒PE13.8，BUY70，回踩7.79-8.00建仓/止损7.56"
     }
   ],
   "summary": {
-    "total_cost": 16005.0,
-    "capital_used_pct": 16.0,
-    "total_risk": 596.0,
-    "risk_pct": 0.6,
-    "positions_count": 2,
-    "watchlist_count": 11,
-    "closed_pnl": -6110.1,
-    "closed_count": 6
+    "total_cost": 0,
+    "capital_used_pct": 0,
+    "total_risk": 0,
+    "risk_pct": 0,
+    "positions_count": 0,
+    "watchlist_count": 16,
+    "closed_pnl": -7751.1,
+    "closed_count": 8
   }
 }

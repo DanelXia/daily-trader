@@ -18,6 +18,7 @@ from config import (
     CACHE_DIR, CACHE_TTL_SNAPSHOT, CACHE_TTL_FINANCIAL,
     CACHE_TTL_KLINE, CACHE_TTL_FUND_FLOW, CACHE_TTL_SHAREHOLDER,
     SPLIT_DETECTION_THRESHOLD,
+    MAX_RETRIES, BAOSTOCK_MIN_INTERVAL, BAOSTOCK_RESET_COOLDOWN,
 )
 
 # ---------------------------------------------------------------------------
@@ -28,58 +29,88 @@ _cache = diskcache.Cache(str(CACHE_DIR))
 
 # baostock 登录状态
 _bs_logged_in = False
-_bs_error_count = 0
-_BS_MAX_ERRORS = 3
+_last_bs_query_time = 0.0
+
+
+def _throttle():
+    """全局请求节流，避免 baostock 服务端因突发请求断开连接（WinError 10054）。"""
+    global _last_bs_query_time
+    elapsed = time.time() - _last_bs_query_time
+    if elapsed < BAOSTOCK_MIN_INTERVAL:
+        time.sleep(BAOSTOCK_MIN_INTERVAL - elapsed + random.uniform(0, 0.2))
+    _last_bs_query_time = time.time()
+
+
+def _do_login() -> bool:
+    """执行 baostock 登录并校验返回码。成功返回 True。
+
+    baostock 的 bs.login() 在网络失败时不抛异常，而是返回 error_code != '0'
+    的结果对象，因此必须显式校验返回码，否则会把失败当成功、后续查询全部报
+    WinError 10057（套接字未连接）。
+    """
+    global _bs_logged_in
+    try:
+        lg = bs.login()
+        ok = lg is not None and getattr(lg, "error_code", "0") == "0"
+        _bs_logged_in = bool(ok)
+        return bool(ok)
+    except Exception:
+        _bs_logged_in = False
+        return False
+
+
+def _force_relogin() -> bool:
+    """强制登出后重新登录（带冷却），返回是否成功。"""
+    global _bs_logged_in
+    try:
+        bs.logout()
+    except Exception:
+        pass
+    _bs_logged_in = False
+    time.sleep(BAOSTOCK_RESET_COOLDOWN + random.uniform(0, 3))
+    return _do_login()
 
 
 def _ensure_login():
-    """确保 baostock 已登录，连接断开时自动重连"""
-    global _bs_logged_in, _bs_error_count
-    if not _bs_logged_in:
-        try:
-            bs.login()
-            _bs_logged_in = True
-            _bs_error_count = 0
-        except Exception:
-            _bs_logged_in = False
-            time.sleep(3)
-            bs.login()
-            _bs_logged_in = True
-
-    # 如果错误次数过多，强制重连
-    if _bs_error_count >= _BS_MAX_ERRORS:
-        try:
-            bs.logout()
-        except Exception:
-            pass
-        time.sleep(2)
-        bs.login()
-        _bs_logged_in = True
-        _bs_error_count = 0
+    """确保 baostock 已登录；失败时退避重试一次。"""
+    if _bs_logged_in:
+        return
+    if _do_login():
+        return
+    time.sleep(3)
+    _do_login()
 
 
 def _safe_bs_query(query_callable):
-    """安全执行 baostock 查询，自动处理连接断开。
+    """安全执行 baostock 查询，自动处理连接断开与返回错误码。
+    失败时重试 MAX_RETRIES 次后抛异常（不返回 None），由上层 try/except 兜底。
     参数: query_callable 是已绑定参数的 callable，如 lambda: bs.query_stock_basic()"""
-    global _bs_error_count, _bs_logged_in
-    for attempt in range(3):
-        try:
-            _ensure_login()
-            result = query_callable()
-            _bs_error_count = 0
-            return result
-        except (OSError, ConnectionError) as e:
-            _bs_error_count += 1
-            _bs_logged_in = False
-            if attempt == 2:
-                raise
+    global _bs_logged_in
+    for attempt in range(MAX_RETRIES):
+        _throttle()
+        _ensure_login()
+        if not _bs_logged_in:
+            # 登录未成功（服务端限流/宕机），退避后重试，最后一次抛出
+            if attempt == MAX_RETRIES - 1:
+                raise ConnectionError("baostock 登录失败（服务端不可达）")
             time.sleep(3 * (attempt + 1))
-        except Exception as e:
-            _bs_error_count += 1
-            if attempt == 2:
+            continue
+        try:
+            result = query_callable()
+            # baostock 查询失败时同样只返回 error_code != '0'，不抛异常
+            if result is not None and getattr(result, "error_code", "0") != "0":
+                raise ConnectionError(f"baostock error_code={result.error_code}")
+            return result
+        except (OSError, ConnectionError):
+            # 连接被重置（WinError 10054 等）：强制重连 + 退避
+            if attempt == MAX_RETRIES - 1:
                 raise
-            time.sleep(2)
-    return None
+            _force_relogin()
+        except Exception:
+            if attempt == MAX_RETRIES - 1:
+                raise
+            time.sleep(2 * (attempt + 1))
+    raise ConnectionError("baostock 查询失败")
 
 
 def cached(ttl: int):
@@ -278,6 +309,40 @@ def fetch_stock_kline(code: str, days: int = 120, adjust: str = "2") -> Optional
     df = df[df["volume"] > 0].copy()
     # 自动检测并修正 ETF/股票拆分（baostock 的 adjustflag 对 ETF 无效）
     df = _detect_and_adjust_splits(df)
+    return df.tail(days)
+
+
+@cached(ttl=CACHE_TTL_KLINE)
+def fetch_index_kline(code: str = "sh.000001", days: int = 380) -> Optional[pd.DataFrame]:
+    """获取指数日K线（如上证 sh.000001、深证 sz.399001、创业板 sz.399006、沪深300 sh.000300）。
+
+    指数不复权（adjustflag="3"）。默认拉 380 个交易日，足以计算 MA60、20 日涨跌幅
+    及 250 日波动率分位数。
+    """
+    _ensure_login()
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=days + 80)).strftime("%Y-%m-%d")
+
+    rs = _safe_bs_query(lambda: bs.query_history_k_data_plus(
+        code,
+        "date,open,high,low,close,volume,amount,pctChg",
+        start_date=start_date, end_date=end_date,
+        frequency="d", adjustflag="3",
+    ))
+    if rs is None:
+        return None
+    df = rs.get_data()
+    if df is None or df.empty:
+        return None
+
+    df = df.rename(columns={
+        "open": "open", "high": "high", "low": "low", "close": "close",
+        "volume": "volume", "amount": "amount", "pctChg": "pct_change",
+    })
+    for col in ["open", "high", "low", "close", "volume", "amount", "pct_change"]:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    df["date"] = pd.to_datetime(df["date"])
+    df = df[df["volume"] > 0].copy()
     return df.tail(days)
 
 

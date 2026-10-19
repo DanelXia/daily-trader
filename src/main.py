@@ -16,7 +16,7 @@ if not hasattr(pd.DataFrame, 'append'):
 
 import click
 
-from config import STOCK_POOL_FILE
+from config import STOCK_POOL_FILE, REGIME_STATE_FILE, REGIME_HISTORY_FILE
 from src.data.industry import IndustryMapper
 from src.research.industry_analysis import IndustryAnalyzer
 from src.research.stock_selection import StockSelector
@@ -43,13 +43,39 @@ def research(industry, top_industries, top_stocks):
     mapper = IndustryMapper()
     mapper.load()
 
+    # 市场场景识别 + 模型路由（失败则回退基础固定权重）
+    from src.research.regime import MarketRegimeDetector
+    from src.research.router import RegimeRouter
+    from src.research.selection_models import get_model
+
+    regime_info = None
+    model = get_model(None)
+    try:
+        detection = MarketRegimeDetector().detect()
+        if detection:
+            state = RegimeRouter().route(detection)
+            model = get_model(state["model"])
+            regime_info = {
+                "regime": state["regime"],
+                "detected_regime": state["detected_regime"],
+                "highvol": state["highvol"],
+                "model": model.label,
+                "target_position_pct": state["target_position_pct"],
+                "features": state["features"],
+            }
+            print(f"\n  市场场景: {state['regime']}  →  选股模型: {model.label}"
+                  f"  →  目标仓位: {state['target_position_pct'] * 100:.0f}%")
+            print(f"  模型过滤: {model.filter_hint}\n")
+    except Exception as e:
+        print(f"[警告] 场景识别失败，回退基础固定权重: {e}")
+
     if industry:
         # 指定行业模式：跳过行业分析，直接选股
         industries = [{"industry_name": industry, "industry_display": industry}]
     else:
         # 全行业分析
         analyzer = IndustryAnalyzer(mapper)
-        industries = analyzer.analyze(top_n=top_industries)
+        industries = analyzer.analyze(top_n=top_industries, weights=model.industry_weights)
 
     if not industries:
         print("[错误] 未找到符合条件的行业")
@@ -63,7 +89,8 @@ def research(industry, top_industries, top_stocks):
         print(f"\n{'=' * 40}")
         print(f"  行业 #{ind['rank']}: {ind.get('industry_display', industry_name)} - 得分 {ind.get('composite_score', 'N/A')}")
         print(f"{'=' * 40}")
-        stocks = selector.score_stocks(industry_name, top_n=top_stocks)
+        stocks = selector.score_stocks(industry_name, top_n=top_stocks, weights=model.stock_weights,
+                                       technical_style=model.technical_style)
         for j, s in enumerate(stocks):
             s["rank"] = j + 1
         ind["stocks"] = stocks
@@ -78,7 +105,7 @@ def research(industry, top_industries, top_stocks):
 
     # 生成报告
     from src.reports.generator import generate_weekly_report
-    md_path, json_path = generate_weekly_report(industries)
+    md_path, json_path = generate_weekly_report(industries, regime_info=regime_info)
 
     print(f"\n{'=' * 60}")
     print(f"  研究完成!")
@@ -135,6 +162,24 @@ def trade(stock, pool):
         vol_label = "放量" if market_vol_ratio > 1.2 else ("缩量" if market_vol_ratio < 0.8 else "正常")
         print(f"\n大盘成交额: {total_amt:.0f}亿  |  量比: {market_vol_ratio:.2f}  |  {vol_label}\n")
 
+    # 市场场景识别（仓位/止损联动）
+    regime_state = None
+    try:
+        from src.research.regime import MarketRegimeDetector
+        from src.research.router import RegimeRouter
+        detection = MarketRegimeDetector().detect()
+        if detection:
+            st = RegimeRouter().route(detection)
+            regime_state = {
+                "regime": st["regime"],
+                "highvol": st["highvol"],
+                "target_position_pct": st["target_position_pct"],
+            }
+            hv = "（高波动）" if st["highvol"] else ""
+            print(f"市场场景: {st['regime']}{hv}  →  账户目标仓位: {st['target_position_pct'] * 100:.0f}%\n")
+    except Exception as e:
+        print(f"[警告] 场景识别失败: {e}")
+
     # 散户情绪分析（提前获取，用于个股逆向加分）
     sentiment = None
     sentiment_index = None
@@ -169,7 +214,7 @@ def trade(stock, pool):
         except Exception:
             pass
 
-        signal = engine.analyze(code, name, indicators, market_vol_ratio, sentiment_index, concentration)
+        signal = engine.analyze(code, name, indicators, market_vol_ratio, sentiment_index, concentration, regime_state)
         signal["source"] = "stock_pool"
         if s.get("industry"):
             signal["industry"] = s["industry"]
@@ -226,7 +271,7 @@ def trade(stock, pool):
 
                 signal = engine.analyze(
                     zt_code, zt_name, indicators,
-                    market_vol_ratio, sentiment_index, concentration
+                    market_vol_ratio, sentiment_index, concentration, regime_state
                 )
                 signal["source"] = "consecutive_zt"
                 signal["industry"] = zt_stock["industry"]
@@ -289,7 +334,7 @@ def trade(stock, pool):
 
                 signal = engine.analyze(
                     ds["code"], ds["name"], indicators,
-                    market_vol_ratio, sentiment_index, concentration
+                    market_vol_ratio, sentiment_index, concentration, regime_state
                 )
                 signal["source"] = "divergence"
                 signal["industry"] = ds.get("industry", "")
@@ -326,6 +371,7 @@ def trade(stock, pool):
         suggestions, market_snapshot, intraday, sentiment,
         consecutive_zt=consecutive_zt_result,
         divergence=divergence_result,
+        regime_state=regime_state,
     )
 
     print(f"\n{'=' * 60}")
@@ -354,6 +400,41 @@ def status():
         print(f"  #{ind['rank']} {ind['industry_name']} (得分: {ind['composite_score']})")
         for s in ind.get("stocks", []):
             print(f"      {s['rank']}. {s['name']}({s['code']}) 综合={s['composite_score']}")
+
+
+@cli.command()
+def regime():
+    """检测当前市场场景并输出路由结果"""
+    from src.research.regime import MarketRegimeDetector
+    from src.research.router import RegimeRouter
+
+    print("=" * 60)
+    print(f"  市场场景识别  {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print("=" * 60)
+
+    detector = MarketRegimeDetector()
+    detection = detector.detect()
+    if detection is None:
+        print("[错误] 无法获取指数数据，场景识别失败")
+        sys.exit(1)
+
+    router = RegimeRouter()
+    state = router.route(detection)
+
+    f = state["features"]
+    switched = state["regime"] != state["detected_regime"]
+
+    print(f"\n  检测场景: {state['detected_regime']}")
+    print(f"  确认场景: {state['regime']}" + ("  [防抖确认中]" if switched else ""))
+    print(f"  高波动:   {'是' if state['highvol'] else '否'}")
+    print(f"  选股模型: {state['model']}")
+    print(f"  目标仓位: {state['target_position_pct'] * 100:.0f}%")
+    print(f"  预警信号: {f.get('warning') or '无'}")
+    print(f"\n  特征:")
+    print(f"    收盘={f['close']}  20日涨跌={f['ret20']}%  排列={f['arrange']}")
+    print(f"    MA20={f['ma20']}  MA60={f['ma60']}  波动分位={f['vol_pct']}")
+    print(f"\n  状态文件: {REGIME_STATE_FILE}")
+    print(f"  历史文件: {REGIME_HISTORY_FILE}")
 
 
 if __name__ == "__main__":
