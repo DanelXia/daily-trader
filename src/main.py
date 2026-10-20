@@ -16,10 +16,28 @@ if not hasattr(pd.DataFrame, 'append'):
 
 import click
 
-from config import STOCK_POOL_FILE, REGIME_STATE_FILE, REGIME_HISTORY_FILE
+from config import STOCK_POOL_FILE, REGIME_STATE_FILE, REGIME_HISTORY_FILE, DATA_DIR
 from src.data.industry import IndustryMapper
-from src.research.industry_analysis import IndustryAnalyzer
 from src.research.stock_selection import StockSelector
+
+
+def _load_full_pool_universe() -> list[str] | None:
+    """构建全池候选股代码列表。
+
+    优先用回测流动股票池（近60日均额>2亿，与回测「实验组_路由」对齐，由
+    tools/backtest_financials_pit.py 生成），无则返回 None 让 score_universe
+    回退到所有证监会行业成分股并集。
+    """
+    universe_file = DATA_DIR / "backtest" / "universe.csv"
+    if universe_file.exists():
+        try:
+            df = pd.read_csv(universe_file, dtype={"code": str})
+            codes = [str(c).zfill(6) for c in df["code"]]
+            if codes:
+                return codes
+        except Exception:
+            pass
+    return None
 
 
 @click.group()
@@ -29,11 +47,10 @@ def cli():
 
 
 @cli.command()
-@click.option("--industry", default=None, help="指定行业代码（跳过行业分析，直接选股）")
-@click.option("--top-industries", default=3, help="最优行业数量")
-@click.option("--top-stocks", default=5, help="每个行业最优个股数量")
-def research(industry, top_industries, top_stocks):
-    """运行周度行业研究与个股筛选"""
+@click.option("--industry", default=None, help="指定行业代码（跳过全池选股，只在该行业内选股）")
+@click.option("--top-stocks", default=5, help="最优个股数量")
+def research(industry, top_stocks):
+    """运行周度研究（场景路由 + 全池选股）"""
     print("=" * 60)
     print(f"  Daily Trader - 周度研究报告  {datetime.now().strftime('%Y-%m-%d')}")
     print("=" * 60)
@@ -69,32 +86,43 @@ def research(industry, top_industries, top_stocks):
     except Exception as e:
         print(f"[警告] 场景识别失败，回退基础固定权重: {e}")
 
-    if industry:
-        # 指定行业模式：跳过行业分析，直接选股
-        industries = [{"industry_name": industry, "industry_display": industry}]
-    else:
-        # 全行业分析
-        analyzer = IndustryAnalyzer(mapper)
-        industries = analyzer.analyze(top_n=top_industries, weights=model.industry_weights)
+    selector = StockSelector(mapper)
 
-    if not industries:
-        print("[错误] 未找到符合条件的行业")
+    if industry:
+        # 指定行业模式：只在该行业内选股
+        stocks = selector.score_stocks(industry, top_n=top_stocks, weights=model.stock_weights,
+                                       technical_style=model.technical_style)
+        industries = [{
+            "industry_name": industry,
+            "industry_display": industry,
+            "rank": 1,
+            "stocks": stocks,
+        }]
+    else:
+        # 全池选股（回测 §8.7：行业层硬过滤在熊市防守上劣化，改为全池打分取 Top-N）
+        universe = _load_full_pool_universe()
+        stocks = selector.score_universe(top_n=top_stocks, weights=model.stock_weights,
+                                         technical_style=model.technical_style, codes=universe)
+        industries = [{
+            "industry_name": "全池选股",
+            "industry_display": "全池选股",
+            "rank": 1,
+            "stocks": stocks,
+        }]
+
+    if not industries or not any(ind.get("stocks") for ind in industries):
+        print("[错误] 未选出符合条件的个股")
         sys.exit(1)
 
-    # 个股筛选
-    selector = StockSelector(mapper)
-    for i, ind in enumerate(industries):
-        ind["rank"] = i + 1
-        industry_name = ind["industry_name"]
-        print(f"\n{'=' * 40}")
-        print(f"  行业 #{ind['rank']}: {ind.get('industry_display', industry_name)} - 得分 {ind.get('composite_score', 'N/A')}")
-        print(f"{'=' * 40}")
-        stocks = selector.score_stocks(industry_name, top_n=top_stocks, weights=model.stock_weights,
-                                       technical_style=model.technical_style)
-        for j, s in enumerate(stocks):
+    # 个股筛选结果展示
+    for ind in industries:
+        for j, s in enumerate(ind.get("stocks", [])):
             s["rank"] = j + 1
-        ind["stocks"] = stocks
 
+        print(f"\n{'=' * 40}")
+        print(f"  #{ind['rank']}: {ind.get('industry_display', ind['industry_name'])}")
+        print(f"{'=' * 40}")
+        stocks = ind.get("stocks", [])
         if stocks:
             print(f"  入选 {len(stocks)} 只个股:")
             for s in stocks:
@@ -102,6 +130,8 @@ def research(industry, top_industries, top_stocks):
                 print(f"    {s['rank']}. {s['name']}({s['code']}) "
                       f"综合={s['composite_score']} PE={m.get('pe_dynamic','-')} "
                       f"价格={m.get('price_latest','-')}")
+        else:
+            print("  [无]")
 
     # 生成报告
     from src.reports.generator import generate_weekly_report
@@ -397,7 +427,9 @@ def status():
     print(f"推荐个股: {data['summary']['total_stocks_recommended']} 只")
     print()
     for ind in data["industries"]:
-        print(f"  #{ind['rank']} {ind['industry_name']} (得分: {ind['composite_score']})")
+        score = ind.get("composite_score")
+        score_str = f" (得分: {score})" if score is not None else ""
+        print(f"  #{ind['rank']} {ind['industry_name']}{score_str}")
         for s in ind.get("stocks", []):
             print(f"      {s['rank']}. {s['name']}({s['code']}) 综合={s['composite_score']}")
 

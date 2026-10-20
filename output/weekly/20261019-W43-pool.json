@@ -1,0 +1,364 @@
+{
+  "report_date": "2026-10-19",
+  "report_type": "weekly",
+  "version": "1.0.0",
+  "industries": [
+    {
+      "industry_name": "C36汽车制造业",
+      "industry_display": "C36汽车制造业(证监会行业分类)",
+      "momentum_score": 49.2,
+      "fundamental_score": 35.3,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 100.0,
+      "rank": 1,
+      "stocks": [
+        {
+          "code": "603007",
+          "name": "顺景科技",
+          "composite_score": 46.5,
+          "value_score": 17.0,
+          "growth_score": 20.0,
+          "technical_score": 9.5,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": 15.4,
+            "price_latest": 4.13,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 1664.9,
+            "profit_growth_yoy": 264.2,
+            "price_change_20d_pct": -14.5,
+            "price_change_60d_pct": -13.6
+          },
+          "rank": 1
+        },
+        {
+          "code": "600166",
+          "name": "福田汽车",
+          "composite_score": 43.3,
+          "value_score": 20.0,
+          "growth_score": 13.0,
+          "technical_score": 10.3,
+          "metrics": {
+            "pe_dynamic": 14.2,
+            "pb": null,
+            "roe": 5.8,
+            "price_latest": 2.67,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 10.9,
+            "profit_growth_yoy": 17.9,
+            "price_change_20d_pct": -5.7,
+            "price_change_60d_pct": -8.6
+          },
+          "rank": 2
+        },
+        {
+          "code": "600066",
+          "name": "宇通客车",
+          "composite_score": 42.6,
+          "value_score": 30.0,
+          "growth_score": 0.0,
+          "technical_score": 12.6,
+          "metrics": {
+            "pe_dynamic": 11.7,
+            "pb": null,
+            "roe": 21.3,
+            "price_latest": 28.71,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -2.1,
+            "profit_growth_yoy": -4.6,
+            "price_change_20d_pct": 7.6,
+            "price_change_60d_pct": -3.5
+          },
+          "rank": 3
+        },
+        {
+          "code": "603197",
+          "name": "保隆科技",
+          "composite_score": 41.4,
+          "value_score": 15.0,
+          "growth_score": 16.0,
+          "technical_score": 10.4,
+          "metrics": {
+            "pe_dynamic": 18.4,
+            "pb": null,
+            "roe": 8.0,
+            "price_latest": 29.39,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 18.6,
+            "profit_growth_yoy": 82.9,
+            "price_change_20d_pct": 4.7,
+            "price_change_60d_pct": 0.7
+          },
+          "rank": 4
+        },
+        {
+          "code": "603085",
+          "name": "天成自控",
+          "composite_score": 40.9,
+          "value_score": 10.0,
+          "growth_score": 20.0,
+          "technical_score": 10.9,
+          "metrics": {
+            "pe_dynamic": 35.0,
+            "pb": null,
+            "roe": 5.2,
+            "price_latest": 9.88,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 32.4,
+            "profit_growth_yoy": 117.4,
+            "price_change_20d_pct": 2.4,
+            "price_change_60d_pct": 0.6
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "K70房地产业",
+      "industry_display": "K70房地产业(证监会行业分类)",
+      "momentum_score": 60.0,
+      "fundamental_score": 13.7,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 85.0,
+      "rank": 2,
+      "stocks": [
+        {
+          "code": "600064",
+          "name": "南京高科",
+          "composite_score": 40.0,
+          "value_score": 20.0,
+          "growth_score": 0.0,
+          "technical_score": 20.0,
+          "metrics": {
+            "pe_dynamic": 8.0,
+            "pb": null,
+            "roe": 6.4,
+            "price_latest": 7.86,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -28.1,
+            "profit_growth_yoy": -9.2,
+            "price_change_20d_pct": 1.9,
+            "price_change_60d_pct": 7.7
+          },
+          "rank": 1
+        },
+        {
+          "code": "600639",
+          "name": "浦东金桥",
+          "composite_score": 39.4,
+          "value_score": 17.0,
+          "growth_score": 6.0,
+          "technical_score": 16.4,
+          "metrics": {
+            "pe_dynamic": 10.5,
+            "pb": null,
+            "roe": 0.8,
+            "price_latest": 9.59,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 11.2,
+            "profit_growth_yoy": -35.1,
+            "price_change_20d_pct": 2.8,
+            "price_change_60d_pct": 2.5
+          },
+          "rank": 2
+        },
+        {
+          "code": "600736",
+          "name": "苏州高新",
+          "composite_score": 38.9,
+          "value_score": 20.0,
+          "growth_score": 10.0,
+          "technical_score": 8.9,
+          "metrics": {
+            "pe_dynamic": 12.0,
+            "pb": null,
+            "roe": 5.9,
+            "price_latest": 6.06,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -15.2,
+            "profit_growth_yoy": 135.8,
+            "price_change_20d_pct": -6.9,
+            "price_change_60d_pct": -2.9
+          },
+          "rank": 3
+        },
+        {
+          "code": "600007",
+          "name": "中国国贸",
+          "composite_score": 34.7,
+          "value_score": 15.0,
+          "growth_score": 4.0,
+          "technical_score": 15.7,
+          "metrics": {
+            "pe_dynamic": 17.5,
+            "pb": null,
+            "roe": 6.7,
+            "price_latest": 20.86,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": -3.9,
+            "profit_growth_yoy": 0.2,
+            "price_change_20d_pct": 10.1,
+            "price_change_60d_pct": 8.3
+          },
+          "rank": 4
+        },
+        {
+          "code": "600604",
+          "name": "市北高新",
+          "composite_score": 33.4,
+          "value_score": 5.0,
+          "growth_score": 20.0,
+          "technical_score": 8.4,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": -1.2,
+            "price_latest": 4.48,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 117.7,
+            "profit_growth_yoy": 42.7,
+            "price_change_20d_pct": -1.5,
+            "price_change_60d_pct": 6.7
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "industry_name": "I65软件和信息技术服务业",
+      "industry_display": "I65软件和信息技术服务业(证监会行业分类)",
+      "momentum_score": 42.7,
+      "fundamental_score": 20.4,
+      "capital_flow_score": 0,
+      "policy_catalyst_score": 0,
+      "composite_score": 84.1,
+      "rank": 3,
+      "stocks": [
+        {
+          "code": "603629",
+          "name": "利通电子",
+          "composite_score": 51.1,
+          "value_score": 25.0,
+          "growth_score": 20.0,
+          "technical_score": 6.1,
+          "metrics": {
+            "pe_dynamic": 23.2,
+            "pb": null,
+            "roe": 30.7,
+            "price_latest": 83.51,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 38.6,
+            "profit_growth_yoy": 1265.7,
+            "price_change_20d_pct": -20.7,
+            "price_change_60d_pct": -8.0
+          },
+          "rank": 1
+        },
+        {
+          "code": "600406",
+          "name": "国电南瑞",
+          "composite_score": 42.1,
+          "value_score": 15.0,
+          "growth_score": 10.0,
+          "technical_score": 17.1,
+          "metrics": {
+            "pe_dynamic": 21.7,
+            "pb": null,
+            "roe": 5.9,
+            "price_latest": 22.73,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 14.5,
+            "profit_growth_yoy": 4.0,
+            "price_change_20d_pct": 2.7,
+            "price_change_60d_pct": 3.1
+          },
+          "rank": 2
+        },
+        {
+          "code": "603776",
+          "name": "永安行",
+          "composite_score": 38.5,
+          "value_score": 5.0,
+          "growth_score": 20.0,
+          "technical_score": 13.5,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": -0.5,
+            "price_latest": 20.76,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 66.5,
+            "profit_growth_yoy": 75.8,
+            "price_change_20d_pct": 7.2,
+            "price_change_60d_pct": 10.1
+          },
+          "rank": 3
+        },
+        {
+          "code": "688030",
+          "name": "山石网科",
+          "composite_score": 31.1,
+          "value_score": 5.0,
+          "growth_score": 16.0,
+          "technical_score": 10.1,
+          "metrics": {
+            "pe_dynamic": null,
+            "pb": null,
+            "roe": -2.9,
+            "price_latest": 18.17,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 10.2,
+            "profit_growth_yoy": 71.8,
+            "price_change_20d_pct": 16.5,
+            "price_change_60d_pct": 28.0
+          },
+          "rank": 4
+        },
+        {
+          "code": "603383",
+          "name": "顶点软件",
+          "composite_score": 30.7,
+          "value_score": 7.0,
+          "growth_score": 13.0,
+          "technical_score": 10.7,
+          "metrics": {
+            "pe_dynamic": 28.3,
+            "pb": null,
+            "roe": 4.9,
+            "price_latest": 27.18,
+            "market_cap_billion": null,
+            "revenue_growth_yoy": 1.0,
+            "profit_growth_yoy": 34.5,
+            "price_change_20d_pct": 2.1,
+            "price_change_60d_pct": 6.6
+          },
+          "rank": 5
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_industries_selected": 3,
+    "total_stocks_recommended": 15,
+    "methodology_version": "1.0.0"
+  },
+  "regime": {
+    "regime": "BEAR",
+    "detected_regime": "BEAR",
+    "highvol": false,
+    "model": "防守红利",
+    "target_position_pct": 0.2,
+    "features": {
+      "close": 3716.28,
+      "ret20": -5.54,
+      "arrange": "空头",
+      "ma20": 3847.74,
+      "ma60": 3882.25,
+      "vol_pct": 0.333,
+      "warning": "MA20拐头向下"
+    }
+  }
+}

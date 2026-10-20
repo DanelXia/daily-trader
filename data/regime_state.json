@@ -1,17 +1,17 @@
 {
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "regime": "BEAR",
   "detected_regime": "BEAR",
   "highvol": false,
   "model": "defensive",
   "target_position_pct": 0.2,
   "features": {
-    "close": 3707.48,
-    "ret20": -6.18,
+    "close": 3716.28,
+    "ret20": -5.54,
     "arrange": "空头",
-    "ma20": 3858.65,
-    "ma60": 3885.02,
-    "vol_pct": 0.325,
+    "ma20": 3847.74,
+    "ma60": 3882.25,
+    "vol_pct": 0.333,
     "warning": "MA20拐头向下"
   }
 }

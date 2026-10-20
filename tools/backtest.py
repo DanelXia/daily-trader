@@ -61,6 +61,10 @@ POSITION_BY_REGIME = {"BULL": 0.8, "BEAR": 0.2, "SIDEWAYS": 0.5}
 RET20_BEAR = -3.0
 RET20_BULL = 3.0
 
+# 行业层路由（镜像 IndustryAnalyzer + IndustryMapper）
+INDUSTRY_TOP = 3          # 每期先选 Top-K 个行业，再在其中选股
+MIN_INDUSTRY_STOCKS = 10  # 行业成分股数下限（过滤小行业）
+
 
 # ===================================================================
 # PIT 场景判定（镜像 src/research/regime.py 的确认层，读本地数组）
@@ -354,6 +358,26 @@ def _nan_to_pct(v):
         return None
 
 
+def load_industry_map() -> dict[str, str]:
+    """加载证监会行业分类映射 → {code: industry}。无文件返回空。"""
+    f = BACKTEST_DIR / "industry.csv"
+    if not f.exists():
+        return {}
+    df = pd.read_csv(f, dtype={"code": str})
+    return {str(c).zfill(6): str(i) for c, i in zip(df["code"], df["industry"])}
+
+
+def build_industry_buckets(stocks: dict[str, dict], industry_map: dict[str, str]) -> dict[str, list[str]]:
+    """构建 industry → [codes]（仅限已加载个股 + 已分类 + 成分数 >= MIN_INDUSTRY_STOCKS）。"""
+    buckets: dict[str, list[str]] = {}
+    for code in stocks:
+        ind = industry_map.get(code)
+        if not ind:
+            continue
+        buckets.setdefault(ind, []).append(code)
+    return {ind: codes for ind, codes in buckets.items() if len(codes) >= MIN_INDUSTRY_STOCKS}
+
+
 def load_index(name: str) -> pd.DataFrame:
     f = BACKTEST_DIR / f"index_{name}.csv"
     df = pd.read_csv(f, parse_dates=["date"]).sort_values("date").reset_index(drop=True)
@@ -389,6 +413,76 @@ def score_stock_at(data: dict, T: np.datetime64, model) -> float | None:
     return _combine(value, growth, tech, model.stock_weights)
 
 
+# ===================================================================
+# 行业层评分（镜像 IndustryAnalyzer 的动量/基本面，用成分股 PIT 近似）
+# ===================================================================
+def _industry_momentum_at(stocks: dict[str, dict], codes: list[str], T: np.datetime64) -> float:
+    """行业动量分(0~60)：成分股 20/60 日平均涨跌幅（PIT），涨得越多分越高。"""
+    ret20s, ret60s = [], []
+    for code in codes:
+        d = stocks.get(code)
+        if not d:
+            continue
+        i = int(np.searchsorted(d["dates"], T, side="right"))
+        if i >= 21:
+            ret20s.append(d["close"][i - 1] / d["close"][i - 21] - 1)
+        if i >= 61:
+            ret60s.append(d["close"][i - 1] / d["close"][i - 61] - 1)
+    if not ret20s:
+        return 30.0
+    avg20 = float(np.mean(ret20s)) * 100
+    score = 35 * min(max(avg20 / 8 + 0.5, 0), 1.0)
+    if ret60s:
+        avg60 = float(np.mean(ret60s)) * 100
+        score += 25 * min(max(avg60 / 15 + 0.5, 0), 1.0)
+    else:
+        score += 12.5  # 无 60 日数据给一半基准
+    return score
+
+
+def _industry_fundamental_at(stocks: dict[str, dict], codes: list[str], T: np.datetime64) -> float:
+    """行业基本面分(0~40)：规模 20 + 成分股 ROE 中位数 20（PIT 财务）。"""
+    scale = 20 * min(len(codes) / 200, 1.0)
+    roes = []
+    for code in codes:
+        d = stocks.get(code)
+        if not d or not d.get("fin"):
+            continue
+        fin = financials_at(d["fin"], T)
+        if fin and fin.get("roe") is not None:
+            roes.append(fin["roe"])
+    if roes:
+        med = float(np.median(roes))
+        score_roe = 20 * min(max(med / 15, 0), 1.0)
+    else:
+        score_roe = 10.0
+    return scale + score_roe
+
+
+def _combine_industry(momentum: float, fundamental: float, weights: dict) -> float:
+    """按模型行业权重合并动量/基本面分（归一化到各自满分后加权）。"""
+    w_m = weights.get("momentum", 60)
+    w_f = weights.get("fundamental", 40)
+    return (momentum / 60 * w_m) + (fundamental / 40 * w_f)
+
+
+def top_industries_at(
+    stocks: dict[str, dict],
+    ind_buckets: dict[str, list[str]],
+    T: np.datetime64,
+    model,
+    k: int,
+) -> set[str]:
+    """在日期 T 用模型行业权重选出 Top-K 个行业（PIT）。"""
+    scored = []
+    for ind, codes in ind_buckets.items():
+        mom = _industry_momentum_at(stocks, codes, T)
+        fund = _industry_fundamental_at(stocks, codes, T)
+        scored.append((ind, _combine_industry(mom, fund, model.industry_weights)))
+    scored.sort(key=lambda x: -x[1])
+    return {ind for ind, _ in scored[:k]}
+
+
 def simulate_group(
     dates: list[pd.Timestamp],
     stocks: dict[str, dict],
@@ -396,11 +490,17 @@ def simulate_group(
     idx_dates: np.ndarray,
     idx_close: np.ndarray,
     apply_position: bool = False,
+    industry_top: int = 0,
+    code_industry: dict[str, str] | None = None,
+    ind_buckets: dict[str, list[str]] | None = None,
 ) -> dict:
     """模拟一组策略，返回 {equity, weekly, holdings, regimes, positions}。
 
     apply_position=True 时按场景目标仓位（BULL 80%/BEAR 20%/SIDEWAYS 50%）缩放周收益，
     现金部分记 0 收益；用于验证 Step 3 仓位联动是否提升风险调整后绩效。
+
+    industry_top>0 时启用行业层路由：每期先用模型行业权重选 Top-K 行业，再仅在
+    这些行业成分股中选 Top5（镜像 live 的两层选股）。
     """
     equity = [1.0]
     weekly = []
@@ -433,9 +533,14 @@ def simulate_group(
         position = POSITION_BY_REGIME.get(regime, 1.0) if apply_position else 1.0
         positions_all.append(round(position, 3))
 
-        # 2) 全池打分，取 Top5
+        # 2) 全池打分，取 Top5（可选：先行业层路由）
+        candidate = stocks
+        if industry_top and ind_buckets and code_industry:
+            selected_inds = top_industries_at(stocks, ind_buckets, T64, model, industry_top)
+            candidate = {code: d for code, d in stocks.items()
+                         if code_industry.get(code) in selected_inds}
         scored = []
-        for code, data in stocks.items():
+        for code, data in candidate.items():
             s = score_stock_at(data, T64, model)
             if s is not None:
                 scored.append((code, s))
@@ -496,11 +601,19 @@ def main():
     idx_dates = idx_sh["date"].to_numpy(dtype="datetime64[ns]")
     idx_close = pd.to_numeric(idx_sh["close"], errors="coerce").to_numpy(dtype="float64")
 
+    # 行业层路由数据（可选）
+    industry_map = load_industry_map()
+    ind_buckets = build_industry_buckets(stocks, industry_map)
+    code_industry = {code: ind for code, ind in industry_map.items() if code in stocks}
+    print(f"行业: {len(ind_buckets)} 个（成分数>={MIN_INDUSTRY_STOCKS}），"
+          f"已分类个股 {len(code_industry)} 只")
+
     groups = {
-        "A_固定权重": (get_model(None), False),        # 基础固定权重 {50,20,30}
-        "B_纯动量": (get_model("momentum"), False),     # 一直追动量
-        "实验组_路由": ("router", False),               # 场景→三模型切换（满仓）
-        "实验组_路由_仓位": ("router", True),           # 场景路由 + Step3 仓位联动
+        "A_固定权重": {"selector": get_model(None)},                       # 基础固定权重 {50,20,30}
+        "B_纯动量": {"selector": get_model("momentum")},                    # 一直追动量
+        "实验组_路由": {"selector": "router"},                              # 场景→三模型切换（满仓）
+        "实验组_路由_仓位": {"selector": "router", "apply_position": True}, # 场景路由 + Step3 仓位联动
+        "实验组_路由_行业": {"selector": "router", "industry_top": INDUSTRY_TOP},  # 场景路由 + 行业层
     }
 
     results = {"config": {
@@ -508,12 +621,16 @@ def main():
         "cost_per_turnover": round(COST_PER_TURNOVER, 5),
         "start": str(dates[0].date()),
         "end": str(dates[-1].date()),
+        "industry_top": INDUSTRY_TOP,
     }, "groups": {}}
 
-    for name, (selector, apply_position) in groups.items():
+    for name, cfg in groups.items():
         print(f"\n回测: {name} ...")
-        g = simulate_group(dates, stocks, selector, idx_dates, idx_close,
-                           apply_position=apply_position)
+        g = simulate_group(dates, stocks, cfg["selector"], idx_dates, idx_close,
+                           apply_position=cfg.get("apply_position", False),
+                           industry_top=cfg.get("industry_top", 0),
+                           code_industry=code_industry,
+                           ind_buckets=ind_buckets)
         results["groups"][name] = g
         total_ret = g["equity"][-1] - 1
         print(f"  {name}: 累计收益 {total_ret:+.2%}  净值 {g['equity'][-1]:.4f}")

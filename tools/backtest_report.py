@@ -33,6 +33,7 @@ GROUP_LABELS = {
     "B_纯动量": "对照组B（纯动量）",
     "实验组_路由": "实验组（场景路由）",
     "实验组_路由_仓位": "实验组（路由+仓位）",
+    "实验组_路由_行业": "实验组（路由+行业层）",
 }
 
 
@@ -278,12 +279,13 @@ def render(results: dict) -> str:
     lines.append(f"- 场景分布: {dist}")
     lines.append("")
     lines.append("> 注：「实验组（路由+仓位）」额外叠加 Step 3 仓位联动（BULL 80%/BEAR 20%/SIDEWAYS 50%，现金记 0 收益），")
-    lines.append("> 「实验组（场景路由）」仍为满仓、仅验证选股模型路由；财务数据为严格 PIT（披露日 pubDate ≤ T），")
-    lines.append("> 技术分按模型口径区分（追强势/抗跌/超跌）。")
+    lines.append("> 「实验组（场景路由）」仍为满仓、仅验证选股模型路由；「实验组（路由+行业层）」在场景路由基础上")
+    lines.append("> 先按模型行业权重选 Top3 行业、再在成分股中选 Top5（镜像 live 两层选股）；财务数据为严格 PIT")
+    lines.append("> （披露日 pubDate ≤ T），技术分按模型口径区分（追强势/抗跌/超跌）。")
     lines.append("")
     lines.append("> **已知局限**：")
     lines.append("> 1. 幸存者偏差：股票池为当前存活 + 流动性过滤（近60日均额>2亿），已退市/长期停牌标的不在回测内。")
-    lines.append("> 2. 仅个股层 Top5，行业层路由（基本面60/动量40）与 PE<20/红利过滤未纳入。")
+    lines.append("> 2. 行业层路由用证监会大类（83 个）+ 成分股 PIT 动量/ROE 中位数近似，未接入申万指数；PE<20/红利过滤未纳入。")
     lines.append("> 3. PIT 财务未采集营收增速，成长分仅由利润增速（YOYNI）贡献。")
     lines.append("")
     lines.append("> 免责声明: 本报告由量化模型自动生成，不构成投资建议。")

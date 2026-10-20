@@ -95,12 +95,52 @@ class StockSelector:
         print(f"  [StockSelector] {industry}: {len(codes)}/{len(all_codes)} 通过过滤 "
               f"(筛选 {min(top_n, len(codes))} 只)")
 
-        # 取通过过滤的股票中采样进行深度分析
+        # 行业内按代码顺序采样，限制单次深度分析规模
         sample_size = min(len(codes), 50)
         sample = codes[:sample_size]
+        return self._score_codes(sample, top_n, weights, technical_style)
 
+    def score_universe(
+        self,
+        top_n: int = TOP_STOCKS_PER_INDUSTRY,
+        weights: dict | None = None,
+        technical_style: str = "momentum",
+        codes: list[str] | None = None,
+    ) -> list[dict]:
+        """全池选股：不按行业限制，对全市场候选（或指定 codes）打分取 Top-N。
+
+        用于取代「Top3 行业 → 行业内选股」的硬过滤（回测 §8.7 已证该硬过滤在熊市
+        防守上劣化）。codes=None 时取所有证监会行业成分股的并集。
+        """
+        if codes is None:
+            codes = []
+            for ind in self.mapper.get_all_industries():
+                codes.extend(self.mapper.get_stocks_in_industry(ind))
+            codes = list(dict.fromkeys(codes))  # 去重保序
+
+        if not codes:
+            print("  [StockSelector] 全池无候选股")
+            return []
+
+        passed = self.apply_hard_filters(codes)
+        if not passed:
+            print("  [StockSelector] 全池候选均未通过过滤")
+            return []
+
+        print(f"  [StockSelector] 全池选股: {len(passed)}/{len(codes)} 通过过滤 "
+              f"(筛选 {min(top_n, len(passed))} 只)")
+        return self._score_codes(passed, top_n, weights, technical_style)
+
+    def _score_codes(
+        self,
+        codes: list[str],
+        top_n: int,
+        weights: dict | None,
+        technical_style: str,
+    ) -> list[dict]:
+        """对候选代码列表逐一打分，返回按综合分降序的 Top-N。"""
         results = []
-        for code in sample:
+        for code in codes:
             try:
                 score, details = self._score_stock(code, weights, technical_style)
                 if score is None:

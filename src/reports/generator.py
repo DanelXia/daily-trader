@@ -85,17 +85,20 @@ def _build_weekly_md(data: dict) -> str:
 
     for ind in data["industries"]:
         lines.append(f"## #{ind['rank']} {ind.get('industry_display', ind['industry_name'])}")
-        lines.append(f"**综合得分**: {ind['composite_score']} / 100")
-        lines.append("")
-        lines.append(f"| 维度 | 得分 |")
-        lines.append(f"|------|------|")
-        lines.append(f"| 动量 | {ind['momentum_score']} / 60 |")
-        lines.append(f"| 基本面 | {ind['fundamental_score']} / 40 |")
-        if ind.get("policy_catalyst_score"):
-            lines.append(f"| 政策催化 | {ind.get('policy_catalyst_score', 0)} / 10 |")
-        if ind.get("policy_catalyst_notes"):
-            lines.append(f"\n**政策催化评估**: {ind['policy_catalyst_notes']}")
-        lines.append("")
+
+        # 行业层维度分（全池选股时无行业动量/基本面分，跳过）
+        if ind.get("momentum_score") is not None or ind.get("fundamental_score") is not None:
+            lines.append(f"**综合得分**: {ind['composite_score']} / 100")
+            lines.append("")
+            lines.append(f"| 维度 | 得分 |")
+            lines.append(f"|------|------|")
+            lines.append(f"| 动量 | {ind.get('momentum_score', '-')} / 60 |")
+            lines.append(f"| 基本面 | {ind.get('fundamental_score', '-')} / 40 |")
+            if ind.get("policy_catalyst_score"):
+                lines.append(f"| 政策催化 | {ind.get('policy_catalyst_score', 0)} / 10 |")
+            if ind.get("policy_catalyst_notes"):
+                lines.append(f"\n**政策催化评估**: {ind['policy_catalyst_notes']}")
+            lines.append("")
 
         stocks = ind.get("stocks", [])
         if stocks:

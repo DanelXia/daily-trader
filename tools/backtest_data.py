@@ -87,6 +87,20 @@ def download_index(code: str, name: str) -> str | None:
     return str(path)
 
 
+def download_industry() -> str | None:
+    """下载证监会行业分类映射（code → 行业大类），写 industry.csv。"""
+    from src.data.fetcher import fetch_stock_industry_map
+    df = fetch_stock_industry_map()
+    if df is None or df.empty:
+        return None
+    df = df[["code", "industry"]].dropna()
+    df["industry"] = df["industry"].astype(str).str.strip()
+    df = df[df["industry"] != ""]
+    path = BACKTEST_DIR / "industry.csv"
+    df.to_csv(path, index=False)
+    return str(path)
+
+
 def main():
     codes = get_universe()
     print(f"回测股票池: {len(codes)} 只")
@@ -110,6 +124,9 @@ def main():
     for idx_code, idx_name in (("sh.000001", "sh"), ("sh.000300", "hs300")):
         p = download_index(idx_code, idx_name)
         print(f"指数 {idx_name}: {'已保存 ' + p if p else '失败'}")
+
+    ind_path = download_industry()
+    print(f"行业分类: {'已保存 ' + ind_path if ind_path else '失败'}")
 
 
 if __name__ == "__main__":
