@@ -82,6 +82,42 @@ python src/track.py
 python -m src.main status
 ```
 
+### 7. 模拟盘交易（Paper Trading，虚拟 10 万本金）
+
+独立于实盘的纸面交易引擎（`src/simulate.py`），用 10 万虚拟本金模拟每日操作，记录每笔交易的盈亏与原因，每周复盘。状态存 `data/paper/`，不影响实盘 `data/positions.json`。
+
+```bash
+# 每周日：全池选股（离线秒出），生成 data/paper/watchlist.json
+python -m src.simulate weekly
+
+# 每个交易日 15:00 收盘后：估值 + 止盈止损 + 信号买卖 + 记账
+python -m src.simulate daily
+
+# 每周末：复盘（量化绩效 + 逐笔盈亏与原因）
+python -m src.simulate review
+
+# 查看账户 / 重置（清空历史需 --yes）
+python -m src.simulate status
+python -m src.simulate reset --yes
+```
+
+规则：
+- **成交价**：盘后收盘价（`daily` 应在 15:00 后运行，用当日收盘价估值与成交）
+- **节奏**：每周全池选股一次，每日仅对持仓 + 股票池（~10 只）做技术信号
+- **仓位**：单只 ≤10%，总仓随场景 BULL 80% / BEAR 20% / SIDEWAYS 50%（HIGHVOL 减半）
+- **止盈止损**：按场景固定（BEAR -5%/+10%，SIDEWAYS -5%/+15%，BULL -8%/+20%），另加 strong_sell 信号强平
+- **成本**：佣金万2.5（双边）+ 印花税千1（卖）+ 滑点0.1%（双边）
+
+输出文件：
+
+| 文件 | 说明 |
+|------|------|
+| `data/paper/watchlist.json` | 每周选出的股票池（候选池） |
+| `data/paper/portfolio.json` | 当前虚拟持仓 + 现金 |
+| `data/paper/trade_log.json` | 每笔成交（含原因、盈亏） |
+| `data/paper/equity_history.json` | 每日净值曲线 |
+| `output/paper/review-YYYY-MM-DD.md` | 周复盘报告 |
+
 ## 完整工作流示例
 
 ```bash
@@ -133,14 +169,17 @@ daily-trader/
 │   ├── reports/
 │   │   └── generator.py        # Markdown / JSON 报告生成
 │   ├── main.py                 # CLI 入口
+│   ├── simulate.py             # 模拟盘交易引擎（纸面交易）
 │   └── track.py                # 收益率每日跟踪
 ├── data/
 │   ├── stock_pool.json         # 当前股票池
 │   ├── baseline.json           # 跟踪基准价
+│   ├── paper/                  # 模拟盘状态（持仓/交易/净值/股票池）
 │   └── tracking.json           # 每日收益率记录
 ├── output/
 │   ├── weekly/                 # 周度研报
-│   └── daily/                  # 每日交易建议
+│   ├── daily/                  # 每日交易建议
+│   └── paper/                  # 模拟盘周复盘报告
 ├── config.py                   # 全局配置
 └── requirements.txt
 ```
