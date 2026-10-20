@@ -1,0 +1,36 @@
+[
+  {
+    "date": "2026-10-20",
+    "action": "BUY",
+    "code": "601225",
+    "name": "陕西煤业",
+    "shares": 300,
+    "price": 28.19,
+    "amount": 8467.57,
+    "reason": "BEAR/防守红利 信号买入(61.0分) 综合52.2",
+    "regime": "BEAR",
+    "model": "防守红利",
+    "signal_score": 61.0,
+    "stop_loss": 26.78,
+    "take_profit": 31.01,
+    "pnl": null,
+    "pnl_pct": null
+  },
+  {
+    "date": "2026-10-20",
+    "action": "BUY",
+    "code": "600177",
+    "name": "雅戈尔",
+    "shares": 1100,
+    "price": 8.51,
+    "amount": 9372.7,
+    "reason": "BEAR/防守红利 信号买入(60分) 综合51.3",
+    "regime": "BEAR",
+    "model": "防守红利",
+    "signal_score": 60,
+    "stop_loss": 8.08,
+    "take_profit": 9.36,
+    "pnl": null,
+    "pnl_pct": null
+  }
+]

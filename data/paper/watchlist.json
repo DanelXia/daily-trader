@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-19",
+  "regime": "BEAR",
+  "model": "defensive",
+  "model_label": "防守红利",
+  "target_position_pct": 0.2,
+  "stocks": [
+    {
+      "code": "601225",
+      "name": "陕西煤业",
+      "composite_score": 52.2,
+      "value": 24.0,
+      "growth": 10.0,
+      "tech": 18.2,
+      "price": 28.19,
+      "pe": 13.4,
+      "roe": 11.382399999999999
+    },
+    {
+      "code": "600177",
+      "name": "雅戈尔",
+      "composite_score": 51.3,
+      "value": 20.0,
+      "growth": 7.0,
+      "tech": 24.3,
+      "price": 8.51,
+      "pe": 13.8,
+      "roe": 5.0245
+    },
+    {
+      "code": "601628",
+      "name": "中国人寿",
+      "composite_score": 49.7,
+      "value": 30.0,
+      "growth": 10.0,
+      "tech": 9.7,
+      "price": 34.4,
+      "pe": 3.9,
+      "roe": 21.357499999999998
+    },
+    {
+      "code": "601319",
+      "name": "中国人保",
+      "composite_score": 49.3,
+      "value": 24.0,
+      "growth": 10.0,
+      "tech": 15.3,
+      "price": 7.63,
+      "pe": 5.9,
+      "roe": 11.321299999999999
+    },
+    {
+      "code": "000807",
+      "name": "云铝股份",
+      "composite_score": 48.7,
+      "value": 30.0,
+      "growth": 10.0,
+      "tech": 8.7,
+      "price": 25.62,
+      "pe": 8.1,
+      "roe": 21.8929
+    },
+    {
+      "code": "002170",
+      "name": "芭田股份",
+      "composite_score": 48.5,
+      "value": 27.0,
+      "growth": 10.0,
+      "tech": 11.5,
+      "price": 10.64,
+      "pe": 9.8,
+      "roe": 15.890699999999999
+    },
+    {
+      "code": "601899",
+      "name": "紫金矿业",
+      "composite_score": 48.5,
+      "value": 30.0,
+      "growth": 10.0,
+      "tech": 8.5,
+      "price": 29.79,
+      "pe": 11.7,
+      "roe": 20.0148
+    },
+    {
+      "code": "002611",
+      "name": "东方精工",
+      "composite_score": 48.4,
+      "value": 30.0,
+      "growth": 10.0,
+      "tech": 8.4,
+      "price": 12.88,
+      "pe": 3.8,
+      "roe": 50.4432
+    },
+    {
+      "code": "002128",
+      "name": "电投能源",
+      "composite_score": 48.3,
+      "value": 24.0,
+      "growth": 10.0,
+      "tech": 14.3,
+      "price": 28.17,
+      "pe": 11.6,
+      "roe": 11.6266
+    },
+    {
+      "code": "002192",
+      "name": "融捷股份",
+      "composite_score": 47.8,
+      "value": 30.0,
+      "growth": 10.0,
+      "tech": 7.8,
+      "price": 47.54,
+      "pe": 10.3,
+      "roe": 24.797
+    }
+  ]
+}

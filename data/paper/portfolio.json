@@ -1,0 +1,29 @@
+{
+  "initial_capital": 100000.0,
+  "cash": 82159.72750000001,
+  "start_date": "2026-10-20",
+  "positions": {
+    "601225": {
+      "name": "陕西煤业",
+      "shares": 300,
+      "entry_price": 28.19,
+      "entry_date": "2026-10-20",
+      "cost": 8467.57,
+      "stop_loss": 26.78,
+      "take_profit": 31.01,
+      "price": 28.19,
+      "entry_reason": "BEAR/防守红利 信号买入(61.0分) 综合52.2"
+    },
+    "600177": {
+      "name": "雅戈尔",
+      "shares": 1100,
+      "entry_price": 8.51,
+      "entry_date": "2026-10-20",
+      "cost": 9372.7,
+      "stop_loss": 8.08,
+      "take_profit": 9.36,
+      "price": 8.51,
+      "entry_reason": "BEAR/防守红利 信号买入(60分) 综合51.3"
+    }
+  }
+}
