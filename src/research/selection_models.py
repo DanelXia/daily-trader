@@ -6,9 +6,9 @@
   BEAR      -> defensive     （防守红利）
   SIDEWAYS  -> mean_reversion（均值回归）
 
-每个模型定义两套权重（归一化到各自满分后再加权，权重求和 = 100）：
-  industry_weights: {momentum, fundamental}   行业评分
-  stock_weights:    {value, growth, technical} 个股评分
+每个模型定义个股评分权重 stock_weights: {value, growth, technical}（归一化到各自
+满分后再加权）。行业层评分权重（industry_weights）已弃用——回测 §8.7 证明行业层硬
+过滤在熊市防守上劣化，live 已改为全池选股，不再按行业打分。
 
 除权重外，每个模型还定义 technical_style（技术分口径，修正 DefensiveModel 与基线
 技术分相同导致熊市路由失效的缺口）：
@@ -22,7 +22,6 @@ class SelectionModel:
     """选股模型基类。默认权重等价于原固定权重，保证无路由时行为不变。"""
     name = "base"
     label = "基础固定权重"
-    industry_weights = {"momentum": 60, "fundamental": 40}
     stock_weights = {"value": 50, "growth": 20, "technical": 30}
     technical_style = "momentum"
     filter_hint = ""
@@ -32,7 +31,6 @@ class MomentumModel(SelectionModel):
     """BULL：强者恒强，追趋势不追估值。"""
     name = "momentum"
     label = "动量突破"
-    industry_weights = {"momentum": 70, "fundamental": 30}
     stock_weights = {"technical": 40, "value": 30, "growth": 30}
     technical_style = "momentum"
     filter_hint = "突破60日高点 + 放量确认，剔除纯超跌反弹"
@@ -42,7 +40,6 @@ class DefensiveModel(SelectionModel):
     """BEAR：优先活下来，赚股息 + 抗跌，不赚趋势钱。"""
     name = "defensive"
     label = "防守红利"
-    industry_weights = {"momentum": 40, "fundamental": 60}
     stock_weights = {"value": 50, "growth": 20, "technical": 30}
     technical_style = "defensive"
     filter_hint = "PE<20、相对抗跌、优先高股息红利低波"
@@ -52,7 +49,6 @@ class MeanReversionModel(SelectionModel):
     """SIDEWAYS：低吸回踩支撑，不追高。"""
     name = "mean_reversion"
     label = "均值回归"
-    industry_weights = {"momentum": 40, "fundamental": 60}
     stock_weights = {"technical": 40, "value": 40, "growth": 20}
     technical_style = "mean_reversion"
     filter_hint = "RSI<40 或回踩 MA20/前低支撑，不追高"

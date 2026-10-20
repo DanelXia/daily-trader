@@ -1,6 +1,6 @@
 # 市场场景识别 + 多模型选股路由框架（设计文档）
 
-**版本**: 0.4（设计稿）  |  **日期**: 2026-10-19  |  **状态**: Step 1–4 已实现；行业层路由补测完成（见 §8.7，结论为不接入）
+**版本**: 0.5（设计稿）  |  **日期**: 2026-10-20  |  **状态**: Step 1–4 已实现；行业层路由补测完成（见 §8.7，结论为不接入），行业层代码已清理归档（§4 行业权重标记「已弃用」，`industry_analysis.py`/申万指数机制/回测行业对照组已删除）
 
 ---
 
@@ -132,15 +132,12 @@
 
 ### 4.1 模型参数化（取代固定权重）
 
-现有 `industry_analysis.py`（行业）和 `stock_selection.py`（个股）权重硬编码，改为由 `selection_models.py` 传入权重字典。
+现有 `stock_selection.py`（个股）权重硬编码，改为由 `selection_models.py` 传入权重字典。
 
-#### 行业评分（三套权重）
-
-| 模型 | 动量(20日/60日涨幅) | 基本面(规模+ROE) |
-|------|---------------------|------------------|
-| MomentumModel | **70** | 30 |
-| DefensiveModel | 40 | **60** |
-| MeanReversionModel | 40 | 60 |
+> **行业评分（三套权重）已弃用**（v0.4，2026-10-19）：回测 §8.7 证明行业层硬 Top-K 路由在
+> 熊市防守上全面劣化（BEAR 区间从 +6.05% 反转为 -20.83%），live `main.py research` 已改为
+> 全池选股（`score_universe`），不再按行业打分、不再限制行业成分。原行业权重表移除，仅保留
+> 个股评分权重与 technical_style。
 
 #### 个股评分（三套权重）
 
@@ -167,7 +164,6 @@
 ### 4.2 MomentumModel（BULL）
 
 - **定位**：牛市里强者恒强，追趋势不追估值。
-- **行业**：动量 70（20日/60日涨幅权重放大）。
 - **个股**：技术 40（含动量、均线多头、放量突破）+ 成长 30（营收/利润增速）+ 价值 30。
 - **附加过滤**：突破 60 日高点 + 放量确认，剔除纯超跌反弹。
 - **止损**：入场价下方 2 ATR 或 -8%，取较近者。
@@ -175,7 +171,6 @@
 ### 4.3 DefensiveModel（BEAR）
 
 - **定位**：熊市里优先"活下来"，赚股息+抗跌，不赚趋势钱。
-- **行业**：基本面 60（ROE、盈利稳定）+ 动量 40（仅要求"跌得少"）。
 - **个股**：价值 50（PE/PB/ROE/股息）+ 成长 20 + 技术 30（仅要求"不破位"）。
 - **附加过滤**：
   - PE < 20 且 PB 合理；
@@ -187,7 +182,6 @@
 ### 4.4 MeanReversionModel（SIDEWAYS）
 
 - **定位**：震荡市里追高必被套，低吸回踩支撑才是正解。
-- **行业**：基本面 60 + 动量 40（不追涨）。
 - **个股**：技术 40 + 价值 40 + 成长 20。
 - **附加过滤**：RSI < 40 或价格回踩 MA20/前低支撑附近，不追高。
 - **目标**：赚"超跌反弹 + 均值回归"的钱。
@@ -238,7 +232,6 @@ src/research/
 ├── regime.py              # 新增：MarketRegimeDetector（特征+决策树）
 ├── selection_models.py    # 新增：MomentumModel / DefensiveModel / MeanReversionModel（含 technical_style）
 ├── router.py              # 新增：RegimeRouter（映射+防抖）
-├── industry_analysis.py   # 改造：权重参数化，从 selection_models 取权重
 ├── stock_selection.py     # 改造：权重 + technical_style 参数化，从 selection_models 取
 src/
 ├── main.py                # 改造：detect → route → select 流程串联
@@ -249,7 +242,7 @@ data/
 tools/
 ├── backtest_data.py           # 新增：全A个股+指数日线下载（断点续传）
 ├── backtest_financials_pit.py # 新增：多报告期财务 + 披露日下载（流动性子集筛选）
-├── backtest.py                # 新增：周度回测引擎（三组对照，PIT 选股 + 模型感知技术分）
+├── backtest.py                # 新增：周度回测引擎（对照组 vs 路由组，PIT 选股 + 模型感知技术分）
 ├── backtest_report.py         # 新增：绩效打分与报告生成
 ```
 
@@ -258,10 +251,9 @@ tools/
 | 模块 | 职责 |
 |------|------|
 | `regime.py` | 输入指数日线/实时行情 → 计算特征 → 决策树输出场景 + 特征 |
-| `selection_models.py` | 三个模型各自实现 `score_industry()` / `score_stock()`，返回带权重的打分 |
+| `selection_models.py` | 三个模型各自实现 `score_stock()`，返回带权重的个股打分（行业评分已弃用） |
 | `router.py` | 场景 → 模型映射；读取/写入 `regime_history.json`；执行防抖 |
-| `industry_analysis.py` | 只做数据采集与归一化，权重从外部注入 |
-| `stock_selection.py` | 同上，权重参数化 |
+| `stock_selection.py` | 个股数据采集与归一化，权重从外部注入（全池选股 `score_universe`） |
 | `main.py` | `research` 命令改为：`detect_regime → route_model → select` |
 
 ---
@@ -274,7 +266,7 @@ tools/
 - 目的：先验证场景识别是否贴合主观判断，积累 1–2 周数据再调参。
 
 ### Step 2（参数化 + 三模型）
-- 改造 `industry_analysis.py` / `stock_selection.py`，权重参数化。
+- 改造 `stock_selection.py`，权重参数化。
 - 实现 `selection_models.py` 三个模型。
 - `main.py` 串起来：detect → route → select。
 

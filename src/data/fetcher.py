@@ -1,5 +1,5 @@
 """
-统一数据获取层。基于 baostock 为主力数据源，akshare 补充申万行业指数数据。
+统一数据获取层。基于 baostock 为主力数据源，akshare 补充实时行情与涨停池数据。
 """
 
 import random
@@ -198,21 +198,6 @@ def fetch_stock_industry_map() -> pd.DataFrame:
     return df[["code", "code_name", "industry", "industryClassification"]]
 
 
-@cached(ttl=CACHE_TTL_FINANCIAL)
-def fetch_industry_list() -> pd.DataFrame:
-    """获取行业列表及其成分股数量统计"""
-    df = fetch_stock_industry_map()
-    if df is None or df.empty:
-        return pd.DataFrame()
-    # 按 industry 分组统计
-    industry_stats = df.groupby("industry").agg(
-        stock_count=("code", "count"),
-        classification=("industryClassification", "first"),
-    ).reset_index()
-    industry_stats = industry_stats.sort_values("stock_count", ascending=False)
-    return industry_stats
-
-
 # ===================================================================
 # K线数据
 # ===================================================================
@@ -344,54 +329,6 @@ def fetch_index_kline(code: str = "sh.000001", days: int = 380) -> Optional[pd.D
     df["date"] = pd.to_datetime(df["date"])
     df = df[df["volume"] > 0].copy()
     return df.tail(days)
-
-
-# ===================================================================
-# 行业指数数据（通过 akshare 申万指数）
-# ===================================================================
-
-def fetch_sw_industry_list() -> pd.DataFrame:
-    """获取申万一级行业指数列表（通过 akshare）"""
-    try:
-        import akshare as ak
-        time.sleep(random.uniform(2, 3))
-        df = ak.index_realtime_sw(symbol="一级行业")
-        if df is not None and not df.empty:
-            df = df.rename(columns={
-                "指数代码": "code", "指数名称": "name",
-                "最新价": "price", "涨跌幅": "pct_change",
-                "成交量": "volume", "成交额": "amount",
-            })
-        return df
-    except Exception:
-        return None
-
-
-@cached(ttl=CACHE_TTL_KLINE)
-def fetch_sw_industry_kline(code: str, days: int = 100) -> Optional[pd.DataFrame]:
-    """获取申万行业指数K线"""
-    try:
-        import akshare as ak
-        time.sleep(random.uniform(3, 5))
-        end = datetime.now().strftime("%Y%m%d")
-        start = (datetime.now() - timedelta(days=days + 30)).strftime("%Y%m%d")
-        df = ak.index_hist_sw(symbol=code, period="day", start_date=start, end_date=end)
-        if df is not None and not df.empty:
-            df.columns = [c.lower() for c in df.columns]
-            rename_map = {}
-            for cn, en in [("日期", "date"), ("开盘", "open"), ("最高", "high"),
-                           ("最低", "low"), ("收盘", "close"), ("成交量", "volume"),
-                           ("成交额", "amount"), ("涨跌幅", "pct_change")]:
-                for c in df.columns:
-                    if cn in c:
-                        rename_map[c] = en
-            df = df.rename(columns=rename_map)
-            for col in ["close", "volume", "pct_change"]:
-                if col in df.columns:
-                    df[col] = pd.to_numeric(df[col], errors="coerce")
-        return df
-    except Exception:
-        return None
 
 
 # ===================================================================
