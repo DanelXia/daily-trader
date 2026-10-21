@@ -132,14 +132,16 @@ def load_watchlist() -> dict | None:
 # 场景识别（live，读当前指数；不写 regime_state 等实盘状态文件）
 # ===================================================================
 def detect_regime_state() -> dict:
-    """返回 {regime, highvol, target_position_pct, model, model_label}。"""
+    """返回 {regime, highvol, target_position_pct, model, model_label, technical_style, features}。"""
     detection = MarketRegimeDetector().detect()
     if detection is None:
         regime = "SIDEWAYS"
         highvol = False
+        features = {}
     else:
         regime = detection["regime"]
         highvol = detection["highvol"]
+        features = detection.get("features", {})
     model = get_model(REGIME_MODEL_MAP[regime])
     target_pos = POSITION_BY_REGIME[regime] * (0.5 if highvol else 1.0)
     return {
@@ -148,6 +150,8 @@ def detect_regime_state() -> dict:
         "target_position_pct": round(target_pos, 2),
         "model": model,
         "model_label": model.label,
+        "technical_style": model.technical_style,
+        "features": features,
     }
 
 
@@ -300,19 +304,36 @@ def cmd_daily():
                 print(f"        [提示] 减仓信号，模拟盘暂不自动减仓，留待周复盘评估")
             continue
 
-        to_sell.append((code, pos, price, reason))
+        to_sell.append((code, pos, price, reason, signal))
         if signal:
             print(f"  [持仓] {pos['name']}({code})  价={price:.2f}  "
                   f"信号={ACTION_CN.get(signal['action'])}{_score_str(signal)}")
 
     # ---- 2) 执行卖出 ---- #
-    for code, pos, price, reason in to_sell:
+    for code, pos, price, reason, signal in to_sell:
         shares = pos["shares"]
         proceeds = shares * price * (1 - SELL_COST_RATE)
         pnl = proceeds - pos["cost"]
         pnl_pct = (pnl / pos["cost"] * 100) if pos["cost"] else 0.0
         portfolio["cash"] += proceeds
         del portfolio["positions"][code]
+        decision = {
+            "exit_trigger": reason,
+            "entry_context": {
+                "entry_price": pos.get("entry_price"),
+                "entry_date": pos.get("entry_date"),
+                "entry_reason": pos.get("entry_reason"),
+                "cost": pos.get("cost"),
+                "stop_loss": pos.get("stop_loss"),
+                "take_profit": pos.get("take_profit"),
+            },
+            "exit_signal": {
+                "action": signal["action"],
+                "action_cn": ACTION_CN.get(signal["action"]),
+                "trading_score": signal["trading_score"],
+                "key_notes": signal.get("key_notes"),
+            } if signal else None,
+        }
         trade_log.append({
             "date": today, "action": "SELL", "code": code, "name": pos["name"],
             "shares": shares, "price": round(price, 2),
@@ -320,6 +341,7 @@ def cmd_daily():
             "regime": regime, "model": model_label,
             "pnl": round(pnl, 2), "pnl_pct": round(pnl_pct, 2),
             "entry_price": pos["entry_price"], "entry_date": pos["entry_date"],
+            "decision": decision,
         })
         trades_today.append(f"卖出 {pos['name']} {shares}股 @{price:.2f}  {reason}  盈亏{pnl:+,.2f}")
         print(f"  [卖出] {pos['name']}({code})  {shares}股 @{price:.2f}  {reason}  "
@@ -376,6 +398,38 @@ def cmd_daily():
                 "take_profit": take_profit, "price": round(price, 2),
                 "entry_reason": reason,
             }
+            decision = {
+                "market": {
+                    "regime": regime,
+                    "highvol": rs.get("highvol"),
+                    "target_position_pct": rs.get("target_position_pct"),
+                    "features": rs.get("features"),
+                },
+                "selection": {
+                    "composite_score": cand.get("composite_score"),
+                    "value": cand.get("value"),
+                    "growth": cand.get("growth"),
+                    "tech": cand.get("tech"),
+                    "pe": cand.get("pe"),
+                    "roe": cand.get("roe"),
+                },
+                "signal": {
+                    "action": signal["action"] if signal else None,
+                    "action_cn": ACTION_CN.get(signal["action"]) if signal else None,
+                    "trading_score": signal["trading_score"] if signal else None,
+                    "entry": signal.get("entry") if signal else None,
+                    "stop_loss": signal.get("stop_loss") if signal else None,
+                    "take_profit": signal.get("take_profit") if signal else None,
+                    "key_notes": signal.get("key_notes") if signal else None,
+                },
+                "sizing": {
+                    "single_stock_pct": SINGLE_STOCK_PCT,
+                    "budget": round(budget, 2),
+                    "shares": shares,
+                    "cost": round(cost, 2),
+                },
+                "reason": reason,
+            }
             trade_log.append({
                 "date": today, "action": "BUY", "code": code, "name": cand["name"],
                 "shares": shares, "price": round(price, 2),
@@ -384,6 +438,7 @@ def cmd_daily():
                 "signal_score": signal["trading_score"] if signal else None,
                 "stop_loss": stop_loss, "take_profit": take_profit,
                 "pnl": None, "pnl_pct": None,
+                "decision": decision,
             })
             trades_today.append(f"买入 {cand['name']} {shares}股 @{price:.2f}  {reason}")
             print(f"  [买入] {cand['name']}({code})  {shares}股 @{price:.2f}  "
@@ -434,6 +489,19 @@ def cmd_daily():
 # ===================================================================
 # 每周复盘
 # ===================================================================
+def _print_decision_basis(t: dict, indent: str = "        "):
+    """打印一笔已平仓交易的决策依据（入场依据 + 出场信号关键要点）。"""
+    d = t.get("decision") or {}
+    ec = d.get("entry_context") or {}
+    if ec.get("entry_reason"):
+        print(f"{indent}入场依据: {ec['entry_reason']}")
+    es = d.get("exit_signal") or {}
+    if es:
+        notes = "；".join(es.get("key_notes") or []) or "无"
+        print(f"{indent}出场信号: {es.get('action_cn', '-')} "
+              f"{es.get('trading_score', '-')}分 | {notes}")
+
+
 def cmd_review():
     portfolio = load_portfolio()
     trade_log = load_trade_log()
@@ -509,6 +577,7 @@ def cmd_review():
             print(f"    {t['date']}  {t['name']}({t['code']})  "
                   f"{t['entry_price']}→{t['price']}  {t['pnl']:+,.2f} ({t['pnl_pct']:+.2f}%)")
             print(f"        原因: {t['reason']}")
+            _print_decision_basis(t)
 
     if weeks:
         print(f"\n  周度已实现盈亏:")
@@ -541,6 +610,18 @@ def cmd_review():
             lines.append(f"| {t['date']} | {t['name']}({t['code']}) | "
                          f"{t['entry_price']}→{t['price']} | "
                          f"{t['pnl']:+,.2f} ({t['pnl_pct']:+.2f}%) | {t['reason']} |")
+        lines.append("\n## 平仓决策依据\n")
+        for t in closed:
+            d = t.get("decision") or {}
+            ec = d.get("entry_context") or {}
+            es = d.get("exit_signal") or {}
+            lines.append(f"### {t['date']} {t['name']}({t['code']})")
+            lines.append(f"- 入场依据：{ec.get('entry_reason', '-')}")
+            if es:
+                notes = "；".join(es.get("key_notes") or []) or "无"
+                lines.append(f"- 出场信号：{es.get('action_cn', '-')} "
+                             f"{es.get('trading_score', '-')}分（{notes}）")
+            lines.append("")
     if portfolio["positions"]:
         lines.append("\n## 当前持仓\n")
         lines.append("| 股票 | 股数 | 成本 | 现价 | 浮盈 |")
