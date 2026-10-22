@@ -249,22 +249,44 @@ def _analyze(code: str, name: str, regime_state: dict):
     return indicators, signal
 
 
-def cmd_daily():
-    today = _today()
-    if datetime.now().weekday() >= 5:
+def cmd_daily(date: str | None = None):
+    today = date or _today()
+    backfill = date is not None
+    try:
+        wkday = datetime.strptime(today, "%Y-%m-%d").weekday()
+    except ValueError:
+        print(f"日期格式错误: {today}，应为 YYYY-MM-DD")
+        return
+    if wkday >= 5:
         print(f"{today} 周末，非交易日，跳过")
         return
 
     equity_hist = load_equity()
-    if equity_hist and equity_hist[-1].get("date") == today:
-        print(f"{today} 已运行过（净值历史最后一条为今日），跳过避免重复记账")
-        return
-    if datetime.now().hour < 15:
-        print("[警告] 当前未到收盘(15:00)，将用最新可得收盘价（可能为上一交易日），"
-              "建议盘后运行")
+    trade_log = load_trade_log()
+
+    if backfill:
+        # 补跑历史交易日：撤销该日已有净值记录，用最新可得数据重跑。
+        # 若该日已有成交，需回滚交易才能重跑，这里保守拒绝以免破坏持仓一致性。
+        day_trades = [t for t in trade_log if t.get("date") == today]
+        if day_trades:
+            print(f"[中止] {today} 已有 {len(day_trades)} 笔成交，补跑需回滚交易，"
+                  f"请先 reset 或手动处理")
+            return
+        prev = [e for e in equity_hist if e.get("date") != today]
+        if len(prev) == len(equity_hist):
+            print(f"[补跑] {today} 暂无净值记录，按最新数据重跑")
+        else:
+            print(f"[补跑] 清除 {today} 旧净值记录，按最新数据重跑")
+        equity_hist = prev
+    else:
+        if equity_hist and equity_hist[-1].get("date") == today:
+            print(f"{today} 已运行过（净值历史最后一条为今日），跳过避免重复记账")
+            return
+        if datetime.now().hour < 15:
+            print("[警告] 当前未到收盘(15:00)，将用最新可得收盘价（可能为上一交易日），"
+                  "建议盘后运行")
 
     portfolio = load_portfolio()
-    trade_log = load_trade_log()
     watchlist = load_watchlist()
     rs = detect_regime_state()
     regime = rs["regime"]
@@ -677,7 +699,9 @@ def main():
 
     sub.add_parser("weekly", help="每周全池选股（离线）").add_argument(
         "--top", type=int, default=10)
-    sub.add_parser("daily", help="每日盘后模拟交易")
+    d = sub.add_parser("daily", help="每日盘后模拟交易")
+    d.add_argument("--date", type=str, default=None,
+                   help="补跑指定交易日（YYYY-MM-DD），用最新可得数据重跑该日")
     sub.add_parser("review", help="每周复盘")
     sub.add_parser("status", help="查看账户")
     r = sub.add_parser("reset", help="重置")
@@ -687,7 +711,7 @@ def main():
     if args.cmd == "weekly":
         cmd_weekly(args.top)
     elif args.cmd == "daily":
-        cmd_daily()
+        cmd_daily(args.date)
     elif args.cmd == "review":
         cmd_review()
     elif args.cmd == "status":
